@@ -6,7 +6,7 @@ $obj_pais= new pais();
 
 /**cabecera */
 $html='
-<table id="tbl_pais" class="table table-bordered table-striped table-sm" style="font-size: 16px;">
+<table id="tbl_pais" class="table table-bordered table-striped table-sm" style="font-size: 9px;">
                   <thead>
                     <tr>  
                         <th>N°</th>

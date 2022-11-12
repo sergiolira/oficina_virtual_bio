@@ -5,7 +5,7 @@ $obj_quienes_somos = new web_quienes_somos();
 $rs=$obj_quienes_somos->read();
 $count = 0;
 ?>
-<table id="table_web_quienes_somos" class="table table-bordered table-striped">
+<table id="table_web_quienes_somos" class="table table-bordered table-striped table-sm" style="font-size: 9px;">
     <thead>
         <tr>
             <th>N°</th>

@@ -5,7 +5,7 @@ $obj_tipo_lic= new tipo_licencia();
 
 /**cabecera */
 $html='
-<table id="tbl_tipo_lic" class="table table-bordered table-striped table-sm" style="font-size: 16px;">
+<table id="tbl_tipo_lic" class="table table-bordered table-striped table-sm" style="font-size: 9px;">
 <thead>
   <tr>  
       <th>N°</th>

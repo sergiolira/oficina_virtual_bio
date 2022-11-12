@@ -24,18 +24,17 @@ $(document).on('click', '#btn_gweb_sm', function() {
         type:'POST',
         url:'controller_func/web_sub_menu/accion.php',
         data:data,
-        success:function(data){  
-            alert(data);          
+        success:function(data){     
             if(data.trim()=="true_create"){               
                 $("#form_web_sm").empty();
                 $("#modal-form-web_sm").modal("hide");
-                toastr.success("Se creó la web del menu");
+                toastr.success("Se creó la web del sub-menu");
                 list_web_sub_menu();
                 
             }else if(data.trim()=="true_update"){
                 $("#form_web_sm").empty();
                 $("#modal-form-web_sm").modal("hide");
-                toastr.success("Se actualizó la web del menu");
+                toastr.success("Se actualizó la web del sub-menu");
                 list_web_sub_menu();                
             }else if(data.trim()=="incorrectos"){
                 toastr.error("Por favor valide los campos los datos ingresados son incorrectos.");

@@ -4,7 +4,7 @@ include_once("../../model_class/costo_envio.php");
 $obj_costo_envio= new costo_envio();
 
 /**cabecera*/
-$html='<table id="tbl_marca" class="table table-bordered table-striped table-sm" style="font-size: 16px;">
+$html='<table id="tbl_marca" class="table table-bordered table-striped table-sm" style="font-size: 9px;">
 <thead>
     <tr>  
         <th>N°</th>

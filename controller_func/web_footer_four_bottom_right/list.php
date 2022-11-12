@@ -5,7 +5,7 @@ $obj_wffbr= new web_footer_four_bottom_right();
 
 /**cabecera */
 $html='
-<table id="tbl_wffbr" class="table table-bordered table-striped table-sm" style="font-size: 16px;">
+<table id="tbl_wffbr" class="table table-bordered table-striped table-sm" style="font-size: 9px;">
 <thead>
 <tr>  
     <th>N°</th>

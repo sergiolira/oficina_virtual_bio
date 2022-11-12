@@ -9,7 +9,7 @@
     $rs = $obj->read();
     $count = 0;
 ?>
-<table id="table_cab_comisiones_list" class="table table-bordered table-striped">
+<table id="table_cab_comisiones_list" class="table table-bordered table-striped table-sm" style="font-size: 9px;">
     <thead>
         <tr>
             <th>N°</th>

@@ -1,6 +1,6 @@
 function list_web_static_left(){
     $.ajax({
-        url:"controller_func/web_banner_static_left/list.php"
+        url:"controller_func/web_b_static_left/list.php"
     }).done(function(data){
         $('.table_web_testimonio').empty();
         $('.table_web_testimonio').append(data);        
@@ -9,7 +9,7 @@ function list_web_static_left(){
 
 $(document).on('click', '.nuevo_web_testimonio_modal',function(){
     var id=$(this).data("id");
-    var url="controller_func/web_banner_static_left/create.php?id="+id;
+    var url="controller_func/web_b_static_left/create.php?id="+id;
     $.get(url, function(data){
         $("#form_web_testimonio").empty();
         $("#form_web_testimonio").append(data);
@@ -29,7 +29,7 @@ $(document).on('click', '.activar-item', function() {
     var data={"id":id,"accion":"activar"};
     $.ajax({
         type:'POST',
-        url:'controller_func/web_banner_static_left/accion.php',
+        url:'controller_func/web_b_static_left/accion.php',
         data:data,
         success:function(data){            
             if(data=="true_activado"){
@@ -46,7 +46,7 @@ $(document).on('click', '.desactivar-item', function() {
     var data={"id":id,"accion":"desactivar"};
     $.ajax({
         type:'POST',
-        url:'controller_func/web_banner_static_left/accion.php',
+        url:'controller_func/web_b_static_left/accion.php',
         data:data,
         success:function(data){            
             if(data=="true_desactivado"){
@@ -124,7 +124,7 @@ $(document).on('click', '#btn_save', function() {
     } 
     $.ajax({
         type:'POST',
-        url:'controller_func/web_banner_static_left/accion.php',
+        url:'controller_func/web_b_static_left/accion.php',
         data:formData,
         contentType: false,
         cache: false,
@@ -152,7 +152,7 @@ $(document).on('click', '#btn_save', function() {
 
 $(document).on('click', '.show_detalle_venta_modal', function() {
     var id=$(this).data("id");
-    var url="controller_func/web_banner_static_left/show.php?id="+id;
+    var url="controller_func/web_b_static_left/show.php?id="+id;
     $.get(url, function(data){
         $("#form_show_web_testimonio").empty();
         $("#form_show_web_testimonio").append(data);
@@ -163,7 +163,7 @@ $(document).on('click', '.show_detalle_venta_modal', function() {
 
 $(document).on('click', '.show_pdf_modal', function() {
     var id=$(this).data("id");
-    var url="controller_func/web_banner_static_left/preview_pdf.php?id="+id;
+    var url="controller_func/web_b_static_left/preview_pdf.php?id="+id;
     $.get(url, function(data){
         var parseData = JSON.parse(data);
         $('#preview_pdf').attr('src',parseData.archivo_descarga);

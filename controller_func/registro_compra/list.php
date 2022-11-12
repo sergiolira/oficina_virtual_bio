@@ -5,7 +5,7 @@ $obj_r_c= new registro_compra();
 
 /**cabecera */
 $html='
-<table id="tbl_r_c" class="table table-bordered table-striped table-sm" style="font-size: 16px;">
+<table id="tbl_r_c" class="table table-bordered table-striped table-sm" style="font-size: 9px;">
 <thead>
 <tr>  
     <th>N°</th>

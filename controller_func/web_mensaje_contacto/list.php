@@ -5,7 +5,7 @@ $obj_mensaje = new web_mensaje_contacto();
 $rs=$obj_mensaje->read();
 $count = 0;
 ?>
-<table id="table_web_mensaje" class="table table-bordered table-striped">
+<table id="table_web_mensaje" class="table table-bordered table-striped table-sm" style="font-size: 9px;">
     <thead>
         <tr>
             <th>N°</th>

@@ -10,7 +10,7 @@ $obj_tp_com = new tipo_com();
 $rs = $obj_tr->read();
 $count = 0;
 ?>
-<table id="table_trama_comisiones" class="table table-bordered table-striped">
+<table id="table_trama_comisiones" class="table table-bordered table-striped table-sm" style="font-size: 9px;">
     <thead>
         <tr>
             <th>N°</th>

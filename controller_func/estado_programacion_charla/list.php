@@ -5,7 +5,7 @@ $obj_e_p_c= new estado_programacion_charla();
 
 /**cabecera */
 $html='
-<table id="tbl_e_p_c" class="table table-bordered table-striped table-sm" style="font-size: 16px;">
+<table id="tbl_e_p_c" class="table table-bordered table-striped table-sm" style="font-size: 9px;">
                   <thead>
                     <tr>  
                         <th>N°</th>

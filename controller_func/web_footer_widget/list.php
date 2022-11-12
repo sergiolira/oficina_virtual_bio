@@ -5,7 +5,7 @@ $obj_wfw= new web_footer_widget();
 
 /**cabecera */
 $html='
-<table id="tbl_wfw" class="table table-bordered table-striped table-sm" style="font-size: 16px;">
+<table id="tbl_wfw" class="table table-bordered table-striped table-sm" style="font-size: 9px;">
 <thead>
 <tr>  
     <th>N°</th>

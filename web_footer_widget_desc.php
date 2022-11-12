@@ -69,11 +69,11 @@ if ($_SESSION['ver']=="1") {
 
   <link href="fontawesome-free-5.10.2-web/css/all.css" rel="stylesheet">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <nav class="main-header navbar navbar-expand navbar-dark">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -131,8 +131,8 @@ if ($_SESSION['ver']=="1") {
              <div class="card">
                <div class="card-header">
                <?php if ($_SESSION['crear']==1) { ?>
-                  <button class="btn btn-info nuevo_wfwd_modal" data-id="0">Nueva Web footer widget desc</button>
-                  <button type="button" class="btn btn-success exportar-excel_wfwd" title="Exportar Excel" id="exportable">
+                  <button class="btn btn-info btn-sm  nuevo_wfwd_modal" data-id="0">Nueva Web footer widget desc</button>
+                  <button type="button" class="btn btn-success btn-sm exportar-excel_wfwd" title="Exportar Excel" id="exportable">
                     Exportar Datos <i class="fas fa-file-excel"></i></button>
                 <?php } ?>
                </div>

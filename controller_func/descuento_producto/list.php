@@ -5,7 +5,7 @@ $obj_d_p= new descuento_producto();
 
 /**cabecera */
 $html='
-<table id="tbl_d_p" class="table table-bordered table-striped table-sm" style="font-size: 16px;">
+<table id="tbl_d_p" class="table table-bordered table-striped table-sm" style="font-size: 9px;">
 <thead>
 <tr>  
     <th>N°</th>

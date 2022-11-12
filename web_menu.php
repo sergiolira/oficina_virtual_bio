@@ -69,18 +69,18 @@ if ($_SESSION['ver']=="1") {
 
   <link href="fontawesome-free-5.10.2-web/css/all.css" rel="stylesheet">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <nav class="main-header navbar navbar-expand navbar-dark">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Web menu</a>
+        <a href="index3.html" class="nav-link">Menú principal</a>
       </li>
       
     </ul>
@@ -111,12 +111,12 @@ if ($_SESSION['ver']=="1") {
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Web menu</h1>
+            <h1 class="m-0 text-dark">Menú principal</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Web menu</li>
+              <li class="breadcrumb-item active">Menú principal</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -131,8 +131,8 @@ if ($_SESSION['ver']=="1") {
              <div class="card">
                <div class="card-header">
                <?php if ($_SESSION['crear']==1) { ?>
-                  <button class="btn btn-info nuevo_web_menu_modal" data-id="0">Nueva Web menu</button>
-                  <button type="button" class="btn btn-success exportar-excel-web-menu" title="Exportar Excel" id="exportable">
+                  <button class="btn btn-info btn-sm nuevo_web_menu_modal" data-id="0">Nuevo menú principal</button>
+                  <button type="button" class="btn btn-success btn-sm exportar-excel-web-menu" title="Exportar Excel" id="exportable">
                     Exportar Datos <i class="fas fa-file-excel"></i></button>
                 <?php } ?>
                </div>
@@ -148,7 +148,7 @@ if ($_SESSION['ver']=="1") {
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title title_web_menu">Web menu</h4>
+              <h4 class="modal-title title_web_menu">Menú principal</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -175,7 +175,7 @@ if ($_SESSION['ver']=="1") {
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title ">Detalles web_menu</h4>
+              <h4 class="modal-title ">Detalles menú principal</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>

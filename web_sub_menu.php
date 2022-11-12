@@ -69,11 +69,11 @@ if ($_SESSION['ver']=="1") {
 
   <link href="fontawesome-free-5.10.2-web/css/all.css" rel="stylesheet">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <nav class="main-header navbar navbar-expand navbar-dark">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -111,12 +111,12 @@ if ($_SESSION['ver']=="1") {
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Web sub menu</h1>
+            <h1 class="m-0 text-dark">Sub menú principal</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Web sub menu</li>
+              <li class="breadcrumb-item active">Sub menú principal</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -131,8 +131,8 @@ if ($_SESSION['ver']=="1") {
              <div class="card">
                <div class="card-header">
                <?php if ($_SESSION['crear']==1) { ?>
-                  <button class="btn btn-info nuevo_web_sm_modal" data-id="0">Nueva Web sub menu</button>
-                  <button type="button" class="btn btn-success exportar-excel-web-sub-menu" title="Exportar Excel" id="exportable">
+                  <button class="btn btn-info btn-sm nuevo_web_sm_modal" data-id="0">Nuevo Sub menú principal</button>
+                  <button type="button" class="btn btn-success btn-sm exportar-excel-web-sub-menu" title="Exportar Excel" id="exportable">
                     Exportar Datos <i class="fas fa-file-excel"></i></button>
                 <?php } ?>
                </div>
@@ -148,7 +148,7 @@ if ($_SESSION['ver']=="1") {
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title title_web_sm">Web sub menu</h4>
+              <h4 class="modal-title title_web_sm">Sub menú principal</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>

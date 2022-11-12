@@ -15,7 +15,7 @@ $obj_dis = new ubigeo_peru_districts();
 $rs = $obj_ub_web->read();
 $count = 0;
 ?>
-<table id="table_cab_comisiones_list" class="table table-bordered table-striped">
+<table id="table_cab_comisiones_list" class="table table-bordered table-striped table-sm" style="font-size: 9px;">
     <thead>
         <tr>
             <th>N°</th>

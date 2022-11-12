@@ -76,11 +76,11 @@ if ($_SESSION['ver']=="1") {
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <nav class="main-header navbar navbar-expand navbar-dark">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -129,7 +129,7 @@ if ($_SESSION['ver']=="1") {
                 <div class="card">
                     <div class="card-header">
                     <?php if ($_SESSION['crear']==1 || $_SESSION['idUser']==1) { ?>
-                        <button class="btn btn-info new_web_ubicacion" data-id="0"><i class="fas fa-plus-circle" aria-hidden="true"></i> Nuevo Registro</button>
+                        <button class="btn btn-info btn-sm  new_web_ubicacion" data-id="0"><i class="fas fa-plus-circle" aria-hidden="true"></i> Nuevo Registro</button>
                     <?php }?>
                     </div>
                     <div class="card-body table_web_ubicacion"> 

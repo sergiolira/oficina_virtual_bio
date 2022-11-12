@@ -5,7 +5,7 @@ $obj_wrs= new web_red_social();
 
 /**cabecera */
 $html='
-<table id="tbl_wrs" class="table table-bordered table-striped table-sm" style="font-size: 16px;">
+<table id="tbl_wrs" class="table table-bordered table-striped table-sm" style="font-size: 9px;">
 <thead>
 <tr>  
     <th>N°</th>

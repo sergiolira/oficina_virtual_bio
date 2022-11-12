@@ -2,7 +2,7 @@
 session_start();
 include_once("../../model_class/cabecera_registro_venta.php");
 $obj_cabecera_registro_venta= new cabecera_registro_venta();
-$html='<table id="tbl_marca" class="table table-bordered table-striped table-sm" style="font-size: 16px;">
+$html='<table id="tbl_marca" class="table table-bordered table-striped table-sm" style="font-size: 9px;">
 <thead>
     <tr>  
         <th>N°</th>

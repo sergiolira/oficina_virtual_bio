@@ -36,7 +36,7 @@ if ($_SESSION['ver']=="1") {
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Web static left</title>
+  <title>Banner Dinamico</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -92,18 +92,18 @@ if ($_SESSION['ver']=="1") {
 
 
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <nav class="main-header navbar navbar-expand navbar-dark">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Web static left</a>
+        <a href="index3.html" class="nav-link">Banner Dinamico</a>
       </li>
       
     </ul>
@@ -134,59 +134,76 @@ if ($_SESSION['ver']=="1") {
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Web static left</h1>
+            <h1 class="m-0 text-dark">Banner Dinamico</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Web static left</li>
+              <li class="breadcrumb-item active">Banner Dinamico</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-
     <!-- Main content -->
     <section class="content">
       <div class="row">
           <div class="col-12">
              <div class="card">
-             <?php if ($_SESSION['crear']==1) { ?>
-               <div class="card-header">
-                  <button class="btn btn-info nuevo_web_testimonio_modal" data-id="0">Nuevo Web static left</button>
-               </div>
+              <div class="card-header"> 
+              <?php if ($_SESSION['crear']==1) { ?>               
+                  <button class="btn btn-info btn-sm  nuevo_web_testimonio_modal" data-id="0">Nuevo banner dinamico </button>     
                <?php }?>
+               <button class="btn btn-success btn-sm  activate_banner" data-id="0">Activar banner dinamico para el index </button>
+               </div>
               <!-- /.card-header -->
               <div class="card-body  table_web_testimonio">
                 
               </div>
              </div>
           </div>
-        </div>
-        <div class="modal fade" id="modal-form-web-testimonio">
-        <div class="modal-dialog modal-xl">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title title_marca">Web static left</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-              <div class="modal-body">
-                <form id="form_web_testimonio" enctype="multipart/form-data">
-               
-                </form>
-               <div class="modal-footer" style="justify-content: center;">
-                  <button type="button" class="btn btn-success" id="btn_save">Guardar</button>
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-              
-               </div>
+
+          <div class="col-12">
+            <div class="card card-success collapsed-card">
+              <div class="card-header">
+                <h3 class="card-title">Imagen referencial de su web</h3>
               </div>
+            </div>
+            <a  href="">
+              <div class="card">
+                <img src="archivos/imas_web/ima2.png" class="img-fluid" alt="...">
+              </div>
+            </a>            
           </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
+
+      </div>
+    </section>
+
+
+    <div class="modal fade" id="modal-form-web-testimonio">
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title title_marca">Banner dinamico</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+                <div class="modal-body">
+                  <form id="form_web_testimonio" enctype="multipart/form-data">
+                
+                  </form>
+                <div class="modal-footer" style="justify-content: center;">
+                    <button type="button" class="btn btn-success" id="btn_save">Guardar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                
+                </div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
       </div>
 
       <!-- /.modal -->
@@ -194,7 +211,7 @@ if ($_SESSION['ver']=="1") {
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title ">Web static left</h4>
+              <h4 class="modal-title ">Banner dinamico</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -235,8 +252,6 @@ if ($_SESSION['ver']=="1") {
                 <!-- /.modal-dialog -->
             </div>   
 
-      <!-- /.modal -->
-    </section>
 
     <!-- /.content -->
   </div>

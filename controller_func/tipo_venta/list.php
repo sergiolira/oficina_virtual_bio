@@ -3,7 +3,7 @@ session_start();
 include_once("../../model_class/tipo_venta.php");
 $obj_tipo_venta= new tipo_venta();
 
-$html='<table id="tbl_marca" class="table table-bordered table-striped table-sm" style="font-size: 16px;">
+$html='<table id="tbl_marca" class="table table-bordered table-striped table-sm" style="font-size: 9px;">
 <thead>
     <tr>  
         <th>N°</th>

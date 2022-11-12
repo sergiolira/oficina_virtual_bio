@@ -6,7 +6,7 @@ $obj_web_menu= new web_menu();
 
 /**cabecera */
 $html='
-<table id="tbl_web_menu" class="table table-bordered table-striped table-sm" style="font-size: 16px;">
+<table id="tbl_web_menu" class="table table-bordered table-striped table-sm" style="font-size: 9px;">
                   <thead>
                     <tr>  
                         <th>N°</th>

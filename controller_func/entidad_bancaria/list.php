@@ -6,7 +6,7 @@ $obj_e_ban= new entidad_bancaria();
 
 /**cabecera */
 $html='
-<table id="tbl_e_ban" class="table table-bordered table-striped table-sm" style="font-size: 16px;">
+<table id="tbl_e_ban" class="table table-bordered table-striped table-sm" style="font-size: 9px;">
                   <thead>
                     <tr>  
                         <th>N°</th>

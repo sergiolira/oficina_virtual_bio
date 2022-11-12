@@ -92,11 +92,11 @@ if ($_SESSION['ver']=="1") {
 
 
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <nav class="main-header navbar navbar-expand navbar-dark">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -154,7 +154,7 @@ if ($_SESSION['ver']=="1") {
              <div class="card">
              <?php if ($_SESSION['crear']==1) { ?>
                <div class="card-header">
-                  <button class="btn btn-info nuevo_home_pricing_modal" data-id="0">Nuevo Web home pricing</button>
+                  <button class="btn btn-info btn-sm  nuevo_home_pricing_modal" data-id="0">Nuevo Web home pricing</button>
                </div>
                <?php }?>
               <!-- /.card-header -->

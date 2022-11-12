@@ -116,3 +116,37 @@ $(document).on("click",".new-modal-show-web_quienes_somos",function() {
     });
     $("#modal-form-show-web_quienes_somos").modal("show");
 })
+
+
+
+$(document).on('click', '#btn_save-portada', function() {
+    var data=$('#form_cargar_portada').serializeArray();
+    
+    var formElement = document.getElementById("form_cargar_portada"); 
+    var paqueteDeDatos = new FormData(formElement);
+    $.ajax({
+        type:'POST',
+        url:'controller_func/banner_portadas/accion.php',
+        data: paqueteDeDatos,
+        // beforeSend: function(){
+        //     $("#id").val(data[0].value);
+        // },
+        contentType: false,
+        cache: false,
+        processData:false, 
+        success:function(data){
+            if(data.trim()=="true_foto"){  
+                // obtener_fotos();             
+                $("#form_cargar_portada").empty();
+                $("#modal_form-cargar_portada").modal("hide");
+                $("#modal_imagen_portada").modal("hide");
+                toastr.success("Foto guardada");
+                
+            }else if(data.trim()=="incorrectos"){
+                toastr.error("Por favor valide los campos los datos ingresados son incorrectos.");
+            }else{
+                toastr.error("No se guardaron correctamente los datos.");
+            }
+        } 
+    })
+});

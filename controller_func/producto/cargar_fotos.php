@@ -12,7 +12,7 @@ $obj_prod->consult();
 </div> 
 
 <div class="col-12">
-    <label for="file_fotos_producto">Importe una foto / Tamaño: 98px ancho por 120px altura
+    <label for="file_fotos_producto">Importe una foto / Tamaño: 332px ancho X 484px altura
 
     <label class="text-danger msj-file_fotos_producto"></label>
     <div class="input-group">

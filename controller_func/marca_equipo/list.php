@@ -6,7 +6,7 @@ $obj_marca_e= new marca_equipo();
 
 /**cabecera */
 $html='
-<table id="tbl_marca_e" class="table table-bordered table-striped table-sm" style="font-size: 16px;">
+<table id="tbl_marca_e" class="table table-bordered table-striped table-sm" style="font-size: 9px;">
                   <thead>
                     <tr>  
                         <th>N°</th>

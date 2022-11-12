@@ -85,10 +85,10 @@ if ($_SESSION['ver']=="1") {
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <nav class="main-header navbar navbar-expand navbar-dark">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -140,18 +140,34 @@ if ($_SESSION['ver']=="1") {
       <div class="row">
           <div class="col-12">
              <div class="card">
-             <?php if ($_SESSION['crear']==1) { ?>
-               <div class="card-header">
-                  <button class="btn btn-info nuevo_detalle_five_service" data-id="0">Nuevo Web five service</button>
-               </div>
-               <?php }?>
-              <!-- /.card-header -->
-              <div class="card-body  table_five_service">
-                
-              </div>
+                <?php if ($_SESSION['crear']==1) { ?>
+                <div class="card-header">
+                    <button class="btn btn-info btn-sm  nuevo_detalle_five_service" data-id="0">
+                      Nuevo Web five service</button>
+                </div>
+                <?php }?>
+                <!-- /.card-header -->
+                <div class="card-body  table_five_service">
+                  
+                </div>
              </div>
           </div>
-        </div>
+
+          <div class="col-12">
+            <div class="card card-success collapsed-card">
+              <div class="card-header">
+                <h3 class="card-title">Imagen referencial de su web</h3>
+              </div>
+            </div>
+            <a  href="">
+              <div class="card">
+                <img src="archivos/imas_web/ima1.png" class="img-fluid" alt="...">
+              </div>
+            </a>            
+          </div>
+
+      </div>
+
         <div class="modal fade" id="modal-form-five_service">
         <div class="modal-dialog modal-xl">
           <div class="modal-content">

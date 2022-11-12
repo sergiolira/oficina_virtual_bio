@@ -5,7 +5,7 @@ $obj_e_c_can= new estado_charla_candidato();
 
 /**cabecera */
 $html='
-<table id="tbl_e_c_can" class="table table-bordered table-striped table-sm" style="font-size: 16px;">
+<table id="tbl_e_c_can" class="table table-bordered table-striped table-sm" style="font-size: 9px;">
                   <thead>
                     <tr>  
                         <th>N°</th>

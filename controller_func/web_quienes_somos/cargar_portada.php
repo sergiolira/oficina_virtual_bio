@@ -2,6 +2,7 @@
     <center><div class="card card-outline card-success"><strong>Cargar fotos</strong></div></center>
 </div> 
 
+<input type="hidden" name="id" id="id" value="1">
 <div class="col-12">
     <label for="file_foto_portada">Importe una foto <!--/ Tamaño: 98px ancho por 120px altura-->
 
@@ -12,7 +13,7 @@
         </div>
     </div>
 </div>
-
+ 
 
 <script>
 

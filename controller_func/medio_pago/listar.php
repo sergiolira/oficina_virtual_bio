@@ -5,7 +5,7 @@ $obj_medio= new medio_pago();
 
 /**cabecera */
 $html='
-<table id="tbl_medio" class="table table-bordered table-striped table-sm" style="font-size: 16px;">
+<table id="tbl_medio" class="table table-bordered table-striped table-sm" style="font-size: 9px;">
                   <thead>
                     <tr>  
                         <th>N°</th>

@@ -5,7 +5,7 @@ $obj_c_e= new condicion_equipo();
 
 /**cabecera */
 $html='
-<table id="tbl_c_e" class="table table-bordered table-striped table-sm" style="font-size: 16px;">
+<table id="tbl_c_e" class="table table-bordered table-striped table-sm" style="font-size: 9px;">
                   <thead>
                     <tr>  
                         <th>N°</th>

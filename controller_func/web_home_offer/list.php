@@ -4,7 +4,7 @@ include_once("../../model_class/web_home_offer.php");
 $obj_web_home_offer= new web_home_offer();
 
 /**cabecera*/
-$html='<table id="tbl_marca" class="table table-bordered table-striped table-sm" style="font-size: 16px;">
+$html='<table id="tbl_marca" class="table table-bordered table-striped table-sm" style="font-size: 9px;">
 <thead>
     <tr>  
         <th>N°</th>

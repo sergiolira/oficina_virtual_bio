@@ -230,7 +230,7 @@ $obj_prod->consult();
         <div class="form-group col-md-12">
             <?php if($_REQUEST["id"]>0){ ?>
                 <div id="containerGallery">
-                    <span>Galeria fotos</span>
+                    <span>Galeria fotos</span> <label clasa="text-danger">*Imagenes de 332px ancho X 484px altura</label>
                     <button class="btnAddImage btn btn-info btn-sm" data-id="<?php echo $obj_prod->id_producto; ?>" type="button">
                         <i class="fas fa-plus"></i>
                     </button>

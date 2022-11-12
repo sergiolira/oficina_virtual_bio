@@ -4,7 +4,7 @@ include_once("../../model_class/estado_registro_venta.php");
 $obj_estado_registro_venta= new estado_registro_venta();
 
 /**cabecera*/
-$html='<table id="tbl_marca" class="table table-bordered table-striped table-sm" style="font-size: 16px;">
+$html='<table id="tbl_marca" class="table table-bordered table-striped table-sm" style="font-size: 9px;">
 <thead>
     <tr>  
         <th>N°</th>

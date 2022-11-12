@@ -5,7 +5,7 @@ $obj_e_con= new estado_contrato();
 
 /**cabecera */
 $html='
-<table id="tbl_e_con" class="table table-bordered table-striped table-sm" style="font-size: 16px;">
+<table id="tbl_e_con" class="table table-bordered table-striped table-sm" style="font-size: 9px;">
                   <thead>
                     <tr>  
                         <th>N°</th>

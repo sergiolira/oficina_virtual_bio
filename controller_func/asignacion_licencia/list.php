@@ -6,7 +6,7 @@ $obj_a_lic= new asignacion_licencia();
 
 /**cabecera */
 $html='
-<table id="tbl_a_lic" class="table table-bordered table-striped table-sm" style="font-size: 16px;">
+<table id="tbl_a_lic" class="table table-bordered table-striped table-sm" style="font-size: 9px;">
                   <thead>
                     <tr>  
                         <th>N°</th>

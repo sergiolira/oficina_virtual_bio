@@ -18,7 +18,6 @@ $(document).on("click",".new_web_ubicacion",function(){
     $("#modal_form-web_ubicacion").modal("show");
 })
 $(document).on("click","#btn_save",function(){
-<<<<<<< HEAD
     var data = $("#form_web_ubicacion").serialize();
     var pais = document.querySelector('#sltpais').value;
     var dep = document.querySelector('#sltdepartamento').value;
@@ -40,24 +39,6 @@ $(document).on("click","#btn_save",function(){
             return false;
         } 
     }
-=======
-    // var data = $("#form_web_ubicacion").serialize();
-    // var pais = document.querySelector('#sltpais').value;
-    // var dep = document.querySelector('#sltdepartamento').value;
-    // var prov = document.querySelector('#sltprovincia').value;
-    // var dist = document.querySelector('#sltdistrito').value;
-    // var direc = document.querySelector('#txt_direccion').value;
-    // var lat = document.querySelector('#txt_latitud').value;
-    // var long = document.querySelector('#txt_longitud').value;
-    // var img = document.querySelector('#txt_img').value;
-    // if(pais == "" || dep == "" || prov == "" || dist == "" || direc == "" || lat == "" || long == "" || 
-    // img == "" ){
-    //     toastr.error("Todos los campos son obligatorios.");
-    //     return false;
-    // }
-    var formElement = document.getElementById("form_web_ubicacion");
-    var paqueteDeDatos = new FormData(formElement);
->>>>>>> 3139a5ef66a5662297a67dd4f742f16044420dbd
     $.ajax({
         type: 'POST',
         url: 'controller_func/web_ubicacion/accion.php',

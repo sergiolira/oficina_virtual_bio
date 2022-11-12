@@ -7,7 +7,7 @@ $obja=new afiliado();
 $rs=$obj->list();
 $posicion_="";
 $patrocinador_directo="Lider de Red";
-$html='<table id="example2" class="table table-bordered table-striped" style="font-size: 12px;">
+$html='<table id="example2" class="table table-bordered table-striped table-sm" style="font-size: 9px;" style="font-size: 12px;">
                   <thead>
                   <tr>
                     <th>N° </th>
