@@ -8,7 +8,7 @@ if(!isset($_SESSION['correo']) || empty($_SESSION['login'])){
     header('Location: https://admin.bio.pe/login-admin');
   }
   elseif($_SERVER['HTTP_HOST']=='mioficina.bio.pe'){
-    header('Location: https://mioficina.bio.pe/login-lider');
+    header('Location: https://oficinavirtual.bio.pe/login-lider');
   }
   exit();
 }
@@ -60,6 +60,8 @@ if ($_SESSION['ver']=="1") {
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- DataTables -->
   <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+  <!-- daterange picker -->
+  <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <!-- Select2 -->
@@ -81,22 +83,16 @@ if ($_SESSION['ver']=="1") {
   <!-- InstanceEndEditable -->
 </head>
 
-<body class="sidebar-mini layout-fixed sidebar-collapse">
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-dark navbar-info ">
+  <nav class="main-header navbar navbar-expand navbar-dark">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
-    </ul>
-    <ul class="navbar-nav ml-auto">
-    <li class="nav-item dropdown">
-        <a href="javascript:void(0)" data-target="#modal-default" data-toggle="modal" class="nav-link"
-        ><i class="nav-icon far fa-credit-card text-"></i> Consultar Diners Club</a>
-      </li>   
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -111,12 +107,12 @@ if ($_SESSION['ver']=="1") {
      <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Representantes</h1>
+            <h1>Asesores de Ventas</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="oficina">Oficina</a></li>
-              <li class="breadcrumb-item active">Representantes</li>
+              <li class="breadcrumb-item active">Asesores de Ventas</li>
             </ol>
           </div>
         </div>
@@ -134,14 +130,18 @@ if ($_SESSION['ver']=="1") {
                 <?php
                   /**Administracion */
                   if($_SESSION["id_rol"]=="1" || $_SESSION["id_rol"]=="2") {?>
-                  <button type="button" class="btn btn-info btn-sm checkbox-toggle add-modal-representante" title="Nuevo representante"  data-id="0" >Nuevo Representante <i class="fas fa-user-plus"></i>
+                  <button type="button" class="btn btn-info btn-sm checkbox-toggle add-modal-representante" title="Nuevo representante"  
+                  data-id="0" >Nuevo Asesor de venta <i class="fas fa-user-plus"></i>
                   </button>
-                  <button type="button" class="btn btn-primary btn-sm checkbox-toggle add-modal-representante-lider" title="Nuevo representante lider"  data-id="0" >Nuevo representante lider <i class="fas fa-user-plus"></i>
+                  <button type="button" class="btn btn-primary btn-sm checkbox-toggle add-modal-representante-lider" title="Nuevo representante lider"  
+                  data-id="0" >Nuevo Asesor de Venta (Cabeza de Red) <i class="fas fa-user-plus"></i>
                   </button>
                   <?php }?>
-                  <button type="button" class="btn btn-success btn-sm report-excel-representantes" title="Exportar Excel" id="report-excel-representantes">Excel <i class="fas fa-file-excel"></i></button>
+                  <button type="button" class="btn btn-success btn-sm report-excel-representantes" title="Exportar Excel" 
+                  id="report-excel-representantes">Excel <i class="fas fa-file-excel"></i></button>
 
-                  <button type="button" class="btn btn-danger btn-sm" title="Actualizar Data" id="load-representantes">  <i class="fas fa-sync-alt"></i></button>
+                  <button type="button" class="btn btn-danger btn-sm" title="Actualizar Data" id="load-representantes">
+                    <i class="fas fa-sync-alt"></i></button>
                 </div>
               </div>
               <!-- /.card-header -->
@@ -163,7 +163,7 @@ if ($_SESSION['ver']=="1") {
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title float-"><i class="far fa-user"></i> Nuevo representante</h4>
+        <h4 class="modal-title float-"><i class="far fa-user"></i> Nuevo Asesor de Venta</h4>
         <button type="button" class="close" data-dismiss="modal">×</button>
       </div>
       <div class="modal-body">
@@ -188,7 +188,7 @@ if ($_SESSION['ver']=="1") {
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title float-"><i class="far fa-user"></i> Detalle de Representante</h4>
+        <h4 class="modal-title float-"><i class="far fa-user"></i> Detalle de Asesor de Venta</h4>
         <button type="button" class="close" data-dismiss="modal">×</button>
       </div>
       <div class="modal-body">
@@ -235,6 +235,8 @@ if ($_SESSION['ver']=="1") {
 <!-- DataTables -->
 <script src="plugins/datatables/jquery.dataTables.js"></script>
 <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+<!-- date-range-picker -->
+<script src="plugins/daterangepicker/daterangepicker.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->

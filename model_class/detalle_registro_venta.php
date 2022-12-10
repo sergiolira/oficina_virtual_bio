@@ -9,6 +9,8 @@ class detalle_registro_venta extends cn{
     var $cantidad;
     var $precio_unitario;
     var $id_descuento_producto;
+    var $descuento_por_volumen_producto;
+    var $descuento_por_nro_documento;
     var $sub_total;
     var $observacion;
     var $estado;
@@ -16,6 +18,8 @@ class detalle_registro_venta extends cn{
     var $fechaactualiza;
     var $id_usuarioregistro;
     var $id_usuarioactualiza;
+
+    var $des_monto;
 
 
     public function read(){
@@ -55,6 +59,8 @@ class detalle_registro_venta extends cn{
         '$this->cantidad',
         '$this->precio_unitario',
         '$this->id_descuento_producto',
+        '$this->descuento_por_volumen_producto',
+        '$this->descuento_por_nro_documento',
         '$this->sub_total',
         '$this->observacion',
         1,now(),now(),1,1)";
@@ -71,17 +77,20 @@ class detalle_registro_venta extends cn{
         cantidad='$this->cantidad',
         precio_unitario='$this->precio_unitario',
         id_descuento_producto='$this->id_descuento_producto',
+        descuento_por_volumen_producto='$this->descuento_por_volumen_producto',
+        descuento_por_nro_documento='$this->descuento_por_nro_documento',
         sub_total='$this->sub_total',
         observacion='$this->observacion',
         fechaactualiza=now(),id_usuarioactualiza=1
-        where id_detalle_registro_venta='$this->id_detalle_registro_venta'";
+        where nro_solicitud='$this->nro_solicitud'";
         $res=mysqli_query($this->f_cn(),$query);
         mysqli_close($this->f_cn());
         return $res;
     }
 
     public function consult(){
-        $query="select * from detalle_registro_venta where id_detalle_registro_venta='$this->id_detalle_registro_venta' ";
+        $query="SELECT drv.*,dp.monto FROM detalle_registro_venta drv INNER JOIN
+        descuento_producto dp ON drv.id_descuento_producto=dp.id_descuento_producto WHERE drv.nro_solicitud='$this->nro_solicitud' ";
         $res=mysqli_query($this->f_cn(),$query);
         if($fila=mysqli_fetch_array($res)){            
             $this->id_detalle_registro_venta=$fila["id_detalle_registro_venta"];
@@ -92,6 +101,8 @@ class detalle_registro_venta extends cn{
             $this->cantidad=$fila["cantidad"];
             $this->precio_unitario=$fila["precio_unitario"];
             $this->id_descuento_producto=$fila["id_descuento_producto"];
+            $this->descuento_por_volumen_producto=$fila["descuento_por_volumen_producto"];
+            $this->descuento_por_nro_documento=$fila["descuento_por_nro_documento"];
             $this->sub_total=$fila["sub_total"];
             $this->observacion=$fila["observacion"];
             $this->estado=$fila["estado"];
@@ -99,6 +110,7 @@ class detalle_registro_venta extends cn{
             $this->fecharegistro=$fila["fecharegistro"];
             $this->id_usuarioregistro=$fila["id_usuarioregistro"];
             $this->id_usuarioactualiza=$fila["id_usuarioactualiza"];
+            $this->des_monto=$fila["monto"];
         }
         mysqli_close($this->f_cn());   
     }

@@ -11,8 +11,9 @@ $obj_d= new paquete_detalle_producto();
             <th>ID</th>
             <th>Paquete cabecera</th>
             <th>Producto</th>
-            <th>Cantidad</th>
-            <th>Precio unitario</th>
+            <th>Cantidad productos</th>
+            <th>Precio</th>
+            <th>Imagen</th>
             <th>Estado</th>
             <th>Fecha Registro</th>
             <th>Opciones</th>
@@ -51,6 +52,7 @@ while($fila=mysqli_fetch_assoc($rs_lista)){
             <td><?php echo $fila["nombre_producto"] ?></td>
             <td><?php echo $fila["cantidad"] ?></td>
             <td><?php echo $fila["precio_venta_unitario"] ?></td>
+            <td style="text-align: center;"> <img style="height: 50px; width: 50px; object-fit: cover;" src='<?php echo $fila["imagen"];?>'></td>
             <td <?php echo $estado_style ?> id="td_estado<?php echo $fila["id_paquete_detalle_producto"] ?>"><?php echo $estado ?></td>
             <td><?php echo $fila["fecharegistro"] ?></td>
             <td>

@@ -14,7 +14,7 @@ $obj_td->consult();
             <div class="input-group-prepend ">
             <span class="input-group-text"><i class="fas fa-align-left"></i></span>
             </div>
-            <input type="text" class="form-control valid validText" id="txt_tipo_descuento" name="txt_tipo_descuento" value="<?php echo $obj_td->tipo_descuento; ?>"/>
+            <input type="text" class="form-control valid fntValidTextSpecial" id="txt_tipo_descuento" name="txt_tipo_descuento" value="<?php echo $obj_td->tipo_descuento; ?>"/>
         </div>
     </div>
       
@@ -22,6 +22,6 @@ $obj_td->consult();
 <script src="js/valid.js"></script>
 <script>
 
-    fntValidText();
+    fntValidTextSpecial();
 
 </script>

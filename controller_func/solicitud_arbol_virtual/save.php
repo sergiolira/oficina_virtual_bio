@@ -21,10 +21,10 @@ if(trim($_POST["txtruc_buscar"])!=""){
     $inicial=$_POST["txtruc_buscar"];
   }
 //var_dump($data);
-if($_SESSION["id_rol"]=="4" || $_SESSION["id_rol"]=="representante"){
+if($_SESSION["id_rol"]=="3"){
     if($_SESSION["posicion"]=="0"){
         
-        $tipo_solicitante="Lider de Red";
+        $tipo_solicitante="Cabeza de Red";
         $id_solicitante=$_SESSION["ruc"];
         $ruc_inicial=$_SESSION["ruc"];
         $ruc_lider_red=$_SESSION["ruc"];
@@ -41,13 +41,14 @@ if($_SESSION["id_rol"]=="4" || $_SESSION["id_rol"]=="representante"){
     }
 }else{
     /**Hallamos el Lider */
-    $obj_r->ruc=$inicial;
-    $obj_r->consultar_datos_ruc();    
-    if($obj_r->patrocinador=="0"){
+    $obj_r->nro_documento=$inicial;
+    $obj_r->consultar_datos_nro_documento();    
+    if($obj_r->patrocinador=="Cabeza de Red"){
         $patrocinador=$inicial;   
     }else{
         $patrocinador=$obj_r->patrocinador;
     }
+    echo $patrocinador;
     
     $tipo_solicitante="Administrativo";
     $id_solicitante=$_SESSION["id_usuario"];
@@ -82,42 +83,7 @@ for($i=0;$i<count($data);$i++){
             $obj->ruc_patrocinador=$data[$i]->pid;
         }
 
-            $rs_count_rep_x_pat_dir=$obj->count_rep_x_pat_dir_solicitud($obj->ruc_patrocinador);
-
-            
-            
-            /*if($i_con_pos==1){
-                $patrocinador_posicion=$data[$i]->pid;
-                $obj->posicion="1";
-            }elseif($patrocinador_posicion==$data[$i]->pid && $i_con_pos==2){
-                $obj->posicion="2";
-            }elseif($patrocinador_posicion==$data[$i]->pid && $i_con_pos==3){
-                $obj->posicion="3";
-            }elseif($patrocinador_posicion==$data[$i]->pid && $i_con_pos==4){
-                $obj->posicion="4";
-            }else{
-                $patrocinador_posicion=$data[$i]->pid;
-                $obj->posicion="1";
-                $i_con_pos=1;
-            }*/
-
-            if($rs_count_rep_x_pat_dir==0){
-                //$patrocinador_posicion=$data[$i]->pid;
-                $obj->posicion="1";
-            }elseif($rs_count_rep_x_pat_dir==1){
-                $obj->posicion="2";
-            }elseif($rs_count_rep_x_pat_dir==2){
-                $obj->posicion="3";
-            }elseif($rs_count_rep_x_pat_dir==3){
-                $obj->posicion="4";
-            }elseif($rs_count_rep_x_pat_dir==5){
-                $obj->posicion="6";
-            }/*else{
-                $patrocinador_posicion=$data[$i]->pid;
-                $obj->posicion="1";
-                $i_con_pos=1;
-            }*/
-
+            $obj->posicion="1";            
             $obj->ruc_usuario=$data[$i]->RUC;
             $obj->estado="2";
             $obj->save();

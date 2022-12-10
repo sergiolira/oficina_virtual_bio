@@ -39,7 +39,7 @@ if ($_SESSION['ver']=="1") {
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Comisiones</title>
+  <title>Comisiones generadas</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -76,7 +76,7 @@ if ($_SESSION['ver']=="1") {
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="body_modal_tablas hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed" >
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -87,7 +87,7 @@ if ($_SESSION['ver']=="1") {
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Comisiones</a>
+        <a href="index3.html" class="nav-link">Comisiones generadas</a>
       </li>
       
     </ul>
@@ -108,12 +108,12 @@ if ($_SESSION['ver']=="1") {
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Comisiones</h1>
+            <h1 class="m-0 text-dark">Comisiones generadas</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Comisiones</li>
+              <li class="breadcrumb-item active">Comisiones generadas</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -124,13 +124,53 @@ if ($_SESSION['ver']=="1") {
     <!-- Main content -->
     <section class="content">
 
+        <div class="card-header">                
+          <div class="row">          
+                <div class="col-4">
+                    <label for="slt_anio_c"> Año </label>
+                    <div class="input-group mb-3" align="center">
+                        <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                        </div>
+                        <select class="form-control" id="slt_anio_c" style="width: 80%;">
+                        </select>
+                        
+                    </div>
+                </div>
+                <div class="col-4" >
+                    <label for="slt_mes_c">  Mes </label>
+                    <div class="input-group mb-3" align="center">
+                        <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                        </div>
+                        <select class="form-control" id="slt_mes_c" style="width: 80%;">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-4" >
+                    <label for="slt_semana_c">  Semana </label>
+                    <div class="input-group mb-3" align="center">
+                        <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                        </div>
+                        <select class="form-control select4" id="slt_semana_c" style="width: 80%;">
+                        </select>
+                    </div>
+                </div>
+          </div>
+        </div>
+
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
-                    <?php if ($_SESSION['crear']==1 || $_SESSION['idUser']==1) { ?>
-                        <button class="btn btn-info new_cabecera_comision" data-id="0"><i class="fas fa-plus-circle" aria-hidden="true"></i> Nueva Comision</button>
-                    <?php }?>
+                    <div class="card-header" align="center">
+                      <?php if ($_SESSION['crear']==1 || $_SESSION['idUser']==1) { ?>
+                          <!--<button class="btn btn-info new_cabecera_comision" data-id="0"><i class="fas fa-plus-circle" aria-hidden="true">
+                          </i> Nueva Comision</button>-->
+                          <button class="btn btn-warning btn-sm consultar_comisiones" data-id="0">Consultar</button>
+                          <button type="buttom" class="btn btn-success btn-sm exportar-excel-categoria-agente-bmi" id="exportable">Exportar datos <i class="fas fa-file-excel"></i></button>
+                          <a href="generar_comisiones.php"><i class="fas fa-calculator"></i> Generar nuevas comisiones</a>
+                      <?php }?>
                     </div>
                     <div class="card-body table_cabecera_comisiones"> 
                     <!-- /.Aqui se cargar lista -->
@@ -191,6 +231,27 @@ if ($_SESSION['ver']=="1") {
           </div><!-- /.modal-dialog -->
         </div>
         <!-- FIN MODAL TIPO SHOW -->
+
+        <div id="show_modal_comisiones_x_nivel" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title title_com_x_nivel"> </h4>
+              <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+            <div class="modal-body">
+              <div class="show_comisiones_x_nivel">
+
+              </div>
+            <div class="modal-footer"style="justify-content:center;">
+              <button type="button" class="btn btn-warning" data-dismiss="modal">
+                <span class='glyphicon glyphicon-remove'></span><i class="fas fa-times-circle"></i> Cerrar
+              </button>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
        
          
@@ -253,7 +314,12 @@ if ($_SESSION['ver']=="1") {
 <!-- js categoria producto -->
 <script src="js/js_cabecera_comisiones.js"></script> 
 <script>
-    list_cab_com();
+    moment.locale('es');
+    //list_cab_com();
+    combo_anio_generados();
+    $('#slt_anio_c').select2({
+      theme: 'bootstrap4'
+    });  
 </script>
 </body>
 </html>

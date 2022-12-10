@@ -1,34 +1,44 @@
 <?php
 session_start();
 include_once("../../model_class/representante.php");
-include_once("../../model_class/representante_conectado.php");
 include_once("../../model_class/afiliado.php");
 include_once("../../model_class/candidato.php");
-include_once("../../model_class/registro_ventas_oncosalud.php");
-include_once("../../model_class/hc_backup_x_fecha_corte.php");
 $obja=new afiliado();
 $obj=new representante();
-$obj_rc=new representante_conectado();
 $obj_c=new candidato();
-$obj_rvo=new registro_ventas_oncosalud();
-$obj_hc=new hc_backup_x_fecha_corte();
 /*Agregar y Editar*/
 if($_REQUEST["es"]=="1"){
 	if($_REQUEST["tiuser"]=="2"){
 		/*Representante Lider*/
+		$obj->tipo_persona=$_REQUEST["slt_ti_per"];
 		$obj->nombre=ucwords(mb_strtolower(trim($_REQUEST["txtnombre"])));
 		$obj->apellidopaterno=ucwords(mb_strtolower(trim($_REQUEST["txtapep"])));
 		$obj->apellidomaterno=ucwords(mb_strtolower(trim($_REQUEST["txtapem"])));
-		$obj->correo=trim($_REQUEST["txtcorreo"]);
+		$obj->id_genero=$_REQUEST["slt_genero"];
+		$obj->fecha_nacimiento=$_REQUEST["txtfechanac"];
+		$edad=$obj_c->busca_edad($_REQUEST["txtfechanac"]);
+		$obj->edad=$edad;
+		$obj->id_pais=$_REQUEST["sltpais"];
+		$obj->id_departamento=$_REQUEST["sltdepartamento"];
+		$obj->id_provincia=$_REQUEST["sltprovincia"];
+		$obj->id_distrito=$_REQUEST["sltdistrito"];
+		$obj->direccion=trim($_REQUEST["txtdireccion"]);
 		$obj->telefono=$_REQUEST["txttelefono"];
-		if(isset($_REQUEST["txtruc"])){
-			$obj->ruc=$_REQUEST["txtruc"];
+		$obj->correo=strtolower(trim($_REQUEST["txtcorreo"]));
+		$obj->id_tipo_documento=$_REQUEST["slttipdoc"];
+		if($_REQUEST["slt_ti_per"]=="PN"){
+			$obj->razon_social=strtoupper($obj->apellidopaterno." ".$obj->apellidomaterno." ".$obj->nombre);
+		}else{
+			$obj->razon_social=strtoupper($_REQUEST["txtrazons"]);
 		}		
-		$obj->razon_social=strtoupper(trim($_REQUEST["txtrazons"]));
 
-		if($_REQUEST["txtsponsor"]=="Lider de Red"){
-			$obj->patrocinador_directo="Lider de Red";
-			$obj->patrocinador="0";
+		if(isset($_REQUEST["txtruc"])){
+			$obj->nro_documento=$_REQUEST["txtruc"];
+		}		
+
+		if($_REQUEST["txtsponsor"]=="Cabeza de Red"){
+			$obj->patrocinador_directo="Cabeza de Red";
+			$obj->patrocinador="Cabeza de Red";
 		}else{
 			$obj->patrocinador_directo="unilevel";
 			$obj->patrocinador="unilevel";
@@ -39,25 +49,38 @@ if($_REQUEST["es"]=="1"){
 		$obj->observacion=$_REQUEST["txtobser"];
 	}else{
 			/*Representante*/
+			$obj->tipo_persona=$_REQUEST["slt_ti_per"];
 			$obj->nombre=ucwords(mb_strtolower(trim($_REQUEST["txtnombre"])));
 			$obj->apellidopaterno=ucwords(mb_strtolower(trim($_REQUEST["txtapep"])));
 			$obj->apellidomaterno=ucwords(mb_strtolower(trim($_REQUEST["txtapem"])));
-			$obj->correo=strtolower(trim($_REQUEST["txtcorreo"]));
+			$obj->id_genero=$_REQUEST["slt_genero"];
+			$obj->fecha_nacimiento=$_REQUEST["txtfechanac"];
+			$edad=$obj_c->busca_edad($_REQUEST["txtfechanac"]);
+			$obj->edad=$edad;
+			$obj->id_pais=$_REQUEST["sltpais"];
+			$obj->id_departamento=$_REQUEST["sltdepartamento"];
+			$obj->id_provincia=$_REQUEST["sltprovincia"];
+			$obj->id_distrito=$_REQUEST["sltdistrito"];
+			$obj->direccion=trim($_REQUEST["txtdireccion"]);
 			$obj->telefono=$_REQUEST["txttelefono"];
+			$obj->correo=strtolower(trim($_REQUEST["txtcorreo"]));
+			$obj->id_tipo_documento=$_REQUEST["slttipdoc"];
+			if($_REQUEST["slt_ti_per"]=="PN"){
+				$obj->razon_social=strtoupper($obj->apellidopaterno." ".$obj->apellidomaterno." ".$obj->nombre);
+			}else{
+				$obj->razon_social=strtoupper($_REQUEST["txtrazons"]);
+			}		
+
 			if(isset($_REQUEST["txtruc"])){
-				$obj->ruc=$_REQUEST["txtruc"];
+				$obj->nro_documento=$_REQUEST["txtruc"];
 			}
-			$obj->razon_social=strtoupper($_REQUEST["txtrazons"]);
+			
 			if(isset($_REQUEST["txtsponsor"])){
 				$obj->patrocinador_directo=$_REQUEST["txtsponsor"];
 			}
 
 			if(isset($_REQUEST["txtlred"])){
 				$obj->patrocinador=$_REQUEST["txtlred"];
-			}
-
-			if(isset($_REQUEST["sltposicion"])){
-				$obj->posicion=$_REQUEST["sltposicion"];
 			}
 			
 			$obj->observacion=$_REQUEST["txtobser"];
@@ -115,47 +138,9 @@ if($_REQUEST["es"]=="1"){
 		if($_REQUEST["tiuser"]=="1"){
 			$obj->save_representante();
 			$obja->save_afiliado();
-			$obj_rc->ruc=$_REQUEST["txtruc"];
-			$obj_rc->update_estado_subido_sistema();
-			/**activamos a activo en candidatos */
-			$obj_c->dni=$_REQUEST["hdndni"];
-			$obj_c->activate();
-			/**Actualizamos el RUC Patrocinador y Red en Registro de ventas y HC Backup */
-			$obj_rvo->dni=$_REQUEST["hdndni"];
-			$obj_rvo->ruc=$_REQUEST["txtruc"];
-			$obj_rvo->patrocinador=$_REQUEST["txtlred"];;
-			$obj_rvo->patrocinador_directo=$_REQUEST["txtsponsor"];
-			$obj_rvo->representante_datos=ucwords(mb_strtolower(trim($_REQUEST["txtnombre"])))." ".ucwords(mb_strtolower(trim($_REQUEST["txtapep"]))).
-			" ".ucwords(mb_strtolower(trim($_REQUEST["txtapem"])));
-			$obj_hc->dni=$_REQUEST["hdndni"];
-			$obj_hc->ruc=$_REQUEST["txtruc"];
-			$obj_hc->patrocinador=$_REQUEST["txtlred"];
-			$obj_hc->patrocinador_directo=$_REQUEST["txtsponsor"];
-
-			$obj_rvo->update_sinruc_x_dni();
-			$obj_hc->update_sinruc_x_dni();	
 		}else{
 			$obj->save_representante();
-			$obj_rc->ruc=$_REQUEST["txtruc"];
-			$obj_rc->update_estado_subido_sistema();
-			/**activamos a activo en candidatos */
-			$obj_c->dni=$_REQUEST["hdndni"];
-			$obj_c->activate();
-			/**Actualizamos el RUC Patrocinador y Red en Registro de ventas y HC Backup */
-			$obj_rvo->dni=$_REQUEST["hdndni"];
-			$obj_rvo->ruc=$_REQUEST["txtruc"];
-			$obj_rvo->patrocinador="Lider de Red";
-			$obj_rvo->patrocinador_directo="0";
-			$obj_rvo->representante_datos=ucwords(mb_strtolower(trim($_REQUEST["txtnombre"])))." ".ucwords(mb_strtolower(trim($_REQUEST["txtapep"]))).
-			" ".ucwords(mb_strtolower(trim($_REQUEST["txtapem"])));
-			$obj_hc->dni=$_REQUEST["hdndni"];
-			$obj_hc->ruc=$_REQUEST["txtruc"];
-			$obj_hc->patrocinador="Lider de Red";
-			$obj_hc->patrocinador_directo="0";
-
-			$obj_rvo->update_sinruc_x_dni();
-			$obj_hc->update_sinruc_x_dni();			
-
+			
 		}
 		echo "save_true";
 		die();

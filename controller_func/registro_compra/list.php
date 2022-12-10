@@ -11,7 +11,6 @@ $html='
     <th>N°</th>
     <th>ID</th>
     <th>Producto</th>
-    <th>Divisa</th>
     <th>Cantidad</th>
     <th>Precio unitario</th>
     <th>Sub total</th>
@@ -57,10 +56,9 @@ $btn_eliminar="";
 $html.='<tr><td>'.$c.'</td>
             <td>'.$fila["id_registro_compra"].'</td>
             <td>'.$fila["nombre_producto"].'</td>
-            <td>'.$fila["divisa"].'</td>
             <td>'.$fila["cantidad"].'</td>
-            <td>'.$fila["precio_unitario"].'</td>
-            <td>'.$fila["sub_total"].'</td>
+            <td>'.$fila["precio_unitario"].' '.$fila["expresion"].'</td>
+            <td>'.$fila["sub_total"].' '.$fila["expresion"].'</td>
             <td>'.$fila["fecha_ingreso"].'</td>
             <td '.$estado_style.' id="td_estado'.$fila["id_registro_compra"].'">'.$estado.'</td>
             <td>'.$fila["fecharegistro"].'</td>

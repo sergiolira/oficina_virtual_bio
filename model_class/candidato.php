@@ -20,9 +20,11 @@ class candidato extends cn{
   var $patrocinador;
   var $patrocinador_directo;
   var $id_rep_usu_registro;
+  var $id_pais;
   var $id_dep;
   var $id_pro;
   var $id_dis;
+  var $direccion;
   var $relacion_candidato_reclutador;
   var $motiva_negocio;
   var $experiencia_comercial;
@@ -58,49 +60,45 @@ class candidato extends cn{
 
 
   public  function activar()
-    {
-        $query="update candidato set estado='1',fechaactualiza=now(),id_usuarioactualiza=1 
-        where id_candidato='$this->id_candidato'";
-        $res=mysqli_query($this->f_cn(),$query);
-        mysqli_close($this->f_cn());
-        return $res;
-    }
-    public  function desactivar()
-    {
-      $query="update id_candidato set estado='0',fechaactualiza=now(),id_usuarioactualiza=1 
+  {
+      $query="update candidato set estado='1',fechaactualiza=now(),id_usuarioactualiza=1 
       where id_candidato='$this->id_candidato'";
-        $res=mysqli_query($this->f_cn(),$query);
-        mysqli_close($this->f_cn());
-        return $res;
-    }
+      $res=mysqli_query($this->f_cn(),$query);
+      mysqli_close($this->f_cn());
+      return $res;
+  }
+
+  public  function desactivar()
+  {
+    $query="update id_candidato set estado='0',fechaactualiza=now(),id_usuarioactualiza=1 
+    where id_candidato='$this->id_candidato'";
+      $res=mysqli_query($this->f_cn(),$query);
+      mysqli_close($this->f_cn());
+      return $res;
+  }
+
   public function save() {
-   $query = "insert into candidato values('0','$this->nombre','$this->apellidopaterno','$this->apellidomaterno','$this->id_tipo_documento','$this->nro_documento','$this->telefono',
-   '$this->correo','$this->clave','$this->id_genero','$this->fecha_nacimiento','$this->edad','1','1',
-   '1','$this->id_dep','$this->id_pro','$this->id_dis','$this->relacion_candidato_reclutador',
-   '$this->motiva_negocio','$this->experiencia_comercial','$this->cartera_cliente_entorno','$this->disponibilidad_gestion_negocio',
-   '$this->horario_gestion_negocio',
-   '$this->observacion','1',now(),now(),'$this->id_usuarioregistro','$this->id_usuarioregistro')";
+   $query = "insert into candidato values('0','$this->nombre','$this->apellidopaterno','$this->apellidomaterno','$this->id_tipo_documento',
+   '$this->nro_documento','$this->telefono','$this->correo','$this->clave','$this->id_genero','$this->fecha_nacimiento','$this->edad','1','1',
+   '1','$this->id_pais','$this->id_dep','$this->id_pro','$this->id_dis','$this->direccion','1','1','1','1','1','1','$this->observacion',
+   '1',now(),now(),'$this->id_usuarioregistro','$this->id_usuarioregistro')";
    $rs= mysqli_query($this->f_cn(),$query);
    mysqli_close($this->f_cn());
    return $rs;
   }
 
-
-
   public function edit() {
     $query = "update candidato set nombre='$this->nombre',apellidopaterno='$this->apellidopaterno',apellidomaterno='$this->apellidomaterno',
-    id_tipo_documento='$this->id_tipo_documento',nro_documento='$this->nro_documento',telefono='$this->telefono',correo='$this->correo',clave='$this->clave',id_genero='$this->id_genero',
-    fecha_nacimiento='$this->fecha_nacimiento',edad='$this->edad',patrocinador='$this->patrocinador',
-    patrocinador_directo='$this->patrocinador_directo',estado='$this->estado',id_dep='$this->id_dep',id_pro='$this->id_pro',id_dis='$this->id_dis',
-    relacion_candidato_reclutador='$this->relacion_candidato_reclutador',motiva_negocio='$this->motiva_negocio',
-    experiencia_comercial='$this->experiencia_comercial',cartera_cliente_entorno='$this->cartera_cliente_entorno',
-    disponibilidad_gestion_negocio='$this->disponibilidad_gestion_negocio',horario_gestion_negocio='$this->horario_gestion_negocio',
-    observacion='$this->observacion',fechaactualiza=now() where id_candidato='$this->id_candidato'";
+    id_tipo_documento='$this->id_tipo_documento',nro_documento='$this->nro_documento',telefono='$this->telefono',
+    correo='$this->correo',clave='$this->clave',id_genero='$this->id_genero',fecha_nacimiento='$this->fecha_nacimiento',
+    edad='$this->edad',patrocinador='$this->patrocinador',patrocinador_directo='$this->patrocinador_directo',
+    estado='$this->estado',id_pais='$this->id_pais',id_dep='$this->id_dep',id_pro='$this->id_pro',
+    id_dis='$this->id_dis',direccion='$this->direccion',observacion='$this->observacion',fechaactualiza=now() 
+    where id_candidato='$this->id_candidato'";
     $rs= mysqli_query($this->f_cn(),$query);
     mysqli_close($this->f_cn());
     return $rs;
  }
-
   
   public function consult(){
     $query = "select * from candidato where id_candidato='$this->id_candidato'";
@@ -121,9 +119,11 @@ class candidato extends cn{
       $this->patrocinador=$fila["patrocinador"];
       $this->patrocinador_directo=$fila["patrocinador_directo"];
       $this->id_rep_usu_registro=$fila["id_rep_usu_registro"];
+      $this->id_pais=$fila["id_pais"];
       $this->id_dep=$fila["id_dep"];
       $this->id_pro=$fila["id_pro"];
       $this->id_dis=$fila["id_dis"];
+      $this->direccion=$fila["direccion"];
       $this->relacion_candidato_reclutador=$fila["relacion_candidato_reclutador"];
       $this->motiva_negocio=$fila["motiva_negocio"];
       $this->experiencia_comercial=$fila["experiencia_comercial"];
@@ -166,8 +166,7 @@ class candidato extends cn{
     return $edad;
 
   }
-
-
+  
   public function validar_nro_doc(){
     $count=0;
     $query = "select SUM(contar) as contar from(select count(*) as contar from candidato where nro_documento='$this->nro_documento') resul";
@@ -195,6 +194,22 @@ class candidato extends cn{
     }
     mysqli_close($this->f_cn());
     return $count;
+  }
+
+  public function consultar_datos_nro_documento(){
+    $query = "select nombre,apellidopaterno,apellidomaterno,nro_documento,correo,telefono from candidato 
+    where nro_documento='$this->nro_documento'";
+    $rs=mysqli_query($this->f_cn(),$query);
+    if($fila=mysqli_fetch_array($rs)){
+      $this->nombre=$fila["nombre"];
+      $this->apellidopaterno=$fila["apellidopaterno"];
+      $this->apellidomaterno=$fila["apellidomaterno"];
+      $this->nro_documento=$fila["nro_documento"];
+      $this->correo=$fila["correo"];
+      $this->telefono=$fila["telefono"];      
+    }
+
+    mysqli_close($this->f_cn());
   }
 
 

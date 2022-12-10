@@ -214,3 +214,58 @@ $(document).on('click', '.exportar-excel-registro-compra', function() {
             $a.remove();
         });
 });
+
+$(document).on('keyup', '#txt_p_u', function(e){
+    var txt_can = $("#txt_can").val();
+    var txt_p_u = $("#txt_p_u").val();
+    var total=0.00;
+
+    if(txt_p_u==""){
+        txt_p_u=0.00;
+        if(txt_p_u==0.00){
+            txt_p_u=0.00;
+        }
+        if(txt_can==0.00){
+            txt_can=1;
+        }
+        total = parseFloat(txt_p_u)*parseFloat(txt_can);
+        $("#txt_s_t").val(total);
+    }
+
+    if(parseFloat(txt_p_u)<=0){ //borra los otros campos si el sub total es igual a -> " "
+        return false
+    }
+    if(parseFloat(txt_p_u)>0){            
+        total = parseFloat(txt_p_u)*parseFloat(txt_can);
+        $("#txt_s_t").val(total);
+    }
+    
+});
+
+
+$(document).on('keyup', '#txt_can', function(e){
+    var txt_can = $("#txt_can").val();
+    var txt_p_u = $("#txt_p_u").val();
+    var total=0.00;
+
+    if(txt_can==""){
+        txt_can=1;
+        if(txt_p_u==0.00){
+            txt_p_u=0.00;
+        }
+        if(txt_can==0.00){
+            txt_can=1;
+        }
+        total = parseFloat(txt_p_u)*parseFloat(txt_can);
+        $("#txt_s_t").val(total);
+    }
+
+    if(parseFloat(txt_can)<=0){ //borra los otros campos si el sub total es igual a -> " "
+        return false
+    }
+    if(parseFloat(txt_can)>0){            
+        total = parseFloat(txt_p_u)*parseFloat(txt_can);
+        $("#txt_s_t").val(total);
+    }
+    
+});

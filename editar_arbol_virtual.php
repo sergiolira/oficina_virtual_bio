@@ -107,7 +107,7 @@ if ($_SESSION['ver']=="1") {
         }
 
         .node.Mired rect {
-            fill: #197AB6;
+            fill: #00131C;
         }
 
         
@@ -163,27 +163,23 @@ if ($_SESSION['ver']=="1") {
   <link rel="stylesheet" href="iconsvg/style.css">
 </head>
 
-<body class="sidebar-mini layout-fixed sidebar-collapse">
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
 
+
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-dark navbar-info">
+  <nav class="main-header navbar navbar-expand navbar-dark">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
-       <li class="nav-item d-none d-sm-inline-block">
-        <a href="oficina.php" class="nav-link"><i class="nav-icon fas fa-user"></i> Mi perfil</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <?php if($_SESSION["id_rol"]=="4" || $_SESSION["id_rol"]=="representante" ){?>
-        <a href="https://intranet.prolife.pe/login.php" class="nav-link"> <i class="nav-icon fas fa-user-lock"></i> Cerrar Sesión</a>
-        <?php }else{?>
-        <a href="login.php" class="nav-link">Cerrar Sesión</a>
-        <?php }?>
-      </li>
-
+    </ul>
+    <ul class="navbar-nav ml-auto">
+    <li class="nav-item dropdown">
+        <a href="javascript:void(0)" data-target="#modal-default" data-toggle="modal" class="nav-link"
+        ><i class="nav-icon far fa-credit-card text-"></i> Consultar Diners Club</a>
+      </li>   
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -265,7 +261,7 @@ if ($_SESSION['ver']=="1") {
                   </form>
 
                   <br>
-                  <div class="row d-flex justify-content-end" style="border-style: groove;border: #1F7AB6;border: groove;border-radius: 15px;">
+                  <div class="row d-flex" style="border-style: groove;border: #1F7AB6;border: groove;border-radius: 15px;">
 
                       <div class="col-3">
                         <label for="lbldr" style="font-size:9px">-</label>
@@ -279,7 +275,7 @@ if ($_SESSION['ver']=="1") {
                       </div>
 
                       <div class="col-3">
-                        <label for="lbldr" style="font-size:9px">Intercambiar Representantes</label>
+                        <label for="lbldr" style="font-size:9px">Intercambiar con:</label>
                           <div class="input-group mb-3">
                               <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-arrow-left"></i></span>
@@ -292,7 +288,8 @@ if ($_SESSION['ver']=="1") {
                       <div class="col-2">
                         <label for="lbldr" style="font-size:9px">-</label>
                           <div class="input-group mb-3">                              
-                               <button style="right: 3%;" class="btn btn-success float-right checkbox-toggle" id="swap"> Aplicar Intercambio <i class="fas fa-sync nav-icon"></i></button>
+                               <button style="right: 3%;" class="btn btn-success float-right checkbox-toggle" id="swap"> 
+                               Aplicar Intercambio <i class="fas fa-sync nav-icon"></i></button>
                           </div>  
                       </div>
                   </div>
@@ -364,14 +361,7 @@ if ($_SESSION['ver']=="1") {
 <!-- Toastr -->
 <script src="plugins/toastr/toastr.min.js"></script>
 <!-- Js CRUD -->
-<?php if($_SESSION["id_tipo_red_mlm"]=="3"){?>
-  <script src="js/js_arbol_virtual.js"></script>
-<?php }else if($_SESSION["id_tipo_red_mlm"]=="5"){?>
-  <script src="js/js_arbol_virtual_tri_hibrido.js"></script>
-<?php }else if($_SESSION["id_tipo_red_mlm"]=="6"){?>
-  <script src="js/js_arbol_virtual_6_4.js"></script>
-<?php }?>
-
+<script src="js/js_arbol_virtual_unilevel.js"></script>
 <!-- page script -->
 <script src="plugins/bootbox/bootbox.all.min.js"></script>
 <!-- Page specific script -->
@@ -383,7 +373,11 @@ $(function () {
     //Initialize Select2 Elements
     $('.select2').select2({
       theme: 'bootstrap4'
+    });    
+    $('.select3').select2({
+      theme: 'bootstrap4'
     });
+    
   });
 </script>
 </body>

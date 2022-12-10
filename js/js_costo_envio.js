@@ -93,18 +93,12 @@ $(document).on('click', '#btn_save', function() {
         toastr.error("Seleccione un País");
         return false;
     }
-    if($("#slt_departamendto_seleccionado").val()==0){
-        toastr.error("Seleccione un Departamento");
+
+    if($("#slt_departamendto_seleccionado").val()==0 && $("#slt_pais_seleccionado").val()==1){
+        toastr.error("Seleccione un País");
         return false;
     }
-    if($("#slt_provincia_seleccionado").val()==0){
-        toastr.error("Seleccione una Provincia");
-        return false;
-    }
-    if($("#slt_distrito_seleccionado").val()==0){
-        toastr.error("Seleccione un Distrito");
-        return false;
-    }
+    
     if($("#txt_monto").val()==''){
         toastr.error("Ingrese un Monto");
         return false;
@@ -152,3 +146,55 @@ $(document).on('click', '.show_costo_envio_modal', function() {
         $("#modal-show-costo-envio").modal("show");
     })
 });
+
+
+$(document).on('change', '#slt_pais_seleccionado', function() {
+
+    var sltpais=$("#slt_pais_seleccionado").val();
+  
+    if(sltpais=="1"){
+      $(".div_departamento").show();
+      $(".div_provincia").show();
+      $(".div_distrito").show();    
+    }else{
+      $(".div_departamento").hide();
+      $(".div_provincia").hide();
+      $(".div_distrito").hide();
+    }
+});
+
+
+$(document).on('change', '#sltdepartamento', function() {
+
+    var sltdepartamento=$("#sltdepartamento").val();
+    var dataString = {"id_departamento_seleccionado":sltdepartamento}
+  
+   $.ajax({
+        type: 'POST',
+        url:"controller_func/ubigeo_peru_provinces/combo_x_dep.php",
+        data: dataString
+        }).done(function(info){
+          $('#sltprovincia').empty();
+          $("#sltprovincia").append(info);
+          
+
+        });
+  });
+  
+  $(document).on('change', '#sltprovincia', function() {
+  
+    var sltprovincia=$("#sltprovincia").val();
+    var sltdepartamento=$("#sltdepartamento").val();
+    var dataString = {"sltdepartamento":sltdepartamento,"id_provincia_seleccionado":sltprovincia}
+  
+   $.ajax({
+        type: 'POST',
+        url:"controller_func/ubigeo_peru_districts/combo_x_prov.php",
+        data: dataString
+        }).done(function(info){
+          $('#slt_distrito_seleccionado').empty();
+          $("#slt_distrito_seleccionado").append(info);
+        });
+  });
+  
+  

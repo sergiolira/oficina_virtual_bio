@@ -8,10 +8,11 @@ $obj=new representante();
 if(trim($_REQUEST["txtruc_buscar"])!=""){
   $txtpatrocinador=$_REQUEST["txtruc_buscar"];
 }
-
+$sltruc1='';
 if(trim($_REQUEST["sltruc1"])!=""){
     $sltruc1=$_REQUEST["sltruc1"];
   }
+  echo "sads". $_REQUEST["sltruc1"];
 
 if($sltruc1=="ninguno"){
  $html='<option value="ninguno">Ninguno</option>';
@@ -39,12 +40,12 @@ $obj->ruc=$patrocinador_directo;
 $rs_n_uno=$obj->dato_representante_nivel_uno($patrocinador_directo);
 $rs_count_rep_x_pat_dir=$obj->count_rep_x_pat_dir($patrocinador_directo);
 if($fila_n_uno=mysqli_fetch_assoc($rs_n_uno)){
-  $ruc1=$fila_n_uno["ruc"];
+  $ruc1=$fila_n_uno["nro_documento"];
   $ruc1_cat=$fila_n_uno["id_nivel_categoria"];
   
   switch ($fila_n_uno["id_nivel_categoria"]) {
     case '1':
-        $categoria="Basico";
+        $categoria="Unilivel";
         break;
     case '2':
         $categoria="Plata";
@@ -57,7 +58,7 @@ if($fila_n_uno=mysqli_fetch_assoc($rs_n_uno)){
         break;
   }
 
-  //$js_json.='{ "id":"1", "Nombres": "'.$fila_n_uno["nombre"]." ".$fila_n_uno["apellidopaterno"]." ".$fila_n_uno["apellidomaterno"].'","img": "https://intranet.prolife.pe/imas/logo/usulider.png", "RUC": "'.$fila_n_uno["ruc"].'","Correo":"'.$fila_n_uno["correo"].'","Celular":"'.$fila_n_uno["telefono"].'","Posicion":"'.$fila_n_uno["posicion"].'","Categoria":"'.$categoria.'"},';
+  //$js_json.='{ "id":"1", "Nombres": "'.$fila_n_uno["nombre"]." ".$fila_n_uno["apellidopaterno"]." ".$fila_n_uno["apellidomaterno"].'","img": "https://intranet.prolife.pe/imas/logo/usulider.png", "RUC": "'.$fila_n_uno["nro_documento"].'","Correo":"'.$fila_n_uno["correo"].'","Celular":"'.$fila_n_uno["telefono"].'","Posicion":"'.$fila_n_uno["posicion"].'","Categoria":"'.$categoria.'"},';
   //$js_json='';
 }
 
@@ -80,7 +81,7 @@ if($rs_count_rep_x_pat_dir!="0"){
     $count++;
     switch ($fila["id_nivel_categoria"]) {
         case '1':
-            $categoria="Basico";
+            $categoria="Unilivel";
             break;
         case '2':
             $categoria="Plata";
@@ -92,22 +93,22 @@ if($rs_count_rep_x_pat_dir!="0"){
             $categoria="Diamante";
             break;
       }
-      if($fila["ruc"]==$sltruc1){
+      if($fila["nro_documento"]==$sltruc1){
         $disabled="disabled='true'";
       }else{
         $disabled="";
       }
       /**Inicio  nivel 2*/
-      //$js_json_2.='{"id":"'.$fila["ruc"].'","pid":"1","Nombres":"'.$fila["nombre"]." ".$fila["apellidopaterno"]." ".$fila["apellidomaterno"].'","img":"https://intranet.prolife.pe/imas/logo/usulider.png","RUC":"'.$fila["ruc"].'","Correo":"'.$fila["correo"].'","Celular":"'.$fila["telefono"].'","Posicion":"'.$fila["posicion"].'","Categoria":"'.$categoria.'"},';
-      $js_json_2.='<option '.$disabled.' value="'.$fila["ruc"].'">'.$fila["nombre"]." ".$fila["apellidopaterno"]." ".$fila["apellidomaterno"].'</option>';
+      //$js_json_2.='{"id":"'.$fila["nro_documento"].'","pid":"1","Nombres":"'.$fila["nombre"]." ".$fila["apellidopaterno"]." ".$fila["apellidomaterno"].'","img":"https://intranet.prolife.pe/imas/logo/usulider.png","RUC":"'.$fila["nro_documento"].'","Correo":"'.$fila["correo"].'","Celular":"'.$fila["telefono"].'","Posicion":"'.$fila["posicion"].'","Categoria":"'.$categoria.'"},';
+      $js_json_2.='<option '.$disabled.' value="'.$fila["nro_documento"].'">'.$fila["nombre"]." ".$fila["apellidopaterno"]." ".$fila["apellidomaterno"].'</option>';
       /**Fin  nivel 2*/
 
-      $rs_4=$obj->listar_representantes_sponsor($fila["ruc"]);
+      $rs_4=$obj->listar_representantes_sponsor($fila["nro_documento"]);
       while ($fila_4=mysqli_fetch_assoc($rs_4)) {    
             $count++;
             switch ($fila_4["id_nivel_categoria"]) {
                 case '1':
-                    $categoria="Basico";
+                    $categoria="Unilivel";
                     break;
                 case '2':
                     $categoria="Plata";
@@ -120,22 +121,22 @@ if($rs_count_rep_x_pat_dir!="0"){
                     break;
             }
 
-            if($fila_4["ruc"]==$sltruc1){
+            if($fila_4["nro_documento"]==$sltruc1){
                 $disabled="disabled='true'";
               }else{
                 $disabled="";
               }
             /*Inicio nivel 3*/
-            //$js_json_3.='{"id":"'.$fila_4["ruc"].'","pid":"'.$fila["ruc"].'","Nombres":"'.$fila_4["nombre"]." ".$fila_4["apellidopaterno"]." ".$fila_4["apellidomaterno"].'","img":"https://intranet.prolife.pe/imas/logo/usulider.png","RUC":"'.$fila_4["ruc"].'","Correo":"'.$fila_4["correo"].'","Celular":"'.$fila_4["telefono"].'","Posicion":"'.$fila_4["posicion"].'","Categoria":"'.$categoria.'"},';
-            $js_json_3.='<option '.$disabled.' value="'.$fila_4["ruc"].'">'.$fila_4["nombre"]." ".$fila_4["apellidopaterno"]." ".$fila_4["apellidomaterno"].'</option>';
+            //$js_json_3.='{"id":"'.$fila_4["nro_documento"].'","pid":"'.$fila["nro_documento"].'","Nombres":"'.$fila_4["nombre"]." ".$fila_4["apellidopaterno"]." ".$fila_4["apellidomaterno"].'","img":"https://intranet.prolife.pe/imas/logo/usulider.png","RUC":"'.$fila_4["nro_documento"].'","Correo":"'.$fila_4["correo"].'","Celular":"'.$fila_4["telefono"].'","Posicion":"'.$fila_4["posicion"].'","Categoria":"'.$categoria.'"},';
+            $js_json_3.='<option '.$disabled.' value="'.$fila_4["nro_documento"].'">'.$fila_4["nombre"]." ".$fila_4["apellidopaterno"]." ".$fila_4["apellidomaterno"].'</option>';
             /*Fin nivel 3*/
 
-              $rs_8=$obj->listar_representantes_sponsor($fila_4["ruc"]);
+              $rs_8=$obj->listar_representantes_sponsor($fila_4["nro_documento"]);
               while ($fila_8=mysqli_fetch_assoc($rs_8)) {
                     $count++;
                     switch ($fila_8["id_nivel_categoria"]) {
                         case '1':
-                            $categoria="Basico";
+                            $categoria="Unilivel";
                             break;
                         case '2':
                             $categoria="Plata";
@@ -148,22 +149,22 @@ if($rs_count_rep_x_pat_dir!="0"){
                             break;
                     }
 
-                    if($fila_8["ruc"]==$sltruc1){
+                    if($fila_8["nro_documento"]==$sltruc1){
                         $disabled="disabled='true'";
                       }else{
                         $disabled="";
                       }
                     /*Inicio nivel 4*/                
-                    //$js_json_4.='{"id":"'.$fila_8["ruc"].'","pid":"'.$fila_4["ruc"].'","Nombres":"'.$fila_8["nombre"]." ".$fila_8["apellidopaterno"]." ".$fila_8["apellidomaterno"].'","img":"https://intranet.prolife.pe/imas/logo/usulider.png","RUC":"'.$fila_8["ruc"].'","Correo":"'.$fila_8["correo"].'","Celular":"'.$fila_8["telefono"].'","Posicion":"'.$fila_8["posicion"].'","Categoria":"'.$categoria.'"},';
-                    $js_json_4.='<option '.$disabled.' value="'.$fila_8["ruc"].'">'.$fila_8["nombre"]." ".$fila_8["apellidopaterno"]." ".$fila_8["apellidomaterno"].'</option>';
+                    //$js_json_4.='{"id":"'.$fila_8["nro_documento"].'","pid":"'.$fila_4["nro_documento"].'","Nombres":"'.$fila_8["nombre"]." ".$fila_8["apellidopaterno"]." ".$fila_8["apellidomaterno"].'","img":"https://intranet.prolife.pe/imas/logo/usulider.png","RUC":"'.$fila_8["nro_documento"].'","Correo":"'.$fila_8["correo"].'","Celular":"'.$fila_8["telefono"].'","Posicion":"'.$fila_8["posicion"].'","Categoria":"'.$categoria.'"},';
+                    $js_json_4.='<option '.$disabled.' value="'.$fila_8["nro_documento"].'">'.$fila_8["nombre"]." ".$fila_8["apellidopaterno"]." ".$fila_8["apellidomaterno"].'</option>';
                     /*Fin nivel 4*/
 
-                    $rs_16=$obj->listar_representantes_sponsor($fila_8["ruc"]);
+                    $rs_16=$obj->listar_representantes_sponsor($fila_8["nro_documento"]);
                     while ($fila_16=mysqli_fetch_assoc($rs_16)) {
                         $count++;
                         switch ($fila_16["id_nivel_categoria"]) {
                             case '1':
-                                $categoria="Basico";
+                                $categoria="Unilivel";
                                 break;
                             case '2':
                                 $categoria="Plata";
@@ -176,22 +177,22 @@ if($rs_count_rep_x_pat_dir!="0"){
                                 break;
                           }
 
-                          if($fila_16["ruc"]==$sltruc1){
+                          if($fila_16["nro_documento"]==$sltruc1){
                             $disabled="disabled='true'";
                           }else{
                             $disabled="";
                           }
                         /*Inicio nivel 5*/
-                        //$js_json_5.='{"id":"'.$fila_16["ruc"].'","pid":"'.$fila_8["ruc"].'","Nombres":"'.$fila_16["nombre"]." ".$fila_16["apellidopaterno"]." ".$fila_16["apellidomaterno"].'","img":"https://intranet.prolife.pe/imas/logo/usulider.png","RUC":"'.$fila_16["ruc"].'","Correo":"'.$fila_16["correo"].'","Celular":"'.$fila_16["telefono"].'","Posicion":"'.$fila_16["posicion"].'","Categoria":"'.$categoria.'"},';
-                        $js_json_5.='<option '.$disabled.' value="'.$fila_16["ruc"].'">'.$fila_16["nombre"]." ".$fila_16["apellidopaterno"]." ".$fila_16["apellidomaterno"].'</option>';
+                        //$js_json_5.='{"id":"'.$fila_16["nro_documento"].'","pid":"'.$fila_8["nro_documento"].'","Nombres":"'.$fila_16["nombre"]." ".$fila_16["apellidopaterno"]." ".$fila_16["apellidomaterno"].'","img":"https://intranet.prolife.pe/imas/logo/usulider.png","RUC":"'.$fila_16["nro_documento"].'","Correo":"'.$fila_16["correo"].'","Celular":"'.$fila_16["telefono"].'","Posicion":"'.$fila_16["posicion"].'","Categoria":"'.$categoria.'"},';
+                        $js_json_5.='<option '.$disabled.' value="'.$fila_16["nro_documento"].'">'.$fila_16["nombre"]." ".$fila_16["apellidopaterno"]." ".$fila_16["apellidomaterno"].'</option>';
                         /*Fin nivel 5*/ 
 
-                        $rs_n6=$obj->listar_representantes_sponsor($fila_16["ruc"]);
+                        $rs_n6=$obj->listar_representantes_sponsor($fila_16["nro_documento"]);
                         while ($fila_n6=mysqli_fetch_assoc($rs_n6)) {
                             $count++;
                             switch ($fila_n6["id_nivel_categoria"]) {
                                 case '1':
-                                    $categoria="Basico";
+                                    $categoria="Unilivel";
                                     break;
                                 case '2':
                                     $categoria="Plata";
@@ -204,22 +205,22 @@ if($rs_count_rep_x_pat_dir!="0"){
                                     break;
                               }
 
-                              if($fila_n6["ruc"]==$sltruc1){
+                              if($fila_n6["nro_documento"]==$sltruc1){
                                 $disabled="disabled='true'";
                               }else{
                                 $disabled="";
                               }
                             /*Inicio nivel 6*/
-                            //$js_json_6.='{"id":"'.$fila_n6["ruc"].'","pid":"'.$fila_16["ruc"].'","Nombres":"'.$fila_n6["nombre"]." ".$fila_n6["apellidopaterno"]." ".$fila_n6["apellidomaterno"].'","img":"https://intranet.prolife.pe/imas/logo/usulider.png","RUC":"'.$fila_n6["ruc"].'","Correo":"'.$fila_n6["correo"].'","Celular":"'.$fila_n6["telefono"].'","Posicion":"'.$fila_n6["posicion"].'","Categoria":"'.$categoria.'"},';
-                            $js_json_6.='<option '.$disabled.' value="'.$fila_n6["ruc"].'">'.$fila_n6["nombre"]." ".$fila_n6["apellidopaterno"]." ".$fila_n6["apellidomaterno"].'</option>';
+                            //$js_json_6.='{"id":"'.$fila_n6["nro_documento"].'","pid":"'.$fila_16["nro_documento"].'","Nombres":"'.$fila_n6["nombre"]." ".$fila_n6["apellidopaterno"]." ".$fila_n6["apellidomaterno"].'","img":"https://intranet.prolife.pe/imas/logo/usulider.png","RUC":"'.$fila_n6["nro_documento"].'","Correo":"'.$fila_n6["correo"].'","Celular":"'.$fila_n6["telefono"].'","Posicion":"'.$fila_n6["posicion"].'","Categoria":"'.$categoria.'"},';
+                            $js_json_6.='<option '.$disabled.' value="'.$fila_n6["nro_documento"].'">'.$fila_n6["nombre"]." ".$fila_n6["apellidopaterno"]." ".$fila_n6["apellidomaterno"].'</option>';
                             /*Fin nivel 6*/
 
-                            $rs_n7=$obj->listar_representantes_sponsor($fila_n6["ruc"]);
+                            $rs_n7=$obj->listar_representantes_sponsor($fila_n6["nro_documento"]);
                             while ($fila_n7=mysqli_fetch_assoc($rs_n7)) {
                                 $count++;
                                 switch ($fila_n7["id_nivel_categoria"]) {
                                     case '1':
-                                        $categoria="Basico";
+                                        $categoria="Unilivel";
                                         break;
                                     case '2':
                                         $categoria="Plata";
@@ -232,22 +233,22 @@ if($rs_count_rep_x_pat_dir!="0"){
                                         break;
                                   }
 
-                                  if($fila_n7["ruc"]==$sltruc1){
+                                  if($fila_n7["nro_documento"]==$sltruc1){
                                     $disabled="disabled='true'";
                                   }else{
                                     $disabled="";
                                   }
                                 /*Inicio nivel 6*/
-                                //$js_json_7.='{"id":"'.$fila_n7["ruc"].'","pid":"'.$fila_n6["ruc"].'","Nombres":"'.$fila_n7["nombre"]." ".$fila_n7["apellidopaterno"]." ".$fila_n7["apellidomaterno"].'","img":"https://intranet.prolife.pe/imas/logo/usulider.png","RUC":"'.$fila_n7["ruc"].'","Correo":"'.$fila_n7["correo"].'","Celular":"'.$fila_n7["telefono"].'","Posicion":"'.$fila_n7["posicion"].'","Categoria":"'.$categoria.'"},';
-                                $js_json_7.='<option '.$disabled.' value="'.$fila_n7["ruc"].'">'.$fila_n7["nombre"]." ".$fila_n7["apellidopaterno"]." ".$fila_n7["apellidomaterno"].'</option>';
+                                //$js_json_7.='{"id":"'.$fila_n7["nro_documento"].'","pid":"'.$fila_n6["nro_documento"].'","Nombres":"'.$fila_n7["nombre"]." ".$fila_n7["apellidopaterno"]." ".$fila_n7["apellidomaterno"].'","img":"https://intranet.prolife.pe/imas/logo/usulider.png","RUC":"'.$fila_n7["nro_documento"].'","Correo":"'.$fila_n7["correo"].'","Celular":"'.$fila_n7["telefono"].'","Posicion":"'.$fila_n7["posicion"].'","Categoria":"'.$categoria.'"},';
+                                $js_json_7.='<option '.$disabled.' value="'.$fila_n7["nro_documento"].'">'.$fila_n7["nombre"]." ".$fila_n7["apellidopaterno"]." ".$fila_n7["apellidomaterno"].'</option>';
                                 /*Fin nivel 6*/
                                 
-                                $rs_n8=$obj->listar_representantes_sponsor($fila_n7["ruc"]);
+                                $rs_n8=$obj->listar_representantes_sponsor($fila_n7["nro_documento"]);
                                 while ($fila_n8=mysqli_fetch_assoc($rs_n8)) {
                                     $count++;
                                     switch ($fila_n8["id_nivel_categoria"]) {
                                         case '1':
-                                            $categoria="Basico";
+                                            $categoria="Unilivel";
                                             break;
                                         case '2':
                                             $categoria="Plata";
@@ -260,21 +261,21 @@ if($rs_count_rep_x_pat_dir!="0"){
                                             break;
                                     }
 
-                                    if($fila_n8["ruc"]==$sltruc1){
+                                    if($fila_n8["nro_documento"]==$sltruc1){
                                         $disabled="disabled='true'";
                                       }else{
                                         $disabled="";
                                       }
                                     /*Inicio nivel 6*/
-                                    //$js_json_8.='{"id":"'.$fila_n8["ruc"].'","pid":"'.$fila_n7["ruc"].'","Nombres":"'.$fila_n8["nombre"]." ".$fila_n8["apellidopaterno"]." ".$fila_n8["apellidomaterno"].'","img":"https://intranet.prolife.pe/imas/logo/usulider.png","RUC":"'.$fila_n8["ruc"].'","Correo":"'.$fila_n8["correo"].'","Celular":"'.$fila_n8["telefono"].'","Posicion":"'.$fila_n8["posicion"].'","Categoria":"'.$categoria.'"},';
-                                    $js_json_8.='<option '.$disabled.' value="'.$fila_n8["ruc"].'">'.$fila_n8["nombre"]." ".$fila_n8["apellidopaterno"]." ".$fila_n8["apellidomaterno"].'</option>';
+                                    //$js_json_8.='{"id":"'.$fila_n8["nro_documento"].'","pid":"'.$fila_n7["nro_documento"].'","Nombres":"'.$fila_n8["nombre"]." ".$fila_n8["apellidopaterno"]." ".$fila_n8["apellidomaterno"].'","img":"https://intranet.prolife.pe/imas/logo/usulider.png","RUC":"'.$fila_n8["nro_documento"].'","Correo":"'.$fila_n8["correo"].'","Celular":"'.$fila_n8["telefono"].'","Posicion":"'.$fila_n8["posicion"].'","Categoria":"'.$categoria.'"},';
+                                    $js_json_8.='<option '.$disabled.' value="'.$fila_n8["nro_documento"].'">'.$fila_n8["nombre"]." ".$fila_n8["apellidopaterno"]." ".$fila_n8["apellidomaterno"].'</option>';
                                     /*Fin nivel 6*/
-                                    $rs_n9=$obj->listar_representantes_sponsor($fila_n8["ruc"]);
+                                    $rs_n9=$obj->listar_representantes_sponsor($fila_n8["nro_documento"]);
                                     while ($fila_n9=mysqli_fetch_assoc($rs_n9)) {
                                         $count++;
                                         switch ($fila_n9["id_nivel_categoria"]) {
                                             case '1':
-                                                $categoria="Basico";
+                                                $categoria="Unilivel";
                                                 break;
                                             case '2':
                                                 $categoria="Plata";
@@ -287,14 +288,14 @@ if($rs_count_rep_x_pat_dir!="0"){
                                                 break;
                                         }
 
-                                        if($fila_n9["ruc"]==$sltruc1){
+                                        if($fila_n9["nro_documento"]==$sltruc1){
                                             $disabled="disabled='true'";
                                         }else{
                                             $disabled="";
                                         }
                                         /*Inicio nivel 6*/
-                                        //$js_json_9.='{"id":"'.$fila_n9["ruc"].'","pid":"'.$fila_n8["ruc"].'","Nombres":"'.$fila_n9["nombre"]." ".$fila_n9["apellidopaterno"]." ".$fila_n9["apellidomaterno"].'","img":"https://intranet.prolife.pe/imas/logo/usulider.png","RUC":"'.$fila_n9["ruc"].'","Correo":"'.$fila_n9["correo"].'","Celular":"'.$fila_n9["telefono"].'","Posicion":"'.$fila_n9["posicion"].'","Categoria":"'.$categoria.'"},';
-                                        $js_json_9.='<option '.$disabled.' value="'.$fila_n9["ruc"].'">'.$fila_n9["nombre"]." ".$fila_n9["apellidopaterno"]." ".$fila_n9["apellidomaterno"].'</option>';
+                                        //$js_json_9.='{"id":"'.$fila_n9["nro_documento"].'","pid":"'.$fila_n8["nro_documento"].'","Nombres":"'.$fila_n9["nombre"]." ".$fila_n9["apellidopaterno"]." ".$fila_n9["apellidomaterno"].'","img":"https://intranet.prolife.pe/imas/logo/usulider.png","RUC":"'.$fila_n9["nro_documento"].'","Correo":"'.$fila_n9["correo"].'","Celular":"'.$fila_n9["telefono"].'","Posicion":"'.$fila_n9["posicion"].'","Categoria":"'.$categoria.'"},';
+                                        $js_json_9.='<option '.$disabled.' value="'.$fila_n9["nro_documento"].'">'.$fila_n9["nombre"]." ".$fila_n9["apellidopaterno"]." ".$fila_n9["apellidomaterno"].'</option>';
                                         /*Fin nivel 6*/
                                     }
                                 }

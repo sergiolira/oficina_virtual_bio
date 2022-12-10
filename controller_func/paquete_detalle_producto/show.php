@@ -125,6 +125,14 @@ if($obj_pd->estado == 1){
             <input type="text" class="form-control" value="<?php echo $obj_pd->id_usuarioactualiza; ?>"/>
         </div>
     </div> 
+
+    <div class="col-12">
+                <br><center><div class="card card-outline card-success"><strong>IMAGEN</strong></div></center>
+    </div>    
+    <div class="col-12 px-0">
+        <center> <img class="img-fluid" src="<?php echo $obj_pd->imagen;?>"></center>
+    </div>
+
 </div>
 
 <script src="js/valid.js"></script>

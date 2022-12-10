@@ -37,149 +37,111 @@ $('.modal-footer').on('click', '.add-candidato', function() {
     var txttelefono=$("#txttelefono").val();
     var sltgenero=$("#sltgenero").val();
     var txtfechanac=$("#txtfechanac").val();
-    var sltliderdir=1;
-    var sltliderred=1;
+    var sltpais=$("#sltpais").val();
     var sltdepartamento=$("#sltdepartamento").val();
     var sltprovincia=$("#sltprovincia").val();
     var sltdistrito=$("#sltdistrito").val();
-    var sltrelacion=$("#sltrelacion").val();
-    var txtrelacion="Otro";
-    var txt_motiva_negocio=$("#txt_motiva_negocio").val();
-    var slt_experiencia_comercial=$("#slt_experiencia_comercial").val();
-    var txt_experiencia_comercial="Otro";
-    var r_cartera_cliente_entorno=$('input:radio[name=r_cartera_cliente_entorno]:checked').val();
-    var r_disponibilidad_gestion_negocio=$('input:radio[name=r_disponibilidad_gestion_negocio]:checked').val();
-    var checkbox_horario_gestion_negocio_1=$('input:checkbox[name=checkbox_horario_gestion_negocio_1]:checked').val();
-    var checkbox_horario_gestion_negocio_2=$('input:checkbox[name=checkbox_horario_gestion_negocio_2]:checked').val();
-    var checkbox_horario_gestion_negocio_3=$('input:checkbox[name=checkbox_horario_gestion_negocio_3]:checked').val();
-    
-  
-    if(sltrelacion=="Otro"){    
-      txtrelacion=$("#txtrelacion").val();
-    }
-    if(slt_experiencia_comercial=="Otro"){    
-      txt_experiencia_comercial=$("#txt_experiencia_comercial").val();
-    }
-  
+    var txtdireccion=$("#txtdireccion").val();
+
     if(txtnombre.trim()==""){
       $('#txtnombre').attr('class','form-control is-invalid');
       $('.msj-txtnombre').empty();
       $('.msj-txtnombre').append("-  escriba un nombre");
       window.setTimeout(function() { $('.msj-txtnombre').html("");$('#txtnombre').attr('class','form-control');}, 3000);
       return false;
-    }else if(txtapep.trim()==""){
+    }
+    if(txtapep.trim()==""){
       $('#txtapep').attr('class','form-control is-invalid');
       $('.msj-txtapep').empty();
       $('.msj-txtapep').append("-  escriba un apellido paterno");
       window.setTimeout(function() { $('.msj-txtapep').html("");$('#txtapep').attr('class','form-control');}, 3000);
       return false;
-    }else if(txtapem.trim()==""){
+    }
+    if(txtapem.trim()==""){
       $('#txtapem').attr('class','form-control is-invalid');
       $('.msj-txtapem').empty();
       $('.msj-txtapem').append("-  escriba un apellido materno");
       window.setTimeout(function() { $('.msj-txtapem').html("");$('#txtapem').attr('class','form-control');}, 3000);
       return false;
-    }else if(slt_t_d.trim()=="" || slt_t_d==0){
+    }
+    if(slt_t_d.trim()=="" || slt_t_d==0){
       $('.msj-slt_t_d').empty();
       $('.msj-slt_t_d').append(" - Seleccione una opción");
       window.setTimeout(function() {$('.msj-slt_t_d').html("");}, 3000);                
       return false;
-    }else if(txtnro_doc.trim()=="" || txtnro_doc.length!=8){
+    }
+    if(txtnro_doc.trim()=="" || txtnro_doc<=7){
       $('#txtnro_doc').attr('class','form-control is-invalid');
       $('.msj-txtnro_doc').empty();
-      $('.msj-txtnro_doc').append("-N° Nro  debe ser de 8 numeros");
+      $('.msj-txtnro_doc').append("-N° debe ser de mas de 7 digitos");
       window.setTimeout(function() { $('.msj-txtnro_doc').html("");$('#txtnro_doc').attr('class','form-control');}, 3000);    
       return false; 
-    }else if(txttelefono.trim()==""){
+    }
+    if(txttelefono.trim()==""){
       $('#txttelefono').attr('class','form-control is-invalid');
       $('.msj-txttelefono').empty();
       $('.msj-txttelefono').append("-  escriba un N° de celular / telefono");
       window.setTimeout(function() { $('.msj-txttelefono').html("");$('#txttelefono').attr('class','form-control');}, 3000);
       return false;
-    }else if(txtcorreo.trim()==""){
+    }
+    if(txtcorreo.trim()==""){
       $('#txtcorreo').attr('class','form-control is-invalid');
       $('.msj-txtcorreo').empty();
       $('.msj-txtcorreo').append("-  escriba un correo electronico");
       window.setTimeout(function() { $('.msj-txtcorreo').html("");$('#txtcorreo').attr('class','form-control');}, 3000);
       return false;
-    }else if((regexemail.test(txtcorreo))==false){
+    }
+    if((regexemail.test(txtcorreo))==false){
       $('#txtcorreo').attr('class','form-control is-invalid');
       $('.msj-txtcorreo').empty();
       $('.msj-txtcorreo').append("-  escriba un correo electronico correcto");
       window.setTimeout(function() { $('.msj-txtcorreo').html("");$('#txtcorreo').attr('class','form-control');}, 3000);
       return false;
-    }else if(sltdepartamento.trim()=="" || sltdepartamento==0){
-      $('.msj-sltdepartamento').empty();
-      $('.msj-sltdepartamento').append(" - Seleccione una opción");
-      window.setTimeout(function() {$('.msj-sltdepartamento').html("");}, 3000);                
-      return false;
-    }else if(sltprovincia.trim()=="" || sltprovincia==0){
-      $('.msj-sltprovincia').empty();
-      $('.msj-sltprovincia').append(" - Seleccione una opción");
-      window.setTimeout(function() {$('.msj-sltprovincia').html("");}, 3000);                
-      return false;
-    }else if(sltdistrito.trim()=="" || sltdistrito==0){
-      $('.msj-sltdistrito').empty();
-      $('.msj-sltdistrito').append(" - Seleccione una opción");
-      window.setTimeout(function() {$('.msj-sltdistrito').html("");}, 3000);                
-      return false;
-    }else if(sltgenero.trim()=="" || sltgenero==0){
+    }
+    if(sltgenero.trim()=="" || sltgenero==0){
       $('.msj-sltgenero').empty();
       $('.msj-sltgenero').append(" - Seleccione una opción");
       window.setTimeout(function() {$('.msj-sltgenero').html("");}, 3000);                
       return false;
-    }else if(txtfechanac.trim()==""){
+    }
+    if(txtfechanac.trim()==""){
       $('#txtfechanac').attr('class','form-control is-invalid');
       $('.msj-txtfechanac').empty();
       $('.msj-txtfechanac').append("-  escriba una fecha de nacimiento");
       window.setTimeout(function() { $('.msj-txtfechanac').html("");$('#txtfechanac').attr('class','form-control');}, 3000);
       return false;
-    }else if(sltrelacion.trim()=="" || sltrelacion==0){
-      $('.msj-sltrelacion').empty();
-      $('.msj-sltrelacion').append(" - Seleccione una opción");
-      window.setTimeout(function() {$('.msj-sltrelacion').html("");}, 3000);                
-      return false;
-    }else if(sltrelacion.trim()=="Otro" && txtrelacion.trim()==""){
-      $('#txtrelacion').attr('class','form-control is-invalid');
-      $('.msj-txtrelacion').empty();
-      $('.msj-txtrelacion').append("-  escriba una descripción");
-      window.setTimeout(function() { $('.msj-txtrelacion').html("");$('#txtrelacion').attr('class','form-control');}, 3000);
-      return false;
-    }else if(txt_motiva_negocio.trim()==""){
-      $('#txt_motiva_negocio').attr('class','form-control is-invalid');
-      $('.msj-txt_motiva_negocio').empty();
-      $('.msj-txt_motiva_negocio').append("- Detalle una respuesta");
-      window.setTimeout(function() { $('.msj-txt_motiva_negocio').html("");$('#txt_motiva_negocio').attr('class','form-control');}, 3000);
-      return false;
-    }else if(slt_experiencia_comercial.trim()=="" || slt_experiencia_comercial==0){
-      $('.msj-slt_experiencia_comercial').empty();
-      $('.msj-slt_experiencia_comercial').append(" - Seleccione una opción");
-      window.setTimeout(function() {$('.msj-slt_experiencia_comercial').html("");}, 3000);                
-      return false;
-    }else if(slt_experiencia_comercial.trim()=="Otro" && txt_experiencia_comercial.trim()==""){
-      $('#txt_experiencia_comercial').attr('class','form-control is-invalid');
-      $('.msj-txt_experiencia_comercial').empty();
-      $('.msj-txt_experiencia_comercial').append("-  Detalle una respuesta");
-      window.setTimeout(function() { $('.msj-txt_experiencia_comercial').html("");$('#txt_experiencia_comercial').attr('class','form-control');}, 3000);
-      return false;
-    }else if(r_cartera_cliente_entorno==undefined){
-      $('.msj-r_cartera_cliente_entorno').empty();
-      $('.msj-r_cartera_cliente_entorno').append("-  Seleccione una opción");
-      window.setTimeout(function() { $('.msj-r_cartera_cliente_entorno').html("");}, 3000);
-      return false;
-    }else if(r_disponibilidad_gestion_negocio==undefined){
-      $('.msj-r_disponibilidad_gestion_negocio').empty();
-      $('.msj-r_disponibilidad_gestion_negocio').append("-  Seleccione una opción");
-      window.setTimeout(function() { $('.msj-r_disponibilidad_gestion_negocio').html("");}, 3000);
-      return false;
-    }else if(r_disponibilidad_gestion_negocio=="Si" && checkbox_horario_gestion_negocio_1==undefined && checkbox_horario_gestion_negocio_2==undefined 
-    && checkbox_horario_gestion_negocio_3==undefined){
-      $('.msj-checkbox_horario_gestion_negocio').empty();
-      $('.msj-checkbox_horario_gestion_negocio').append("-  Seleccione una opción o varias opciones");
-      window.setTimeout(function() { $('.msj-checkbox_horario_gestion_negocio').html("");}, 3000);
+    }
+    if(sltpais.trim()=="" || sltpais==0){
+      $('.msj-sltpais').empty();
+      $('.msj-sltpais').append(" - Seleccione una opción");
+      window.setTimeout(function() {$('.msj-sltpais').html("");}, 3000);                
       return false;
     }
-  
+    if((sltdepartamento==0 || sltdepartamento=="0") && sltpais=="1"){
+      $('.msj-sltdepartamento').empty();
+      $('.msj-sltdepartamento').append(" - Seleccione una opción");
+      window.setTimeout(function() {$('.msj-sltdepartamento').html("");}, 3000);                
+      return false;
+    }
+    if((sltprovincia.trim()=="" || sltprovincia==0) && sltpais=="1"){
+      $('.msj-sltprovincia').empty();
+      $('.msj-sltprovincia').append(" - Seleccione una opción");
+      window.setTimeout(function() {$('.msj-sltprovincia').html("");}, 3000);                
+      return false;
+    }
+    if((sltdistrito.trim()=="" || sltdistrito==0) && sltpais=="1"){
+      $('.msj-sltdistrito').empty();
+      $('.msj-sltdistrito').append(" - Seleccione una opción");
+      window.setTimeout(function() {$('.msj-sltdistrito').html("");}, 3000);                
+      return false;
+    }
+    if(txtdireccion.trim()==""){
+      $('#txtdireccion').attr('class','form-control is-invalid');
+      $('.msj-txtdireccion').empty();
+      $('.msj-txtdireccion').append("-  escriba una dirección");
+      window.setTimeout(function() { $('.msj-txtdireccion').html("");$('#txtdireccion').attr('class','form-control');}, 3000);
+      return false;
+    }
         var dataString = $('#formadd').serialize();
         $.ajax({
           type: 'POST',
@@ -227,15 +189,15 @@ $(document).on('click', '.show-modal-candidato', function() {
     });
 });
   
-$(document).on('keyup', '#txtnro-doc', function() {
+$(document).on('keyup', '#txtnro_doc', function() {
 var hdnid=$("#hdnid").val();
 var txtnro_doc=$("#txtnro_doc").val();
 
 
-if(txtnro_doc.trim()=="" || txtnro_doc.length!=8){
+if(txtnro_doc.trim()=="" || txtnro_doc.length<=7){
     $('#txtnro_doc').attr('class','form-control is-invalid');
     $('.msj-txtnro_doc').empty();
-    $('.msj-txtnro_doc').append("-N° documento debe ser de 8 numeros");
+    $('.msj-txtnro_doc').append("-N° documento debe ser mayor a 7 digitos");
     window.setTimeout(function() { $('.msj-txtnro_doc').html("");$('#txtnro_doc').attr('class','form-control');}, 3000);    
     return false; 
 }
@@ -441,4 +403,19 @@ $(document).on('click', '.desactivar-can', function() {
           }
       }
   })
+});
+
+$(document).on('change', '#sltpais', function() {
+
+  var sltpais=$("#sltpais").val();
+
+  if(sltpais=="1"){
+    $(".div_departamento").show();
+    $(".div_provincia").show();
+    $(".div_distrito").show();    
+  }else{
+    $(".div_departamento").hide();
+    $(".div_provincia").hide();
+    $(".div_distrito").hide();
+  }
 });

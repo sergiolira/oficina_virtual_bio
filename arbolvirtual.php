@@ -93,11 +93,11 @@ if ($_SESSION['ver']=="1") {
         }
 
         [node-id] rect {
-            fill: #28a745;
+            fill: #00131C;
         }
 
         [node-id='1'] rect {
-            fill: #005F86;
+            fill: #28A745;
         }
 
         /*.field_0 {
@@ -153,27 +153,23 @@ if ($_SESSION['ver']=="1") {
   <link rel="stylesheet" href="iconsvg/style.css">
 </head>
 
-<body class="sidebar-mini layout-fixed sidebar-collapse">
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
 
+
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-dark navbar-info">
+  <nav class="main-header navbar navbar-expand navbar-dark">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
-       <li class="nav-item d-none d-sm-inline-block">
-        <a href="oficina.php" class="nav-link"><i class="nav-icon fas fa-user"></i> Mi perfil</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <?php if($_SESSION["id_rol"]=="4" || $_SESSION["id_rol"]=="representante" ){?>
-        <a href="https://intranet.prolife.pe/login.php" class="nav-link"> <i class="nav-icon fas fa-user-lock"></i> Cerrar Sesión</a>
-        <?php }else{?>
-        <a href="login.php" class="nav-link">Cerrar Sesión</a>
-        <?php }?>
-      </li>
-
+    </ul>
+    <ul class="navbar-nav ml-auto">
+    <li class="nav-item dropdown">
+        <a href="javascript:void(0)" data-target="#modal-default" data-toggle="modal" class="nav-link"
+        ><i class="nav-icon far fa-credit-card text-"></i> Consultar Diners Club</a>
+      </li>   
     </ul>
   </nav>
   <!-- /.navbar -->

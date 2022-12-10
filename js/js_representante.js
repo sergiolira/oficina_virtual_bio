@@ -50,6 +50,7 @@ var regexemail = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/
   });
   //Crea a new Representante lider
   $(document).on('click', '.add-modal-representante-lider', function() {
+    $('#formadd').empty();
     var id = $(this).data('id');
     var url = "controller_func/representante/create_r.php?id="+id;
     $.get(url, function (data) {
@@ -533,6 +534,7 @@ $('.modal-footer').on('click', '.add-perfilusuario', function() {
 /*Representante  CRUD*/
 //Crea a new Representante
   $(document).on('click', '.add-modal-representante', function() {
+    $('#formadd').empty();
     var id = $(this).data('id');
     var url = "controller_func/representante/create.php?id="+id;
     $.get(url, function (data) {
@@ -544,7 +546,14 @@ $('.modal-footer').on('click', '.add-perfilusuario', function() {
 //Lista de Representante
   function list_representantes(){
       $.ajax({
-      url:"controller_func/representante/list.php"
+      url:"controller_func/representante/list.php",
+      beforeSend:function(){
+        cargar_data();
+        },
+      
+      complete:function(){
+        Swal.close();
+        }
       }).done(function(info){
         $('.tbody_list').empty();
         $(".tbody_list").append(info);
@@ -616,83 +625,175 @@ $('.modal-footer').on('click', '.add-representante', function() {
       if(tiuser==1){
         var hdnid=$("#hdnid").val();
         if(hdnid>0){
-          var txtruc="00";
-          var txtsponsor="00";
-          var sltposicion="00";
+          var txtruc="ruc";
+          var txtsponsor="sponsor";
         }else{
           var txtruc=$("#txtruc").val();
           var txtsponsor=$("#txtsponsor").val();
-          var sltposicion=$("#sltposicion").val();
         }
+          var slt_ti_per=$("#slt_ti_per").val();
           var txtnombre=$("#txtnombre").val();
           var txtapep=$("#txtapep").val();
           var txtapem=$("#txtapem").val();
+          var slt_genero=$("#slt_genero").val();
+          var sltpais=$("#sltpais").val();
+          var sltdepartamento=$("#sltdepartamento").val();
+          var sltprovincia=$("#sltprovincia").val();
+          var sltdistrito=$("#sltdistrito").val();
+          var txtdireccion=$("#txtdireccion").val();
+          var txttelefono=$("#txttelefono").val();
+          var slttipdoc=$("#slttipdoc").val();
+
           var txtcorreo=$("#txtcorreo").val();
           var txtpass=$("#txtpass").val();
           var txtpassr=$("#txtpassr").val();
           var txtrazons=$("#txtrazons").val();
 
-          if(txtnombre.trim()==""){
+          if(slt_ti_per==0 || slt_ti_per=="0")
+             {
+              $('.msj_tip_per').empty();
+              $('.msj_tip_per').append("-  Seleccione un tipo de persona");
+              window.setTimeout(function() { $('.msj_tip_per').html("");}, 3000);
+              return false;
+            }
+
+            if(txtnombre.trim()=="" && slt_ti_per=="PN"){
               $('#txtnombre').attr('class','form-control is-invalid');
               $('.msj_nom').empty();
               $('.msj_nom').append("-  escriba un nombre");
               window.setTimeout(function() { $('.msj_nom').html("");$('#txtnombre').attr('class','form-control');}, 3000);
-            }else if(txtapep.trim()==""){
+              return false;
+            }
+            if(txtapep.trim()=="" && slt_ti_per=="PN"){
               $('#txtapep').attr('class','form-control is-invalid');
               $('.msj_apep').empty();
               $('.msj_apep').append("-  escriba un apellido paterno");
               window.setTimeout(function() { $('.msj_apep').html("");$('#txtapep').attr('class','form-control');}, 3000);
-            }else if(txtapem.trim()==""){
+              return false;
+            }
+            if(txtapem.trim()=="" && slt_ti_per=="PN"){
               $('#txtapem').attr('class','form-control is-invalid');
               $('.msj_apem').empty();
               $('.msj_apem').append("-  escriba un apellido materno");
               window.setTimeout(function() { $('.msj_apem').html("");$('#txtapem').attr('class','form-control');}, 3000);
-            }else if(txtpass.trim()=="" && hdnid==0){
+              return false;
+            }
+            if((slt_genero==0 || slt_genero=="0") && slt_ti_per=="PN")
+             {
+              $('.msj_genero').empty();
+              $('.msj_genero').append("-  Seleccione un genero");
+              window.setTimeout(function() { $('.msj_genero').html("");}, 3000);
+              return false;
+            }
+            if(sltpais==0 || sltpais=="0")
+             {
+              $('.msj_pais').empty();
+              $('.msj_pais').append("-  Seleccione un pais");
+              window.setTimeout(function() { $('.msj_pais').html("");}, 3000);
+              return false;
+            }
+            if((sltdepartamento==0 || sltdepartamento=="0") && sltpais=="1")
+             {
+              $('.msj-sltdepartamento').empty();
+              $('.msj-sltdepartamento').append("-  Seleccione un departamento");
+              window.setTimeout(function() { $('.msj-sltdepartamento').html("");}, 3000);
+              return false;
+             }
+
+             if((sltprovincia==0 || sltprovincia=="0") && sltpais=="1")
+             {
+              $('.msj-sltprovincia').empty();
+              $('.msj-sltprovincia').append("-  Seleccione una provincia");
+              window.setTimeout(function() { $('.msj-sltprovincia').html("");}, 3000);
+              return false;
+             }
+
+              if((sltdistrito==0 || sltdistrito=="0") && sltpais=="1")
+              {
+                $('.msj-sltdistrito').empty();
+                $('.msj-sltdistrito').append("-  Seleccione un distrito");
+                window.setTimeout(function() { $('.msj-sltdistrito').html("");}, 3000);
+                return false;
+              }
+
+              if(txtdireccion.trim()==""){
+                $('#txtdireccion').attr('class','form-control is-invalid');
+                $('.msj_dir').empty();
+                $('.msj_dir').append("-  escriba una dirección");
+                window.setTimeout(function() { $('.msj_dir').html("");$('#txtdireccion').attr('class','form-control');}, 3000);
+                return false;
+              }
+
+              if(txttelefono.trim()==""){
+                $('#txttelefono').attr('class','form-control is-invalid');
+                $('.msj_cel').empty();
+                $('.msj_cel').append("-  escriba una celular");
+                window.setTimeout(function() { $('.msj_cel').html("");$('#txttelefono').attr('class','form-control');}, 3000);
+                return false;
+              }
+
+              if(txtcorreo.trim()==""){
+                $('#txtcorreo').attr('class','form-control is-invalid');
+                $('.msj_correo').empty();
+                $('.msj_correo').append("-  escriba un correo electronico");
+                window.setTimeout(function() { $('.msj_correo').html("");$('#txtcorreo').attr('class','form-control');}, 3000);
+                return false;
+              }
+              if((regexemail.test(txtcorreo))==false){
+                $('#txtcorreo').attr('class','form-control is-invalid');
+                $('.msj_correo').empty();
+                $('.msj_correo').append("-  escriba un correo electronico correcto");
+                window.setTimeout(function() { $('.msj_correo').html("");$('#txtcorreo').attr('class','form-control');}, 3000);
+                return false;
+              }
+
+              if((slttipdoc==0 || slttipdoc=="0") && slt_ti_per=="PN")
+              {
+              $('.msj_tipdoc').empty();
+              $('.msj_tipdoc').append("-  Seleccione un tipo documento");
+              window.setTimeout(function() { $('.msj_tipdoc').html("");}, 3000);
+              return false;
+              }
+
+            if(txtruc.trim()=="" && hdnid==0){
+              $('#txtruc').attr('class','form-control is-invalid');
+              $('.msj_ruc').empty();
+              $('.msj_ruc').append("-  Ingrese un Numero");
+              window.setTimeout(function() { $('.msj_ruc').html("");$('#txtruc').attr('class','form-control');}, 3000);
+              return false;
+            }
+
+            if(txtpass.trim()=="" && hdnid==0){
               $('#txtpass').attr('class','form-control is-invalid');
               $('.msj_pass').empty();
               $('.msj_pass').append("-  escriba una contraseña");
               window.setTimeout(function() { $('.msj_pass').html("");$('#txtpass').attr('class','form-control');}, 3000);
-            }else if(txtpassr.trim()=="" && hdnid==0){
+              return false;
+            }
+            if(txtpassr.trim()=="" && hdnid==0){
               $('#txtpassr').attr('class','form-control is-invalid');
               $('.msj_passr').empty();
               $('.msj_passr').append("-  escriba una contraseña");
               window.setTimeout(function() { $('.msj_passr').html("");$('#txtpassr').attr('class','form-control');}, 3000);
-            }else if(txtruc.trim()=="" && hdnid==0){
-              $('#txtruc').attr('class','form-control is-invalid');
-              $('.msj_ruc').empty();
-              $('.msj_ruc').append("-  escriba un RUC");
-              window.setTimeout(function() { $('.msj_ruc').html("");$('#txtruc').attr('class','form-control');}, 3000);
-            }else if(txtrazons.trim()==""){
+              return false;
+            }
+            
+            if(txtrazons.trim()=="" && slt_ti_per=="PJ"){
               $('#txtrazons').attr('class','form-control is-invalid');
               $('.msj_razons').empty();
               $('.msj_razons').append("-  escriba una razon social");
               window.setTimeout(function() { $('.msj_razons').html("");$('#txtrazons').attr('class','form-control');}, 3000);
-            }else if(txtcorreo.trim()==""){
-              $('#txtcorreo').attr('class','form-control is-invalid');
-              $('.msj_correo').empty();
-              $('.msj_correo').append("-  escriba un correo electronico");
-              window.setTimeout(function() { $('.msj_correo').html("");$('#txtcorreo').attr('class','form-control');}, 3000);
-            }else if((regexemail.test(txtcorreo))==false){
-              $('#txtcorreo').attr('class','form-control is-invalid');
-              $('.msj_correo').empty();
-              $('.msj_correo').append("-  escriba un correo electronico correcto");
-              window.setTimeout(function() { $('.msj_correo').html("");$('#txtcorreo').attr('class','form-control');}, 3000);
-            }else if(txtsponsor.trim()=="" && hdnid==0){
+              return false;
+            }
+            
+            if(txtsponsor.trim()=="" && hdnid==0){
               $('#txtsponsor').attr('class','form-control is-invalid');
               $('.msj_sponsor').empty();
               $('.msj_sponsor').append("-  escriba una razon social");
               window.setTimeout(function() { $('.msj_sponsor').html("");$('#txtsponsor').attr('class','form-control');}, 3000);
-            }else if((sltposicion==0 || sltposicion=="0") && hdnid==0){
-              //$('#sltposicion').attr('class','form-control select2 is-invalid');
-              $('.msj_posicion').empty();
-              $('.msj_posicion').append("-  Ingrese otro RUC / Sponsor ");
-              window.setTimeout(function() { $('.msj_posicion').html("");}, 3000);
-            }/*else if((sltposicion==4 || sltposicion=="4") && hdnid==0){
-              //$('#sltposicion').attr('class','form-control select2 is-invalid');
-              $('.msj_posicion').empty();
-              $('.msj_posicion').append("-  Seleccione una posicion");
-              window.setTimeout(function() { $('.msj_posicion').html("");}, 3000);
-            }*/else{
+              return false;
+            }
+           
                 var dataString = $('#formadd').serialize();
                 $.ajax({
                   type: 'POST',
@@ -721,7 +822,7 @@ $('.modal-footer').on('click', '.add-representante', function() {
                             list_representantes_conectados();
                            break;
                         default:
-                            toastr.success('Error 505');
+                            toastr.error('Error 505');
                            break;
                       }
 
@@ -747,7 +848,7 @@ $('.modal-footer').on('click', '.add-representante', function() {
                             list_representantes();
                            break;
                         default:
-                            toastr.success('Error 505');
+                            toastr.error('Error 505');
                            break;
                       }
 
@@ -757,72 +858,179 @@ $('.modal-footer').on('click', '.add-representante', function() {
 
                   }
 
-                });
-
-            }
+                });            
       }else{
-          var hdnid=$("#hdnid").val();
-          if(hdnid>0){
-          var txtruc="00";
-          var txtrazons="NO";
-          }else{
+          
+        var hdnid=$("#hdnid").val();
+        if(hdnid>0){
+          var txtruc="ruc";
+          var txtsponsor="sponsor";
+        }else{
           var txtruc=$("#txtruc").val();
-          var txtsponsor=0;
-          var sltposicion=0;
-          var txtrazons=$("#txtrazons").val();
-          }
+          var txtsponsor=$("#txtsponsor").val();
+        }
+          var slt_ti_per=$("#slt_ti_per").val();
           var txtnombre=$("#txtnombre").val();
           var txtapep=$("#txtapep").val();
           var txtapem=$("#txtapem").val();
+          var slt_genero=$("#slt_genero").val();
+          var sltpais=$("#sltpais").val();
+          var sltdepartamento=$("#sltdepartamento").val();
+          var sltprovincia=$("#sltprovincia").val();
+          var sltdistrito=$("#sltdistrito").val();
+          var txtdireccion=$("#txtdireccion").val();
+          var txttelefono=$("#txttelefono").val();
+          var slttipdoc=$("#slttipdoc").val();
+
           var txtcorreo=$("#txtcorreo").val();
           var txtpass=$("#txtpass").val();
           var txtpassr=$("#txtpassr").val();
-         if(txtnombre.trim()==""){
-            $('#txtnombre').attr('class','form-control is-invalid');
-            $('.msj_nom').empty();
-            $('.msj_nom').append("-  escriba un nombre");
-            window.setTimeout(function() { $('.msj_nom').html("");$('#txtnombre').attr('class','form-control');}, 3000);
-          }else if(txtapep.trim()==""){
-            $('#txtapep').attr('class','form-control is-invalid');
-            $('.msj_apep').empty();
-            $('.msj_apep').append("-  escriba un apellido paterno");
-            window.setTimeout(function() { $('.msj_apep').html("");$('#txtapep').attr('class','form-control');}, 3000);
-          }else if(txtapem.trim()==""){
-            $('#txtapem').attr('class','form-control is-invalid');
-            $('.msj_apem').empty();
-            $('.msj_apem').append("-  escriba un apellido materno");
-            window.setTimeout(function() { $('.msj_apem').html("");$('#txtapem').attr('class','form-control');}, 3000);
-          }else if(txtcorreo.trim()==""){
-            $('#txtcorreo').attr('class','form-control is-invalid');
-            $('.msj_correo').empty();
-            $('.msj_correo').append("-  escriba un correo electronico");
-            window.setTimeout(function() { $('.msj_correo').html("");$('#txtcorreo').attr('class','form-control');}, 3000);
-          }else if((regexemail.test(txtcorreo))==false){
-            $('#txtcorreo').attr('class','form-control is-invalid');
-            $('.msj_correo').empty();
-            $('.msj_correo').append("-  escriba un correo electronico correcto");
-            window.setTimeout(function() { $('.msj_correo').html("");$('#txtcorreo').attr('class','form-control');}, 3000);
-          }else if(txtpass.trim()=="" && hdnid==0){
-            $('#txtpass').attr('class','form-control is-invalid');
-            $('.msj_pass').empty();
-            $('.msj_pass').append("-  escriba una contraseña");
-            window.setTimeout(function() { $('.msj_pass').html("");$('#txtpass').attr('class','form-control');}, 3000);
-          }else if(txtpassr.trim()=="" && hdnid==0){
-            $('#txtpassr').attr('class','form-control is-invalid');
-            $('.msj_passr').empty();
-            $('.msj_passr').append("-  escriba una contraseña");
-            window.setTimeout(function() { $('.msj_passr').html("");$('#txtpassr').attr('class','form-control');}, 3000);
-          }else if(txtruc.trim()=="" && hdnid==0){
-            $('#txtruc').attr('class','form-control is-invalid');
-            $('.msj_ruc').empty();
-            $('.msj_ruc').append("-  escriba un RUC");
-            window.setTimeout(function() { $('.msj_ruc').html("");$('#txtruc').attr('class','form-control');}, 3000);
-          }else if(txtrazons.trim()=="" && hdnid==0){
-            $('#txtrazons').attr('class','form-control is-invalid');
-            $('.msj_razons').empty();
-            $('.msj_razons').append("-  escriba una razon social");
-            window.setTimeout(function() { $('.msj_razons').html("");$('#txtrazons').attr('class','form-control');}, 3000);
-          }else{
+          var txtrazons=$("#txtrazons").val();
+
+          if(slt_ti_per==0 || slt_ti_per=="0")
+             {
+              $('.msj_tip_per').empty();
+              $('.msj_tip_per').append("-  Seleccione un tipo de persona");
+              window.setTimeout(function() { $('.msj_tip_per').html("");}, 3000);
+              return false;
+            }
+
+            if(txtnombre.trim()=="" && slt_ti_per=="PN"){
+              $('#txtnombre').attr('class','form-control is-invalid');
+              $('.msj_nom').empty();
+              $('.msj_nom').append("-  escriba un nombre");
+              window.setTimeout(function() { $('.msj_nom').html("");$('#txtnombre').attr('class','form-control');}, 3000);
+              return false;
+            }
+            if(txtapep.trim()=="" && slt_ti_per=="PN"){
+              $('#txtapep').attr('class','form-control is-invalid');
+              $('.msj_apep').empty();
+              $('.msj_apep').append("-  escriba un apellido paterno");
+              window.setTimeout(function() { $('.msj_apep').html("");$('#txtapep').attr('class','form-control');}, 3000);
+              return false;
+            }
+            if(txtapem.trim()=="" && slt_ti_per=="PN"){
+              $('#txtapem').attr('class','form-control is-invalid');
+              $('.msj_apem').empty();
+              $('.msj_apem').append("-  escriba un apellido materno");
+              window.setTimeout(function() { $('.msj_apem').html("");$('#txtapem').attr('class','form-control');}, 3000);
+              return false;
+            }
+            if((slt_genero==0 || slt_genero=="0") && slt_ti_per=="PN")
+             {
+              $('.msj_genero').empty();
+              $('.msj_genero').append("-  Seleccione un genero");
+              window.setTimeout(function() { $('.msj_genero').html("");}, 3000);
+              return false;
+            }
+            if(sltpais==0 || sltpais=="0")
+             {
+              $('.msj_pais').empty();
+              $('.msj_pais').append("-  Seleccione un pais");
+              window.setTimeout(function() { $('.msj_pais').html("");}, 3000);
+              return false;
+            }
+            if((sltdepartamento==0 || sltdepartamento=="0") && sltpais=="1")
+             {
+              $('.msj-sltdepartamento').empty();
+              $('.msj-sltdepartamento').append("-  Seleccione un departamento");
+              window.setTimeout(function() { $('.msj-sltdepartamento').html("");}, 3000);
+              return false;
+             }
+
+             if((sltprovincia==0 || sltprovincia=="0") && sltpais=="1")
+             {
+              $('.msj-sltprovincia').empty();
+              $('.msj-sltprovincia').append("-  Seleccione una provincia");
+              window.setTimeout(function() { $('.msj-sltprovincia').html("");}, 3000);
+              return false;
+             }
+
+              if((sltdistrito==0 || sltdistrito=="0") && sltpais=="1")
+              {
+                $('.msj-sltdistrito').empty();
+                $('.msj-sltdistrito').append("-  Seleccione un distrito");
+                window.setTimeout(function() { $('.msj-sltdistrito').html("");}, 3000);
+                return false;
+              }
+
+              if(txtdireccion.trim()==""){
+                $('#txtdireccion').attr('class','form-control is-invalid');
+                $('.msj_dir').empty();
+                $('.msj_dir').append("-  escriba una dirección");
+                window.setTimeout(function() { $('.msj_dir').html("");$('#txtdireccion').attr('class','form-control');}, 3000);
+                return false;
+              }
+
+              if(txttelefono.trim()==""){
+                $('#txttelefono').attr('class','form-control is-invalid');
+                $('.msj_cel').empty();
+                $('.msj_cel').append("-  escriba una celular");
+                window.setTimeout(function() { $('.msj_cel').html("");$('#txttelefono').attr('class','form-control');}, 3000);
+                return false;
+              }
+
+              if(txtcorreo.trim()==""){
+                $('#txtcorreo').attr('class','form-control is-invalid');
+                $('.msj_correo').empty();
+                $('.msj_correo').append("-  escriba un correo electronico");
+                window.setTimeout(function() { $('.msj_correo').html("");$('#txtcorreo').attr('class','form-control');}, 3000);
+                return false;
+              }
+              if((regexemail.test(txtcorreo))==false){
+                $('#txtcorreo').attr('class','form-control is-invalid');
+                $('.msj_correo').empty();
+                $('.msj_correo').append("-  escriba un correo electronico correcto");
+                window.setTimeout(function() { $('.msj_correo').html("");$('#txtcorreo').attr('class','form-control');}, 3000);
+                return false;
+              }
+
+              if((slttipdoc==0 || slttipdoc=="0") && slt_ti_per=="PN")
+              {
+              $('.msj_tipdoc').empty();
+              $('.msj_tipdoc').append("-  Seleccione un tipo documento");
+              window.setTimeout(function() { $('.msj_tipdoc').html("");}, 3000);
+              return false;
+              }
+
+            if(txtruc.trim()=="" && hdnid==0){
+              $('#txtruc').attr('class','form-control is-invalid');
+              $('.msj_ruc').empty();
+              $('.msj_ruc').append("-  Ingrese un Numero");
+              window.setTimeout(function() { $('.msj_ruc').html("");$('#txtruc').attr('class','form-control');}, 3000);
+              return false;
+            }
+
+            if(txtpass.trim()=="" && hdnid==0){
+              $('#txtpass').attr('class','form-control is-invalid');
+              $('.msj_pass').empty();
+              $('.msj_pass').append("-  escriba una contraseña");
+              window.setTimeout(function() { $('.msj_pass').html("");$('#txtpass').attr('class','form-control');}, 3000);
+              return false;
+            }
+            if(txtpassr.trim()=="" && hdnid==0){
+              $('#txtpassr').attr('class','form-control is-invalid');
+              $('.msj_passr').empty();
+              $('.msj_passr').append("-  escriba una contraseña");
+              window.setTimeout(function() { $('.msj_passr').html("");$('#txtpassr').attr('class','form-control');}, 3000);
+              return false;
+            }
+            
+            if(txtrazons.trim()=="" && slt_ti_per=="PJ"){
+              $('#txtrazons').attr('class','form-control is-invalid');
+              $('.msj_razons').empty();
+              $('.msj_razons').append("-  escriba una razon social");
+              window.setTimeout(function() { $('.msj_razons').html("");$('#txtrazons').attr('class','form-control');}, 3000);
+              return false;
+            }
+            
+            if(txtsponsor.trim()=="" && hdnid==0){
+              $('#txtsponsor').attr('class','form-control is-invalid');
+              $('.msj_sponsor').empty();
+              $('.msj_sponsor').append("-  escriba una razon social");
+              window.setTimeout(function() { $('.msj_sponsor').html("");$('#txtsponsor').attr('class','form-control');}, 3000);
+              return false;
+            }
             var dataString = $('#formadd').serialize();
             $.ajax({
               type: 'POST',
@@ -836,7 +1044,7 @@ $('.modal-footer').on('click', '.add-representante', function() {
                     case "true_doble":
                       $('#txtcorreo').attr('class','form-control is-invalid');
                       $('.msj_correo').empty();
-                      $('.msj_correo').append("- Ya existe correo de representante");
+                      $('.msj_correo').append("- Ya existe correo de asesor de venta");
                       window.setTimeout(function() { $('.msj_correo').html("");$('#txtcorreo').attr('class','form-control');}, 3000);
                       break;
                     case "save_true":
@@ -854,7 +1062,7 @@ $('.modal-footer').on('click', '.add-representante', function() {
                         edit_estado_rep_con();
                        break;
                     default:
-                        toastr.success('Error 505');
+                        toastr.error('Error 505');
                        break;
                   }
 
@@ -864,7 +1072,7 @@ $('.modal-footer').on('click', '.add-representante', function() {
                     case "true_doble":
                       $('#txtcorreo').attr('class','form-control is-invalid');
                       $('.msj_correo').empty();
-                      $('.msj_correo').append("- Ya existe correo de representante");
+                      $('.msj_correo').append("- Ya existe correo de asesor de venta");
                       window.setTimeout(function() { $('.msj_correo').html("");$('#txtcorreo').attr('class','form-control');}, 3000);
                       break;
                     case "save_true":
@@ -880,14 +1088,14 @@ $('.modal-footer').on('click', '.add-representante', function() {
                         list_representantes();
                        break;
                     default:
-                        toastr.success('Error 505');
+                        toastr.error('Error 505');
                        break;
                   }
 
                 }
               }
             });
-          }
+          
       }
   });
 
@@ -933,34 +1141,58 @@ $('.modal-footer').on('click', '.add-representante', function() {
 $(document).on('keyup mouseleave', '#txtruc', function() {
     this.value = this.value.replace(/[^0-9]/g,'');
     var ruc=$("#txtruc").val();
+    var slt_ti_per=$("#slt_ti_per").val();
     var dataString = {"ruc":ruc}
-    //alert(ruc.length);
-    if(ruc.trim()=="" || ruc.length<=10){
-          $('#txtruc').attr('class','form-control');
-          $('.msj_ruc').empty();
-          $('.add-usuario').prop('disabled', false);
-          $('.add-representante').prop('disabled', false);
-    }else{
-      $.ajax({
-      type: 'POST',
-      url: 'controller_func/validar/validar_ruc.php',
-      data: dataString,
-      success: function(data) {
-        if(data=="true"){
-          $('.add-usuario').prop('disabled', false);
-          $('.add-representante').prop('disabled', false);
-          $('#txtruc').attr('class','form-control is-valid');
-          $('.msj_ruc').empty();
-        }else{
-          $('.add-usuario').prop('disabled', true);
-          $('.add-representante').prop('disabled', true);
-          $('#txtruc').attr('class','form-control is-invalid');
-          $('.msj_ruc').empty();
-          $('.msj_ruc').append("- Existente");
-        }
-        }
-      });
+
+    var hdnid=$("#hdnid").val();
+    if(hdnid>0){
+      return false;
     }
+
+    if((ruc.trim()=="" || ruc.length<=10) && slt_ti_per=="PJ"){
+      $('#txtruc').attr('class','form-control is-invalid');
+      $('.msj_ruc').empty();
+      $('.msj_ruc').append("-  Ingrese mas de 9 digitos numericos");
+      window.setTimeout(function() { $('.msj_ruc').html("");$('#txtruc').attr('class','form-control');}, 3000);
+      $('.add-usuario').prop('disabled', true);
+      $('.add-representante').prop('disabled', true);
+      return false;
+    }
+
+    if((ruc.trim()=="" || ruc.length<=7) && slt_ti_per=="PN"){
+      $('#txtruc').attr('class','form-control is-invalid');
+      $('.msj_ruc').empty();
+      $('.msj_ruc').append("-  Ingrese mas de 7 digitos numericos");
+      window.setTimeout(function() { $('.msj_ruc').html("");$('#txtruc').attr('class','form-control');}, 3000);
+      $('.add-usuario').prop('disabled', true);
+      $('.add-representante').prop('disabled', true);
+      return false
+    }
+
+    if(slt_ti_per=="0" || slt_ti_per==""){
+      return false
+    }
+
+    $.ajax({
+    type: 'POST',
+    url: 'controller_func/validar/validar_ruc.php',
+    data: dataString,
+    success: function(data) {
+      if(data=="true"){
+        $('.add-usuario').prop('disabled', false);
+        $('.add-representante').prop('disabled', false);
+        $('#txtruc').attr('class','form-control is-valid');
+        $('.msj_ruc').empty();
+      }else{
+        $('.add-usuario').prop('disabled', true);
+        $('.add-representante').prop('disabled', true);
+        $('#txtruc').attr('class','form-control is-invalid');
+        $('.msj_ruc').empty();
+        $('.msj_ruc').append("- Existente");
+      }
+      }
+    });
+    
   });
 
   $(document).on('keyup mouseleave', '#txtruc_trama', function() {
@@ -1038,13 +1270,17 @@ $(document).on('keyup mouseleave', '#txtsponsor', function() {
   this.value = this.value.replace(/[^0-9]/g,'');
   var ruc=$("#txtsponsor").val();
   var dataString = {"ruc":ruc}
-  //alert(ruc.length);
-  if(ruc.trim()=="" || ruc.length<=10){
-        $('#txtsponsor').attr('class','form-control');
-        $('.msj_sponsor').empty();
-        $('.add-usuario').prop('disabled', false);
-        $('.add-representante').prop('disabled', false);
-  }else{
+  
+  if((ruc.trim()=="" || ruc.length<=7) && slt_ti_per=="PN"){
+    $('#txtruc').attr('class','form-control is-invalid');
+    $('.msj_ruc').empty();
+    $('.msj_ruc').append("-  Ingrese mas de 7 digitos numericos");
+    window.setTimeout(function() { $('.msj_ruc').html("");$('#txtruc').attr('class','form-control');}, 3000);
+    $('.add-usuario').prop('disabled', true);
+    $('.add-representante').prop('disabled', true);
+    return false
+  }
+
     $.ajax({
     type: 'POST',
     url: 'controller_func/validar/validar_ruc.php',
@@ -1062,13 +1298,12 @@ $(document).on('keyup mouseleave', '#txtsponsor', function() {
         $('.add-representante').prop('disabled', false);
         $('#txtsponsor').attr('class','form-control is-valid');
         $('.msj_sponsor').empty();
-        combo_posicion();
         datos_sponsor();
         datos_ruc_lider();
       }
       }
     });
-  }
+  
 });
 
 
@@ -2312,31 +2547,47 @@ function datos_sponsor_rc(){
   })
 }
 
+$(document).on('change', '#sltpais', function() {
 
-$(document).on('change', '#sltdepartamento', function() {
+  var sltpais=$("#sltpais").val();
 
-  var sltdepartamento=$("#sltdepartamento").val();
-  var dataString = {"sltdepartamento":sltdepartamento}
+  if(sltpais=="1"){
+    $(".div_departamento").show();
+    $(".div_provincia").show();
+    $(".div_distrito").show();    
+  }else{
+    $(".div_departamento").hide();
+    $(".div_provincia").hide();
+    $(".div_distrito").hide();
+  }
+});
+
+
+
+$(document).on('change', '#slt_departamendto_seleccionado', function() {
+
+  var sltdepartamento=$("#slt_departamendto_seleccionado").val();
+  var dataString = {"id_departamento_seleccionado":sltdepartamento}
 
  $.ajax({
       type: 'POST',
-      url:"controller_func/provincia/combo.php",
+      url:"controller_func/ubigeo_peru_provinces/combo_x_dep.php",
       data: dataString
       }).done(function(info){
-        $('#sltprovincia').empty();
-        $("#sltprovincia").append(info);
+        $('#slt_provincia_seleccionado').empty();
+        $("#slt_provincia_seleccionado").append(info);
       });
 });
 
-$(document).on('change', '#sltprovincia', function() {
+$(document).on('change', '#slt_provincia_seleccionado', function() {
 
-  var sltprovincia=$("#sltprovincia").val();
-  var sltdepartamento=$("#sltdepartamento").val();
-  var dataString = {"sltdepartamento":sltdepartamento,"sltprovincia":sltprovincia}
+  var sltprovincia=$("#slt_provincia_seleccionado").val();
+  var sltdepartamento=$("#slt_departamendto_seleccionado").val();
+  var dataString = {"sltdepartamento":sltdepartamento,"id_provincia_seleccionado":sltprovincia}
 
  $.ajax({
       type: 'POST',
-      url:"controller_func/distrito/combo.php",
+      url:"controller_func/ubigeo_peru_districts/combo_x_prov.php",
       data: dataString
       }).done(function(info){
         $('#sltdistrito').empty();
@@ -3482,5 +3733,36 @@ $(document).on('click', '.consult-dni-contratante-gestion', function() {
           $('#lbltasa_dni').append("---");
         }
       })
+  }
+});
+
+
+$(document).on('change', '#slt_ti_per', function() {
+
+  var slt_ti_per=$("#slt_ti_per").val();
+
+  if(slt_ti_per=="PJ"){
+    $(".div_nombre").hide();
+    $(".div_ape_pat").hide();
+    $(".div_ape_mat").hide();
+    $(".div_gen").hide();
+    $(".div_tip_doc").hide();
+    $('.lbl_fec_nac').empty();
+    $('.lbl_fec_nac').append("Fecha de constitución");
+    $('.lbl_nro_doc').empty();
+    $('.lbl_nro_doc').append("RUC / Codigo Fiscal");
+    $(".div_razon_social").show();
+  }
+  if(slt_ti_per=="PN"){
+    $(".div_nombre").show();
+    $(".div_ape_pat").show();
+    $(".div_ape_mat").show();
+    $(".div_gen").show();
+    $(".div_tip_doc").show();
+    $('.lbl_fec_nac').empty();
+    $('.lbl_fec_nac').append("Fecha de nacimiento");
+    $('.lbl_nro_doc').empty();
+    $('.lbl_nro_doc').append("N° de documento");
+    $(".div_razon_social").hide();
   }
 });

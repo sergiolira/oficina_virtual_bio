@@ -227,15 +227,15 @@ $obj_p->consult();
         <div class="input-group mb-2">
             <div class="input-group-prepend">
                 <span class="input-group-text">
-                    <input type="checkbox">
+                    <input type="checkbox" id="check_fec_fin">
                 </span>
             </div>
-            <?php if($_REQUEST["id"]>0){?>                       
+            <?php if($_REQUEST["id"]>0 && $obj_p->fecha_fin_labores=='1900-01-01'){?>                       
                 <input type="text" class="form-control" id="txt_fin" name="txt_fin" 
-                value="<?php echo  date('Y-m-d',strtotime($obj_p->fecha_fin_labores));?>"/>                          
+                value="" placeholder="SIN FECHA" disabled/>                          
                 <?php }else{?>
                 <input type="text" class="form-control" id="txt_fin" name="txt_fin"
-                value="<?php echo date('Y-m-d');?>"/>
+                value="<?php echo  date('Y-m-d',strtotime($obj_p->fecha_fin_labores));?>" disabled/>
             <?php }?>
         </div>
     </div>
@@ -357,6 +357,7 @@ $obj_p->consult();
     $('#txt_fin').daterangepicker({
         singleDatePicker: true,
         showDropdowns: true,
+        autoUpdateInput: false,
         minYear: 1901,
         maxYear: parseInt(moment().format('YYYY'),10),
         maxDate:moment(),
@@ -397,6 +398,40 @@ $("#file_foto_perfil").fileinput({
       showDrag: false,}   
 });  
 
+$('#check_fec_fin').change(function(){
+    if($(this).is(':checked')) {
+        $('#txt_fin').prop('disabled', false);
+        $('#txt_fin').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoUpdateInput: true,
+            minYear: 1901,
+            maxYear: parseInt(moment().format('YYYY'),10),
+            maxDate:moment(),
+            locale: {
+            format: 'YYYY-MM-DD',
+            }
+        });
+
+    } else {    
+        $('#txt_fin').prop('disabled', true);
+        $('#txt_fin').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            autoUpdateInput: false,            
+            minYear: 1901,
+            maxYear: parseInt(moment().format('YYYY'),10),
+            maxDate:moment(),
+            locale: {
+            format: 'YYYY-MM-DD',
+            },
+            placeholder: 'SIN FECHA',
+            
+        });
+        $('#txt_fin').val('');
+        
+    }
+});
 </script>
     
 

@@ -37,7 +37,7 @@ while($fila=mysqli_fetch_assoc($rs_lista)){
    <i class="fas fa-user-check" id="icon_item'.$fila["id_rol"].'"></i></button>';
 
   }
-  if($_SESSION['actualizar']==1 || $_SESSION['idUser']==1){
+  if($_SESSION['actualizar']==1 || $_SESSION['id_usuario']==1){
     $btn_editar='
     <button data-id="'.$fila["id_rol"].'"
     title="Permisos" class="btn btn-xs btn-info new-modal-show-permisos"><i class="fas fa-key" ></i></button>
@@ -45,7 +45,7 @@ while($fila=mysqli_fetch_assoc($rs_lista)){
     title="Modificar" class="btn btn-xs btn-warning new-modal-rol"><i class="far fa-edit"></i></button>';
      }
 
-  if($_SESSION['eliminar']!=1 || $_SESSION['idUser']==1){          
+  if($_SESSION['eliminar']!=1 || $_SESSION['id_usuario']==1){          
     $btn_eliminar="";
     }
 $html.='<tr>

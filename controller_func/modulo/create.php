@@ -59,7 +59,7 @@ if ($obj_m->nivel==2) {
             <div class="input-group-prepend ">
             <span class="input-group-text"><i class="fas fa-align-left"></i></span>
             </div>
-            <input type="text" class="form-control valid validText" id="txt_enlace" name="txt_enlace" value="<?php echo $obj_m->enlace; ?>"/>
+            <input type="text" class="form-control valid validTextSpecial" id="txt_enlace" name="txt_enlace" value="<?php echo $obj_m->enlace; ?>"/>
         </div>
     </div>   
     <div class="col-4">

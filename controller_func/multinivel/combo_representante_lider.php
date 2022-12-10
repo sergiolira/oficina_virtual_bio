@@ -5,6 +5,7 @@ $obj=new representante();
 $rs=$obj->combo_representante_lider();
 while($fila=mysqli_fetch_assoc($rs)){
 ?>
-<option  value="<?php echo $fila["ruc"]?>"><?php echo $fila["ruc"].' - '.$fila["nombre"].' '.$fila["apellidopaterno"].' '.$fila["apellidomaterno"];?></option>
+<option  value="<?php echo $fila["nro_documento"]?>">
+<?php echo $fila["nro_documento"].' - '.$fila["nombre"].' '.$fila["apellidopaterno"].' '.$fila["apellidomaterno"];?></option>
 <?php }?>
 

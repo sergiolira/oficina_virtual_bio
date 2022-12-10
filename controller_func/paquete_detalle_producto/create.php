@@ -70,6 +70,24 @@ $obj_pd->consult();
             <input type="text" class="form-control valid" id="txt_observacion" name="txt_observacion" value="<?php echo $obj_pd->observacion; ?>"/>
         </div>
     </div>  
+
+    <div class="col-12">
+                <br><center><div class="card card-outline card-success"><strong>Gestión  de Archivos</strong></div></center>
+    </div> 
+    <div class="col-6">
+            <label for="input_archivo">Imagen
+            <?php if($_GET["id"]==0){?><i class="text-danger" title="Complete este campo">*</i><?php }?>
+            <?php if($_GET["id"]>0){?><i class="text-danger" title="Complete este campo">(Opcional)</i><?php }?>
+            </label>
+            <label class="text-danger msj-input_archivo"></label>
+            <div class="input-group">
+                <div class="file-loading"> 
+                    <input id="input_archivo" name="input_archivo" type="file" accept="image/*">
+                </div>
+            </div>
+    </div>  
+
+
 </div>
 
 <script src="js/valid.js"></script>
@@ -79,6 +97,20 @@ $obj_pd->consult();
     fntValidTextSpecial();
     fntValidNumberDecimal();
     fntValidNumber();
+
+    $("#input_archivo").fileinput({
+    language: 'es',
+    fileType: "fas",
+    showUpload: false,
+    dropZoneEnabled: false,
+    showRemove: false,
+    maxFileCount: 1,
+    fileActionSettings: {
+      showRemove: false,
+      showUpload: false,
+      showZoom: false,
+      showDrag: false,}
+    });
 
 </script>
 

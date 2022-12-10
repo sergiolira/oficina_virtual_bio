@@ -5,8 +5,8 @@ if(trim($_REQUEST["ruc"])==""){
 echo "false";
 die();
 }
-$objr->ruc=$_REQUEST["ruc"];
-$objr->consultar_datos_ruc();
+$objr->nro_documento=$_REQUEST["ruc"];
+$objr->consultar_datos_nro_documento();
 $datos=$objr->nombre." ".$objr->apellidopaterno." ".$objr->apellidomaterno;
 if(trim($datos)==""){
 echo "false";

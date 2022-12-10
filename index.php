@@ -87,7 +87,68 @@ $_SESSION['p_id_sub_x_nivel'] = 0;
 
     <!-- Main content -->
     <section class="content">
-         
+      <div class="container-fluid">
+          
+      <div class="row">
+          <div class="col-lg-4 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3 class="h_cant_compras">100</h3>
+
+                <p>Compras</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <?php if($_SESSION['id_rol']==3){?>
+                <a href="mis_compras.php" class="small-box-footer">Ver mas <i class="fas fa-arrow-circle-right"></i></a>
+              <?php }else{?>
+                <a href="registro_venta.php" class="small-box-footer">Ver mas <i class="fas fa-arrow-circle-right"></i></a>
+              <?php }?>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-4 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3 class="h_total_com">100<sup style="font-size: 20px"></sup></h3>
+
+                <p>Comisiones</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <?php if($_SESSION['id_rol']==3){?>
+                <a href="mis_comisiones.php" class="small-box-footer">Ver mas <i class="fas fa-arrow-circle-right"></i></a>
+              <?php }else{?>
+                <a href="cabecera_comisiones.php" class="small-box-footer">Ver mas <i class="fas fa-arrow-circle-right"></i></a>
+              <?php }?>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-4 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3 class="h_cant_rep">100</h3>
+
+                <p>Asesor de venta MLM</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <?php if($_SESSION['id_rol']==3){?>
+                <a href="mi_arbol_virtual.php" class="small-box-footer">Ver mas <i class="fas fa-arrow-circle-right"></i></a>
+              <?php }else{?>
+                <a href="arbolvirtual.php" class="small-box-footer">Ver mas <i class="fas fa-arrow-circle-right"></i></a>
+              <?php }?>
+            </div>
+          </div>
+          
+        </div>
+      </div>
     </section>
     <!-- /.content -->
   </div>
@@ -138,6 +199,13 @@ $_SESSION['p_id_sub_x_nivel'] = 0;
 <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.js"></script>
+<!-- Index-->
+<script src="js/js_index.js"></script>
+<script>
+  cant_ventas();
+  total_comisiones();
+  cant_asesores();
+</script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <!-- <script src="dist/js/pages/dashboard.js"></script> -->
 <!-- AdminLTE for demo purposes 

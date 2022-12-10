@@ -5,9 +5,9 @@ if(trim($_REQUEST["ruc"])==""){
 echo "false";
 die();
 }
-$objr->ruc=$_REQUEST["ruc"];
-$objr->consultar_ruc_lider();
-$datos=$objr->ruc;
+$objr->nro_documento=$_REQUEST["ruc"];
+$objr->consultar_nro_documento_lider();
+$datos=$objr->nro_documento;
 if(trim($datos)=="0"){
 echo $_REQUEST["ruc"];
 die();

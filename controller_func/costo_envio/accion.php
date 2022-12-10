@@ -41,7 +41,7 @@ $obj_costo_envio= new costo_envio();
         $obj_costo_envio->id_pais= strClean($_REQUEST["slt_pais_seleccionado"]);
         $obj_costo_envio->monto= strClean($_REQUEST["txt_monto"]);
         $obj_costo_envio->observacion=strClean($_REQUEST["txt_observacion"]);
-        if ($obj_costo_envio->id_departamento == 0 ) {
+        if ($obj_costo_envio->id_pais==0) {
                  echo "error_datos";
         } else {
             $obj_costo_envio->create(); 

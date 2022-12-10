@@ -15,14 +15,20 @@ class costo_envio extends cn{
     var $id_usuarioactualiza;
 
     public function create(){
-        $query="INSERT INTO costo_envio VALUES(0,'$this->id_pais','$this->id_departamento','$this->id_provincia','$this->id_distrito','$this->observacion','$this->monto',1,now(),now(),1,1)";
+        $query="INSERT INTO costo_envio VALUES(0,'$this->id_pais','$this->id_departamento','$this->id_provincia',
+        '$this->id_distrito','$this->monto','$this->observacion',1,now(),now(),1,1)";
         $res=mysqli_query($this->f_cn(),$query);
         mysqli_close($this->f_cn());
         return $res;
     }
 
     public function read(){
-        $query="select cos.*, pa.pais as pais, dep.name as departamento ,pro.name as provincia, dis.name as distrito from costo_envio cos inner JOIN ubigeo_peru_departments dep on dep.id = cos.id_departamento inner JOIN ubigeo_peru_provinces pro on pro.id = cos.id_provincia INNER join ubigeo_peru_districts dis on dis.id = cos.id_distrito INNER JOIN pais pa on pa.id_pais = cos.id_pais";
+        $query="SELECT cos.*, pa.pais as pais, dep.name as departamento ,pro.name as provincia, dis.name as distrito 
+        FROM costo_envio cos 
+        LEFT JOIN pais pa ON pa.id_pais=cos.id_pais
+        LEFT JOIN ubigeo_peru_departments dep on dep.id = cos.id_departamento 
+        LEFT JOIN ubigeo_peru_provinces pro on pro.id = cos.id_provincia 
+        LEFT join ubigeo_peru_districts dis on dis.id = cos.id_distrito";
         $res=mysqli_query($this->f_cn(),$query);
         mysqli_close($this->f_cn());
         return $res;
@@ -76,6 +82,54 @@ class costo_envio extends cn{
             $this->fecharegistro=$fila["fecharegistro"];
             $this->id_usuarioregistro=$fila["id_usuarioregistro"];
             $this->id_usuarioactualiza=$fila["id_usuarioactualiza"];
+        }
+        mysqli_close($this->f_cn());   
+    }
+
+    public function consult_monto_x_pais(){
+        $query="select monto from costo_envio where id_pais='$this->id_pais' and estado=1";
+        $res=mysqli_query($this->f_cn(),$query);
+        if($fila=mysqli_fetch_array($res)){      
+            $this->monto=$fila["monto"];
+        }
+        mysqli_close($this->f_cn());   
+    }
+
+    public function consult_monto_x_pais_dep(){
+        $query="select monto from costo_envio where id_pais='$this->id_pais' and id_departamento='$this->id_departamento' 
+        and id_provincia='0' and id_distrito='0' and estado=1";
+        $res=mysqli_query($this->f_cn(),$query);
+         if($fila=mysqli_fetch_array($res)){
+            $this->monto=$fila["monto"];
+            if(is_null($fila["monto"])){
+            $this->monto=$fila["monto"];
+          }
+        }
+        mysqli_close($this->f_cn());   
+    }
+
+    public function consult_monto_x_pais_dep_pro(){
+        $query="select monto from costo_envio where id_pais='$this->id_pais' and id_departamento='$this->id_departamento'
+        and id_provincia='$this->id_provincia' and id_distrito='0' and estado=1";
+        $res=mysqli_query($this->f_cn(),$query);
+         if($fila=mysqli_fetch_array($res)){
+            $this->monto=$fila["monto"];
+            if(is_null($fila["monto"])){
+            $this->monto=$fila["monto"];
+          }
+        }
+        mysqli_close($this->f_cn());   
+    }
+
+    public function consult_monto_x_pais_dep_pro_dis(){
+        $query="select monto from costo_envio where id_pais='$this->id_pais' and id_departamento='$this->id_departamento'
+        and id_provincia='$this->id_provincia' and id_distrito='$this->id_distrito' and estado=1";
+        $res=mysqli_query($this->f_cn(),$query);
+         if($fila=mysqli_fetch_array($res)){
+            $this->monto=$fila["monto"];
+            if(is_null($fila["monto"])){
+            $this->monto=$fila["monto"];
+          }
         }
         mysqli_close($this->f_cn());   
     }

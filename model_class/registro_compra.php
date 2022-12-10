@@ -29,7 +29,7 @@ class registro_compra extends cn{
 
     public function read()
     {
-        $query="SELECT r_c.*,pro.nombre_producto,di.divisa FROM registro_compra r_c 
+        $query="SELECT r_c.*,pro.nombre_producto,di.divisa,di.expresion FROM registro_compra r_c 
         INNER JOIN producto pro ON r_c.id_producto=pro.id_producto 
         INNER join divisa di ON r_c.id_divisa=di.id_divisa 
         ORDER BY r_c.id_registro_compra DESC";
@@ -41,7 +41,7 @@ class registro_compra extends cn{
     public  function update()
     {
         $query="update registro_compra set id_producto='$this->id_producto',
-        id_divisa='$this->id_divisa',cantidad='$this->cantidad',
+        id_divisa='$this->id_divisa',
         precio_unitario='$this->precio_unitario',sub_total='$this->sub_total',fecha_ingreso='$this->fecha_ingreso',
         observacion='$this->observacion',fechaactualiza=now(),id_usuarioactualiza=1
         where id_registro_compra='$this->id_registro_compra'";
@@ -80,12 +80,10 @@ class registro_compra extends cn{
             $this->precio_unitario=$fila["precio_unitario"];
             $this->sub_total=$fila["sub_total"];
             $this->fecha_ingreso=$fila["fecha_ingreso"];
-            $this->observacion=$fila["observacion"];
-            
+            $this->observacion=$fila["observacion"];            
             $this->estado=$fila["estado"];
             $this->fecharegistro=$fila["fecharegistro"];
-            $this->fechaactualiza=$fila["fechaactualiza"];
-            
+            $this->fechaactualiza=$fila["fechaactualiza"];            
             $this->id_usuarioregistro=$fila["id_usuarioregistro"];
             $this->id_usuarioactualiza=$fila["id_usuarioactualiza"];
         }
@@ -93,6 +91,17 @@ class registro_compra extends cn{
         mysqli_close($this->f_cn());
     
 
+    }
+
+    public function last_insert_id(){
+        $id_registro_compra=0;
+        $query="SELECT id_registro_compra FROM registro_compra ORDER BY id_registro_compra DESC LIMIT 1";
+        $res=mysqli_query($this->f_cn(),$query);
+        if($fila=mysqli_fetch_array($res)){            
+            $id_registro_compra=$fila["id_registro_compra"];
+        }        
+        mysqli_close($this->f_cn());
+        return $id_registro_compra;
     }
     
 

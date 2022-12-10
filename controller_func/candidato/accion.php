@@ -49,48 +49,11 @@ if($_REQUEST["es"]=="1"){
 	$obj->id_rep_usu_registro=1;
 	$obj->id_usuarioregistro=1;
 	$obj->id_usuarioactualiza=1;
+	$obj->id_pais=$_REQUEST["sltpais"];
 	$obj->id_dep=$_REQUEST["sltdepartamento"];
 	$obj->id_pro=$_REQUEST["sltprovincia"];
-	$obj->id_dis=$_REQUEST["sltdistrito"];	
-	
-	if($_REQUEST["sltrelacion"]=="Otro"){
-		if(isset($_REQUEST["txtrelacion"])){
-			$obj->relacion_candidato_reclutador=$_REQUEST["txtrelacion"];
-		}else{
-			$obj->relacion_candidato_reclutador=$_REQUEST["sltrelacion"];
-		}		
-	}else{
-		$obj->relacion_candidato_reclutador=$_REQUEST["sltrelacion"];
-	}
-	$obj->motiva_negocio=$_REQUEST["txt_motiva_negocio"];
-	if($_REQUEST["slt_experiencia_comercial"]=="Otro"){
-		if(isset($_REQUEST["txt_experiencia_comercial"])){
-			$obj->experiencia_comercial=$_REQUEST["txt_experiencia_comercial"];
-		}else{
-			$obj->experiencia_comercial=$_REQUEST["slt_experiencia_comercial"];
-		}		
-	}else{
-		$obj->experiencia_comercial=$_REQUEST["slt_experiencia_comercial"];
-	}
-	$obj->cartera_cliente_entorno=$_REQUEST["r_cartera_cliente_entorno"];
-	$obj->disponibilidad_gestion_negocio=$_REQUEST["r_disponibilidad_gestion_negocio"];	
-	if(isset($_REQUEST["checkbox_horario_gestion_negocio_1"])){
-		$horariogestion.=$_REQUEST["checkbox_horario_gestion_negocio_1"];
-	}else{
-		$horariogestion.="";
-	}
-	if(isset($_REQUEST["checkbox_horario_gestion_negocio_2"])){
-		$horariogestion.=$_REQUEST["checkbox_horario_gestion_negocio_2"];
-	}else{
-		$horariogestion.="";
-	}
-
-	if(isset($_REQUEST["checkbox_horario_gestion_negocio_3"])){
-		$horariogestion.=$_REQUEST["checkbox_horario_gestion_negocio_3"];
-	}else{
-		$horariogestion.="";
-	}
-	$obj->horario_gestion_negocio=$horariogestion;
+	$obj->id_dis=$_REQUEST["sltdistrito"];
+	$obj->direccion=$_REQUEST["txtdireccion"];
 
 	if($_REQUEST["txtnro_doc"]!=""){
 		$clave=password_hash($_REQUEST["txtnro_doc"], PASSWORD_DEFAULT,['cost'=>10]);

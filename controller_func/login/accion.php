@@ -26,9 +26,10 @@ $obj_r->clave= strClean($strPassword);
                 if ($estado == 1) {
                     session_start();
                     $_SESSION['login'] = true;
+                    $_SESSION["id_usuario"] = $fila["id_usuario"];
                     $_SESSION["idUser"] = $fila["id_usuario"];
 
-                    $rs_datos = $obj_r->sesionLogin($_SESSION['idUser']);
+                    $rs_datos = $obj_r->sesionLogin($_SESSION['id_usuario']);
                     if($fila = mysqli_fetch_array($rs_datos)){
                     $_SESSION['nombre']=$fila['nombre'];
                     $_SESSION['apellido_paterno']=$fila['apellido_paterno'];

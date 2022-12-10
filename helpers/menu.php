@@ -52,7 +52,7 @@ $obj_p= new permiso();
               $obj_p->id_rol=$_SESSION['id_rol'];
               $obj_p->id_modulo= $filaM["id_modulo"];
               $obj_p->consult_crud_x_rol_modulo();
-              if ($obj_p->ver==1 || $_SESSION['idUser']==1) {
+              if ($obj_p->ver==1 || $_SESSION['id_usuario']==1) {
                 if ($filaM["estado"]==1 && $filaM["nivel"]==1) {
             ?>
 

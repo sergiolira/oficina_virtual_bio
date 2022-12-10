@@ -36,7 +36,7 @@ if ($_SESSION['ver']=="1") {
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Detalle Venta</title>
+  <title>Registro de ventas</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -79,7 +79,7 @@ if ($_SESSION['ver']=="1") {
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Cabecera Detalle Venta</a>
+        <a href="index3.html" class="nav-link">Registro de ventas</a>
       </li>
       
     </ul>
@@ -110,12 +110,12 @@ if ($_SESSION['ver']=="1") {
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Cabecera Detalle Venta</h1>
+            <h1 class="m-0 text-dark">Registro de ventas</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Cabecera Detalle Venta</li>
+              <li class="breadcrumb-item active">Registro de ventas</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -130,7 +130,7 @@ if ($_SESSION['ver']=="1") {
              <div class="card">
              <?php if ($_SESSION['crear']==1) { ?>
                <div class="card-header">
-                  <button class="btn btn-info nuevo_detalle_venta_modal" data-id="0">Nueva Cabecera Detalle Venta</button>
+                  <button class="btn btn-info nuevo_detalle_venta_modal" data-id="0">Nueva venta</button>
                   <button type="buttom" class="btn btn-success exportar-excel-categoria-agente-bmi" id="exportable">Exportar datos <i class="fas fa-file-excel"></i></button>
                </div>
                <?php }?>
@@ -145,7 +145,7 @@ if ($_SESSION['ver']=="1") {
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title title_marca">Cabecera Detalle Venta</h4>
+              <h4 class="modal-title title_marca">Registro de venta</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -171,7 +171,7 @@ if ($_SESSION['ver']=="1") {
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title ">Detalle Cabecera  Venta</h4>
+              <h4 class="modal-title ">Detalle venta</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>

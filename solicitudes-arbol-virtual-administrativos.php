@@ -47,7 +47,7 @@ if ($_SESSION['ver']=="1") {
 <meta charset="utf-8">
 <!-- InstanceBeginEditable name="doctitle" -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>ProLife | Solicitudes Prolife</title>
+<title>ProLife | Solicitudes Administrativas Bio</title>
 <!-- InstanceEndEditable -->
 
 <!-- InstanceBeginEditable name="head" -->
@@ -85,22 +85,16 @@ if ($_SESSION['ver']=="1") {
   <link rel="stylesheet" href="iconsvg/style.css">
 </head>
 
-<body class="sidebar-mini layout-fixed sidebar-collapse">
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-dark navbar-info">
-<!-- Left navbar links -->
+  <nav class="main-header navbar navbar-expand navbar-dark">
+    <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
-    </ul>
-    <ul class="navbar-nav ml-auto">
-    <li class="nav-item dropdown">
-        <a href="javascript:void(0)" data-target="#modal-default" data-toggle="modal" class="nav-link"
-        ><i class="nav-icon far fa-credit-card text-"></i> Consultar Diners Club</a>
-      </li>   
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -115,12 +109,12 @@ if ($_SESSION['ver']=="1") {
      <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Solicitudes Prolife</h1>
+            <h1>Solicitudes Administrativas</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="oficina">Oficina</a></li>
-              <li class="breadcrumb-item active">Solicitudes Prolife</li>
+              <li class="breadcrumb-item active">Solicitudes Administrativas</li>
             </ol>
           </div>
         </div>

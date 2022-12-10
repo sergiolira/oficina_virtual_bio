@@ -137,7 +137,11 @@ if($_REQUEST["id"]>0){
     $obj_u->direccion= strClean($_REQUEST["txt_direc"]);
     $obj_u->fecha_nac= strClean($_REQUEST["txt_nac"]);
     $obj_u->fecha_inicio_labores= strClean($_REQUEST["txt_inicio"]);
-    $obj_u->fecha_fin_labores= strClean($_REQUEST["txt_fin"]);
+    if(isset($_REQUEST["check_fec_fin"])){
+        $obj_u->fecha_fin_labores= strClean($_REQUEST["txt_fin"]);
+    } else {
+        $obj_u->fecha_fin_labores="1900-01-01";
+    }    
     $obj_u->nro_hijos= strClean($_REQUEST["txt_hijos"]);
     $obj_u->id_estado_civil= strClean($_REQUEST["slt_est_civil"]);  
     $obj_u->clave= strClean($strPassword);
@@ -249,9 +253,13 @@ if($_REQUEST["id"]>0){
     $obj_u->id_provincia= strClean($_REQUEST["slt_prov"]);
     $obj_u->id_distrito= strClean($_REQUEST["slt_dist"]);
     $obj_u->direccion= strClean($_REQUEST["txt_direc"]);
-        $obj_u->fecha_nac= strClean($_REQUEST["txt_nac"]);
+    $obj_u->fecha_nac= strClean($_REQUEST["txt_nac"]);
     $obj_u->fecha_inicio_labores= strClean($_REQUEST["txt_inicio"]);
-    $obj_u->fecha_fin_labores= strClean($_REQUEST["txt_fin"]);
+    if(isset($_REQUEST["check_fec_fin"])){
+        $obj_u->fecha_fin_labores= strClean($_REQUEST["txt_fin"]);
+    } else {
+        $obj_u->fecha_fin_labores="1900-01-01";
+    }   
     $obj_u->nro_hijos= strClean($_REQUEST["txt_hijos"]);
     $obj_u->id_estado_civil= strClean($_REQUEST["slt_est_civil"]);
     $obj_u->foto_perfil=$carpeta_ubicacion_bd_fp.$nuevo_nombre_archivo_fp;

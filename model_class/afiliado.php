@@ -14,7 +14,7 @@ class afiliado extends cn{
   var $id_usuarioactualiza;
 
   public function save_afiliado() {
-   $query = "insert into afiliado values('0','$this->ruc_patrocinador','$this->ruc_usuario','$this->posicion',1,now(),now(),'$this->id_usuarioregistro','$this->id_usuarioregistro')";
+   $query = "insert into afiliado values('0','$this->ruc_patrocinador','$this->ruc_usuario','1',1,now(),now(),'$this->id_usuarioregistro','$this->id_usuarioregistro')";
    $rs= mysqli_query($this->f_cn(),$query);
     mysqli_close($this->f_cn());
     return $rs;
@@ -54,7 +54,7 @@ class afiliado extends cn{
 
 
   public function update_red_x_solicitud(){
-    $query = "update afiliado set ruc_patrocinador='$this->ruc_patrocinador',posicion='$this->posicion',fechaactualiza=now(),
+    echo $query = "update afiliado set ruc_patrocinador='$this->ruc_patrocinador',posicion='$this->posicion',fechaactualiza=now(),
     id_usuarioactualiza='$this->id_usuarioactualiza' where ruc_usuario='$this->ruc_usuario'";
     $rs= mysqli_query($this->f_cn(),$query);
     mysqli_close($this->f_cn());

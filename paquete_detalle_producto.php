@@ -37,7 +37,7 @@ if ($_SESSION['ver']=="1") {
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Paquete detalle producto</title>
+  <title>Armado de paquetes</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -65,6 +65,10 @@ if ($_SESSION['ver']=="1") {
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
     <!-- Toastr -->
     <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
+    <!--kartik-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.min.css" crossorigin="anonymous">
+  <link href="kartik2/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
+  <link href="kartik2/themes/explorer-fas/theme.css" media="all" rel="stylesheet" type="text/css"/>
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link href="fontawesome-free-5.10.2-web/css/all.css" rel="stylesheet">
@@ -80,7 +84,7 @@ if ($_SESSION['ver']=="1") {
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Paquete detalle producto</a>
+        <a href="index3.html" class="nav-link">Armado de paquetes</a>
       </li>
       
     </ul>
@@ -111,12 +115,12 @@ if ($_SESSION['ver']=="1") {
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Paquete detalle producto</h1>
+            <h1 class="m-0 text-dark">Armado de paquetes</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Paquete detalle producto</li>
+              <li class="breadcrumb-item active">Armado de paquetes</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -149,13 +153,13 @@ if ($_SESSION['ver']=="1") {
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                    <h4 class="modal-title">paquete detalle producto</h4>
+                    <h4 class="modal-title">Armar paquete</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                     </div>
                     <div class="modal-body">
-                    <form class="form_paquete_detalle_producto" id="form_paquete_detalle_producto">
+                    <form id="form_paquete_detalle_producto" enctype="multipart/form-data">
                         
                     </form>
 
@@ -175,7 +179,7 @@ if ($_SESSION['ver']=="1") {
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                    <h4 class="modal-title">Detalle paquete detalle producto</h4>
+                    <h4 class="modal-title">Detalle armar paquete</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -195,9 +199,6 @@ if ($_SESSION['ver']=="1") {
             <!-- /.modal-dialog -->
         </div>
         <!-- FIN MODAL TIPO SHOW -->
-
-
-
       
     </section>
     <!-- /.content -->
@@ -248,6 +249,16 @@ if ($_SESSION['ver']=="1") {
 <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+<!-- DataTables -->
+<script src="plugins/datatables/jquery.dataTables.js"></script>
+<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+<script src="kartik2/js/plugins/piexif.js" type="text/javascript"></script>
+<script src="kartik2/js/plugins/sortable.js" type="text/javascript"></script>
+<script src="kartik2/js/fileinput-prolife.js" type="text/javascript"></script>
+<script src="kartik2/js/locales/es-prolife.js" type="text/javascript"></script>
+<script src="kartik2/themes/gly/theme.js" type="text/javascript"></script>
+<script src="kartik2/themes/fas/theme.js" type="text/javascript"></script>
+<script src="kartik2/themes/explorer-fas/theme.js" type="text/javascript"></script>
 <!-- js_paquete_detalle_producto -->
 <script src="js/js_paquete_detalle_producto.js"></script>
 <!-- page script -->

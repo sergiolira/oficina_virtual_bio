@@ -41,14 +41,14 @@ while($fila=mysqli_fetch_assoc($rs_lista)){
    <i class="fas fa-user-check" id="icon_item'.$fila["id_usuario"].'"></i></button>';
   }
 
-  if($_SESSION['actualizar']==1 && $fila["id_usuario"] != $_SESSION['idUser'] && $fila["id_rol"] != $_SESSION['id_rol'] || $_SESSION['idUser']==1 && $fila["id_usuario"] != $_SESSION['idUser']){
+  if($_SESSION['actualizar']==1 && $fila["id_usuario"] != $_SESSION['id_usuario'] && $fila["id_rol"] != $_SESSION['id_rol'] || $_SESSION['id_usuario']==1 && $fila["id_usuario"] != $_SESSION['id_usuario']){
     $btn_editar='<button data-id="'.$fila["id_usuario"].'"
      title="Modificar" class="btn btn-xs btn-warning new-modal-usuario"><i class="far fa-edit"></i></button>';
      } else {
       $btn_editar='';
      }
 
-  if($_SESSION['eliminar']==1 && $fila["id_usuario"] != $_SESSION['idUser'] && $fila["id_rol"] != $_SESSION['id_rol'] || $_SESSION['idUser']==1 && $fila["id_usuario"] != $_SESSION['idUser']){          
+  if($_SESSION['eliminar']==1 && $fila["id_usuario"] != $_SESSION['id_usuario'] && $fila["id_rol"] != $_SESSION['id_rol'] || $_SESSION['id_usuario']==1 && $fila["id_usuario"] != $_SESSION['id_usuario']){          
     $btn_eliminar;
     } else {
       $btn_eliminar='';

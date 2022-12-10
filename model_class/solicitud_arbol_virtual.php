@@ -35,7 +35,7 @@ class solicitud_arbol_virtual extends cn{
   }
 
   public function save() {
-     $query = "insert into solicitud_arbol_virtual values('0','$this->nro_solicitud','$this->tipo_solicitante','$this->id_solicitante','$this->proceso',
+    echo $query = "insert into solicitud_arbol_virtual values('0','$this->nro_solicitud','$this->tipo_solicitante','$this->id_solicitante','$this->proceso',
     '$this->ruc_lider_red','$this->ruc_inicial','$this->ruc_patrocinador','$this->ruc_usuario','$this->posicion','$this->estado',now(),now(),
     '$this->id_usuarioregistro','$this->id_usuarioactualiza')";
     $rs= mysqli_query($this->f_cn(),$query);
@@ -78,8 +78,9 @@ class solicitud_arbol_virtual extends cn{
     date_format(sav.fecharegistro,'%Y/%m/%d') as fecharegistro,
     date_format(sav.fechaactualiza,'%Y/%m/%d') as fechaactualiza,
     sav.id_usuarioregistro,sav.id_usuarioactualiza from solicitud_arbol_virtual sav inner join 
-    usuario u on sav.id_solicitante=u.id_usuario  inner join representante_conectado rlr on sav.ruc_lider_red=rlr.ruc 
-    inner join representante_conectado ri on sav.ruc_inicial=ri.ruc  group by sav.nro_solicitud,sav.tipo_solicitante,sav.id_solicitante,sav.ruc_lider_red,sav.ruc_inicial,
+    usuario u on sav.id_solicitante=u.id_usuario  inner join representante rlr on sav.ruc_lider_red=rlr.nro_documento 
+    inner join representante ri on sav.ruc_inicial=ri.nro_documento  group by sav.nro_solicitud,sav.tipo_solicitante,
+    sav.id_solicitante,sav.ruc_lider_red,sav.ruc_inicial,
     sav.estado,fechaactualiza,fecharegistro,sav.id_usuarioregistro,sav.id_usuarioactualiza,
     ri.nombre,ri.apellidopaterno,ri.apellidomaterno,rlr.nombre,rlr.apellidopaterno,rlr.apellidomaterno,
     u.nombre,u.apellido_paterno,u.apellido_materno ORDER BY fecharegistro DESC";
@@ -146,8 +147,8 @@ class solicitud_arbol_virtual extends cn{
 
   /*Consulta afiliados de patrocinados directo*/
   public function listar_representantes_sponsor_solicitud($patrocinador_directo){
-    $query = "select r.nombre,r.apellidopaterno,r.apellidomaterno,s.ruc_usuario as ruc,r.correo,r.telefono,s.posicion,r.id_nivel_categoria 
-    from solicitud_arbol_virtual s inner join representante r on s.ruc_usuario=r.ruc where r.estado=1 and s.proceso='edit' and 
+    $query = "select r.razon_social,r.nombre,r.apellidopaterno,r.apellidomaterno,s.ruc_usuario as nro_documento,r.correo,r.telefono,s.posicion,r.id_nivel_categoria 
+    from solicitud_arbol_virtual s inner join representante r on s.ruc_usuario=r.nro_documento where r.estado=1 and s.proceso='edit' and 
     s.ruc_patrocinador='".$patrocinador_directo."' and  s.nro_solicitud='$this->nro_solicitud' ORDER BY s.posicion ASC";
     $rs= mysqli_query($this->f_cn(),$query);
     mysqli_close($this->f_cn());

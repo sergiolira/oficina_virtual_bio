@@ -32,8 +32,10 @@ $obj_costo_envio->consult();
                 </select>
                 </div>
             </div>
-            <div class="col-4">
-                <label for="slt_departamendto_seleccionado">Departamento<i class="text-danger" title="Seleccione Producto">*</i> </label>
+
+            <?php if($obj_costo_envio->id_pais=="1" || $_GET["id"]==0){?>
+            <div class="col-4 div_departamento">
+                <label for="slt_departamendto_seleccionado">Departamento</label>
                 <label class="text-danger msj-slt_dep"></label>
                 <div class="input-group mb-2">
                 <div class="input-group-prepend">
@@ -49,8 +51,29 @@ $obj_costo_envio->consult();
                 </select>
                 </div>
             </div>
-            <div class="col-4">
-                <label for="slt_provincia_seleccionado">Provincia<i class="text-danger" title="Seleccione Producto">*</i> </label>
+            <?php }else{?>
+            <div class="col-4 div_departamento" style="display:none">
+                <label for="slt_departamendto_seleccionado">Departamento</label>
+                <label class="text-danger msj-slt_dep"></label>
+                <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fab fa-product-hunt"></i></span>
+                </div>
+                <select class="form-control select_dep" name="slt_departamendto_seleccionado" id="slt_departamendto_seleccionado">
+                    <option value="0">SELECCIONAR DEPARTAMENTO</option>            
+                    <?php $rs_departamento=$obj_dep->combo();
+                        while($fila_p=mysqli_fetch_assoc($rs_departamento)){
+                    ?>
+                    <option <?php if($obj_costo_envio->id_departamento==$fila_p["id"]){ echo "selected";}?> value="<?php echo $fila_p["id"]?>"><?php echo $fila_p["name"]?></option>
+                        <?php }?>
+                </select>
+                </div>
+            </div>
+            <?php }?>
+
+            <?php if($obj_costo_envio->id_pais=="1" || $_GET["id"]==0){?>
+            <div class="col-4 div_provincia">
+                <label for="slt_provincia_seleccionado">Provincia</label>
                 <label class="text-danger msj-slt_prov"></label>
                 <div class="input-group mb-2">
                 <div class="input-group-prepend">
@@ -71,8 +94,34 @@ $obj_costo_envio->consult();
                 </select>
                 </div>
             </div>
-            <div class="col-4">
-                <label for="slt_distrito_seleccionado">Distrito<i class="text-danger" title="Seleccione Producto">*</i> </label>
+            <?php }else{?>
+            <div class="col-4 div_provincia" style="display:none">
+                <label for="slt_provincia_seleccionado">Provincia</label>
+                <label class="text-danger msj-slt_prov"></label>
+                <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fab fa-product-hunt"></i></span>
+                </div>
+                <select class="form-control select_prov" name="slt_provincia_seleccionado" id="slt_provincia_seleccionado" >
+                    <option value="0">SELECCIONAR PROVINCIA</option>
+                    <?php
+                    if($_REQUEST["id"]>0){
+                        $obj_prov->department_id=$obj_costo_envio->id_departamento;
+                        $rs_provincia=$obj_prov->combo_x_dep();
+                    ?>
+                    <?php 
+                        while($fila_p=mysqli_fetch_assoc($rs_provincia)){
+                    ?>
+                    <option <?php if($obj_costo_envio->id_provincia==$fila_p["id"]){ echo "selected";}?> value="<?php echo $fila_p["id"]?>"><?php echo $fila_p["name"]?></option>
+                        <?php } }?>
+                </select>
+                </div>
+            </div>
+            <?php }?>
+
+            <?php if($obj_costo_envio->id_pais=="1" || $_GET["id"]==0){?>
+            <div class="col-4 div_distrito">
+                <label for="slt_distrito_seleccionado">Distrito</label>
                 <label class="text-danger msj-slt_dist"></label>
                 <div class="input-group mb-2">
                 <div class="input-group-prepend">
@@ -93,8 +142,32 @@ $obj_costo_envio->consult();
                 </select>
                 </div>
             </div>
+            <?php }else{?>
+            <div class="col-4 div_distrito" style="display:none">
+                <label for="slt_distrito_seleccionado">Distrito</label>
+                <label class="text-danger msj-slt_dist"></label>
+                <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fab fa-product-hunt"></i></span>
+                </div>
+                <select class="form-control select_prov" name="slt_distrito_seleccionado" id="slt_distrito_seleccionado">
+                    <option value="0">SELECCIONAR DISTRITO</option>
+                    <?php
+                    if($_REQUEST["id"]>0){
+                        $obj_dist->province_id=$obj_costo_envio->id_provincia;
+                        $rs_distrito=$obj_dist->combo_x_prov();
+                    ?>
+                    <?php 
+                        while($fila_p=mysqli_fetch_assoc($rs_distrito)){
+                    ?>
+                    <option <?php if($obj_costo_envio->id_distrito==$fila_p["id"]){ echo "selected";}?> value="<?php echo $fila_p["id"]?>"><?php echo $fila_p["name"]?></option>
+                        <?php } }?>
+                </select>
+                </div>
+            </div>
+            <?php }?>
             <div class="col-4">
-                <label for="txt_monto">Monto<i class="text-danger"></i></label>
+                <label for="txt_monto">Costo (USD)<i class="text-danger"></i></label>
                 <label class="text-danger msj_txt_monto"></label>
                 <div class="input-group mb-2">
                     <div class="input-group-prepend">

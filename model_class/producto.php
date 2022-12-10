@@ -1,5 +1,4 @@
 <?php
-
 include_once("cn.php");
 class producto extends cn{
  
@@ -134,6 +133,17 @@ var $id_usuarioactualiza;
         mysqli_close($this->f_cn());
         return $rs;
     }
+
+    public  function update_stock()
+    {
+        $query="update producto set stock_inicial=stock_inicial+'$this->stock_inicial'
+        ,stock_actual=stock_actual+'$this->stock_actual' where id_producto='$this->id_producto'";
+        $rs=mysqli_query($this->f_cn(),$query);
+        mysqli_close($this->f_cn());
+        return $rs;
+    }
+
+    
    
 
 

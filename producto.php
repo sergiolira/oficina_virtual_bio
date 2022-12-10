@@ -32,7 +32,7 @@ $_SESSION['crear'] = $obj_p->crear;
 $_SESSION['actualizar'] = $obj_p->actualizar;
 $_SESSION['eliminar'] = $obj_p->eliminar;
 
-if ($_SESSION['ver']=="1" || $_SESSION['idUser']==1) {
+if ($_SESSION['ver']=="1") {
 ?>
 <!DOCTYPE html>
 <html>
@@ -128,7 +128,7 @@ if ($_SESSION['ver']=="1" || $_SESSION['idUser']==1) {
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                    <?php if ($_SESSION['crear']==1 || $_SESSION['idUser']==1) { ?>
+                    <?php if ($_SESSION['crear']==1) { ?>
                         <button class="btn btn-info new-modal-producto" data-id="0"><i class="fas fa-plus-circle" aria-hidden="true"></i> Nuevo producto</button>
                     <?php }?>
                     </div>

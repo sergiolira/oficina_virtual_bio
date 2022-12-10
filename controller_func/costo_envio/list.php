@@ -12,7 +12,7 @@ $html='<table id="tbl_marca" class="table table-bordered table-striped table-sm"
         <th>Departamento</th>
         <th>Provincia</th>
         <th>Distrito</th>
-        <th>Costo</th>
+        <th>Costo (USD)</th>
         <th>Estado</th>
         <th>fecha Registro</th>
         <th>Opciones</th>

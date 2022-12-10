@@ -1,10 +1,12 @@
 /* ------ Crear y actualizar ------*/
 $(document).on('click', '#btn_save', function() {
-    var data=$('#form_paquete_detalle_producto').serialize();
     var strPproducto = document.querySelector('#slt_paquete_producto').value;
     var strProducto = document.querySelector('#slt_producto').value;
     var strCantidad = document.querySelector('#txt_cantidad').value;
     var strPventa = document.querySelector('#txt_precio_venta').value;
+
+    var formulario = document.getElementById("form_paquete_detalle_producto");
+    var formData = new FormData(formulario);
     
     if (strPproducto == '' ) 
     {
@@ -36,7 +38,10 @@ $(document).on('click', '#btn_save', function() {
     $.ajax({
         type:'POST',
         url:'controller_func/paquete_detalle_producto/accion.php',
-        data:data, 
+        data:formData,
+        contentType: false,
+        cache: false,
+        processData:false,
         success:function(data){
             if(data.trim()=="true_create"){               
                 $("#form_paquete_detalle_producto").empty();

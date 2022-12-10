@@ -41,26 +41,10 @@ $obj_r_c->consult();
                                  <span class="input-group-text"><i class="far fa-eye"></i></span>
                               </div>
                               <select class="form-control select_div" name="slt_div" id="slt_div" >
-                              <option value="0">SELECCIONAR</option>
-                                <?php $res= $obj_div->combo();
-                                while($fila= mysqli_fetch_assoc($res)){  ?>
-                                <option <?php if($obj_r_c->id_divisa==$fila["id_divisa"]){ echo "selected"; }?> 
-                                value="<?php echo $fila["id_divisa"]; ?>"><?php echo $fila["divisa"]; ?></option>
-                                <?php }?>
+                                <option value="1">Dolares</option>
                                         
                               </select>
                             </div>
-                   </div>
-                   <div class="col-4">
-                            <label for="txt_can">Cantidad<i class="text-danger" title="Ingrese la cantidad">*</i></label>
-                            <label class="text-danger msj_txt_can"></label>
-                          <div class="input-group mb-2">
-                              <div class="input-group-prepend">
-                                 <span class="input-group-text"><i class="fas fa-align-left"></i></span>
-                              </div>
-                              <input type="text" class="form-control valid validNumber"  id="txt_can" name="txt_can" 
-                              value="<?php echo $obj_r_c->cantidad; ?>"/>
-                          </div>
                    </div>
                    <div class="col-4">
                             <label for="txt_p_u">Precio unitario<i class="text-danger" title="Ingrese el precio unitario">*</i></label>
@@ -69,19 +53,45 @@ $obj_r_c->consult();
                               <div class="input-group-prepend">
                                  <span class="input-group-text"><i class="fas fa-align-left"></i></span>
                               </div>
-                              <input type="text" class="form-control valid validNumberD" id="txt_p_u" 
-                              name="txt_p_u" value="<?php echo $obj_r_c->precio_unitario; ?>"/>
+                              <input type="text" class="form-control valid validNumberD" id="txt_p_u"  min="0"
+                              name="txt_p_u" value="<?php if($obj_r_c->precio_unitario==""){echo "0";}else{echo $obj_r_c->precio_unitario;}?>"/>
                           </div>
                    </div>
+
+                   <?php if($obj_r_c->cantidad==""){ ?>
                    <div class="col-4">
-                            <label for="txt_s_t">Sub total<i class="text-danger" title="Ingrese el sub total">*</i></label>
+                            <label for="txt_can">Cantidad<i class="text-danger" title="Ingrese la cantidad">*</i></label>
+                            <label class="text-danger msj_txt_can"></label>
+                          <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text"><i class="fas fa-align-left"></i></span>
+                              </div>
+                              <input type="number" class="form-control valid validNumber"  id="txt_can" name="txt_can" min="1"
+                              value="<?php if($obj_r_c->cantidad==""){echo "1";}else{echo $obj_r_c->cantidad;}?>"/>
+                          </div>
+                   </div>
+                    <?php }else{ ?>
+                      <div class="col-4">
+                              <label for="txt_can">Cantidad<i class="text-danger" title="Ingrese la cantidad">*</i></label>
+                              <label class="text-danger msj_txt_can"></label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text"><i class="fas fa-align-left"></i></span>
+                                </div>
+                                <input type="number" class="form-control valid validNumber"  id="txt_can" name="txt_can" min="1" readonly
+                                value="<?php if($obj_r_c->cantidad==""){echo "1";}else{echo $obj_r_c->cantidad;}?>"/>
+                            </div>
+                      </div>
+                    <?php } ?>
+                   <div class="col-4">
+                            <label for="txt_s_t">Total de compra<i class="text-danger" title="Ingrese el sub total">*</i></label>
                             <label class="text-danger msj_txt_s_t"></label>
                           <div class="input-group mb-2">
                               <div class="input-group-prepend">
                                  <span class="input-group-text"><i class="fas fa-align-left"></i></span>
                               </div>
-                              <input type="text" class="form-control valid validNumberD" id="txt_s_t" 
-                              name="txt_s_t" value="<?php echo $obj_r_c->sub_total; ?>"/>
+                              <input type="text" readonly class="form-control" id="txt_s_t" min="0"
+                              name="txt_s_t" value="<?php if($obj_r_c->sub_total==""){echo "0";}else{echo $obj_r_c->sub_total;}?>"/>
                           </div>
                    </div>
 

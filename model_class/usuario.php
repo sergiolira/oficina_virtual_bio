@@ -38,7 +38,7 @@ class usuario extends cn{
     public function read()
     {
         $whereAdmin = "";
-			if($_SESSION['idUser'] != 1 ){
+			if($_SESSION['id_usuario']!= 1 ){
 				$whereAdmin = " where p.id_usuario != 1 ";
 			}
         $query="select p.*,r.rol,p.id_usuario from usuario p inner join rol r on p.id_rol=r.id_rol
