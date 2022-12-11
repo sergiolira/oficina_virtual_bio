@@ -22,7 +22,7 @@ if (isset($_SESSION['login'])) {
   <!-- Toastr -->
   <link rel="stylesheet" href="plugins/toastr/toastr.min.css">
 </head>
-<body class="hold-transition login-page" style="background-image:url('imas/oficina/fondo_1.jpg');">
+<body class="hold-transition login-page" style="background-image:url('imas/oficina/fondo_6.png')">
 <div class="login-box">
   <div class="login-logo">
     <a href="biotreelife.com" target="black"><img src="imas/logo/logo360x200.png" class="img-fluid" width="80%"/></a>
@@ -34,7 +34,7 @@ if (isset($_SESSION['login'])) {
 
       <form id="form_login">
         <div class="input-group mb-3">
-          <input type="email" class="form-control"id="email" name="email" placeholder="Correo electronico">
+          <input type="email" class="form-control"id="email" name="email" placeholder="Correo Corporativo">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>

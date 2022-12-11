@@ -57,9 +57,14 @@ if (isset($_SESSION['login'])) {
                     <!-- /.col -->
                     </div>
             </form>
-            <!-- /.col -->
+            
+            <div class="social-auth-links text-center mb-3">
+              <p>- OR -</p>
+            </div>
+            <!-- /.social-auth-links -->
+
             <p class="mb-1">
-                <!--<a href="forgot-password.html">Olvide mi contraseña</a>-->
+              <a href="recuperar-cuenta.php">¿Olvidaste tu contraseña?</a>
             </p>
         </div>
         <!-- /.login-card-body -->
@@ -88,7 +93,7 @@ if (isset($_SESSION['login'])) {
         </div>
         <!-- /.modal -->
   </div>
-</div>
+</div>  
 <!-- /.login-box -->
 
 <!-- jQuery -->

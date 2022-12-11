@@ -80,3 +80,37 @@ $('#clave').on('keydown', function(e) {
     }
 });
 
+$(document).on('click', '#cancel-recover-account-rep', function() {
+  window.location.replace('login.php');              
+})
+
+$(document).on('click', '#recover-account', function() {
+  var user=$("#user").val();
+  var params = {
+      "user":user
+  }
+$.ajax({
+    type: "POST",
+    url:"controller_func/representante/restablecer_clave.php",
+    data:params,
+    beforeSend:function(){
+      cargar_data();
+      },
+    
+    complete:function(){
+      Swal.close();
+      }
+    }).promise().done(function(info){
+        if(info=='true'){
+            $('#modal-mensaje-check').modal('show');
+            $("#user").val("");
+        }else if(info=="false"){
+            toastr.error('Alerta - El Correo no existe en nuestros registros, Ingresa a la web y registrate');
+            $("#user").val("");
+        }else{
+            toastr.error('Alerta - Error al enviar el correo, intenta mas tarde');
+        }
+      });
+})   
+
+
