@@ -192,6 +192,13 @@ public function list_order_by_lideres_representantes() {
     return $rs;
   }
 
+  public function activate_x_nro_documento() {
+    $query = "update representante set estado=1 where nro_documento='$this->nro_documento'";
+    $rs= mysqli_query($this->f_cn(),$query);
+    mysqli_close($this->f_cn());
+    return $rs;
+  }
+
   public function validar_nro_documento_r() {
     $query = "select count(*) as contar from representante where nro_documento='$this->nro_documento'";
      $rs=mysqli_query($this->f_cn(),$query);
@@ -671,7 +678,13 @@ public function verificar_corre_nro_documento_repre(){
     mysqli_close($this->f_cn());
     return $row_cnt;
   }
-  
+
+  public function update_descuento_x_paquete(){
+    $query = "UPDATE representante SET descuento_x_registro='$this->descuento_x_registro' WHERE nro_documento='$this->nro_documento'";
+    $rs=mysqli_query($this->f_cn(),$query);
+    mysqli_close($this->f_cn());
+    return $rs;
+  } 
 
 
 

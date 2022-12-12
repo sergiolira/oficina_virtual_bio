@@ -22,6 +22,10 @@ class detalle_comisiones_venta extends cn{
     var $id_usuarioregistro;
     var $id_usuarioactualiza;
 
+    var $anio;
+    var $mes;
+    var $semana_detalle;
+
     public function read(){
         $query = "SELECT * FROM detalle_comisiones_venta";
         $rs = mysqli_query($this->f_cn(),$query);
@@ -114,6 +118,29 @@ class detalle_comisiones_venta extends cn{
         INNER JOIN tipo_venta tv ON dc.id_tipo_venta=tv.id_tipo_venta
         WHERE dc.id_cabacera_comisiones_venta='$this->id_cabacera_comisiones_venta'";
         $rs = mysqli_query($this->f_cn(),$query);
+        mysqli_close($this->f_cn());
+        return $rs;
+    }
+    
+
+    public function list_detalles_comissiones_x_representante($filtro) {
+        $query = "SELECT cco.representante as representante_cabecera,tv.tipo_venta,r.razon_social,dco.* FROM detalle_comisiones_venta dco INNER JOIN 
+        cabecera_comisiones_venta cco on dco.id_cabacera_comisiones_venta=cco.id_cabacera_comisiones_venta 
+        INNER JOIN tipo_venta tv ON dco.id_tipo_venta=tv.id_tipo_venta
+        INNER JOIN representante r ON dco.nro_documento=r.nro_documento 
+        WHERE cco.anio='$this->anio' ".$filtro." and cco.nro_documento='$this->nro_documento' ORDER BY cco.id_cabacera_comisiones_venta ASC";
+        $rs= mysqli_query($this->f_cn(),$query);
+        mysqli_close($this->f_cn());
+        return $rs;
+    }
+
+    public function list_detalles_comisiones($filtro) {
+        $query = "SELECT cco.representante as representante_cabecera,tv.tipo_venta,r.razon_social,dco.* FROM detalle_comisiones_venta dco INNER JOIN 
+        cabecera_comisiones_venta cco on dco.id_cabacera_comisiones_venta=cco.id_cabacera_comisiones_venta 
+        INNER JOIN tipo_venta tv ON dco.id_tipo_venta=tv.id_tipo_venta
+        INNER JOIN representante r ON dco.nro_documento=r.nro_documento 
+        WHERE cco.anio='$this->anio' ".$filtro." ORDER BY cco.id_cabacera_comisiones_venta ASC";
+        $rs= mysqli_query($this->f_cn(),$query);
         mysqli_close($this->f_cn());
         return $rs;
     }

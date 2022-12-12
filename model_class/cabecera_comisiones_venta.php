@@ -184,7 +184,7 @@ class cabecera_comisiones_venta extends cn
 
     public function read_filtro($filtro)
     {
-        $query = "SELECT * FROM cabecera_comisiones_venta WHERE estado=1 $filtro ORDER BY id_cabacera_comisiones_venta asc";
+        $query = "SELECT * FROM cabecera_comisiones_venta WHERE estado=1 $filtro ORDER BY id_cabacera_comisiones_venta ASC";
         $rs = mysqli_query($this->f_cn(), $query);
         mysqli_close($this->f_cn());
         return $rs;
@@ -199,6 +199,22 @@ class cabecera_comisiones_venta extends cn
              $count=$fila["total"];
           }
           return $count;
-        }
+    }
+
+    public function list_comisiones_x_representante($filtro) {
+        $query = "SELECT cco.* FROM cabecera_comisiones_venta cco INNER JOIN representante rc on cco.nro_documento=rc.nro_documento
+         where cco.anio='$this->anio' ".$filtro." and cco.nro_documento='$this->nro_documento' ORDER BY
+          cco.id_cabacera_comisiones_venta ASC";
+        $rs= mysqli_query($this->f_cn(),$query);
+        mysqli_close($this->f_cn());
+        return $rs;
+     }
     
+     public function list_comisiones($filtro) {
+        $query = "SELECT cco.* FROM cabecera_comisiones_venta cco INNER JOIN representante rc on cco.nro_documento=rc.nro_documento
+         WHERE cco.anio='$this->anio' ".$filtro." ORDER BY cco.id_cabacera_comisiones_venta ASC";
+        $rs= mysqli_query($this->f_cn(),$query);
+        mysqli_close($this->f_cn());
+        return $rs;
+    }
 }

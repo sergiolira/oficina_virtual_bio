@@ -168,7 +168,7 @@ if ($_SESSION['ver']=="1") {
                           <!--<button class="btn btn-info new_cabecera_comision" data-id="0"><i class="fas fa-plus-circle" aria-hidden="true">
                           </i> Nueva Comision</button>-->
                           <button class="btn btn-warning btn-sm consultar_comisiones" data-id="0">Consultar</button>
-                          <button type="buttom" class="btn btn-success btn-sm exportar-excel-categoria-agente-bmi" id="exportable">Exportar datos <i class="fas fa-file-excel"></i></button>
+                          <button type="buttom" class="btn btn-success btn-sm exportar_excel_comisiones" id="exportable">Exportar excel <i class="fas fa-file-excel"></i></button>
                           <a href="generar_comisiones.php"><i class="fas fa-calculator"></i> Generar nuevas comisiones</a>
                       <?php }?>
                     </div>

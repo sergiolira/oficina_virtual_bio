@@ -2,11 +2,10 @@
 require_once("../../helpers/helpers.php");
 include_once("../../model_class/cabecera_registro_venta.php");
 include_once("../../model_class/detalle_registro_venta.php");
+include_once("../../model_class/representante.php");
 $obj_cabecera_registro_venta= new cabecera_registro_venta();
 $obj_detalle_registro_venta= new detalle_registro_venta();
-
-
-
+$obj_representante= new representante();
 
     if(isset($_REQUEST["accion"])){
         if($_REQUEST["id"]>0 && $_REQUEST["accion"]=="activar"){
@@ -34,7 +33,36 @@ $obj_detalle_registro_venta= new detalle_registro_venta();
         if(strClean($_REQUEST["slt_tipo_venta"]==1)){
             $obj_detalle_registro_venta->cantidad=strClean($_REQUEST["txt_cantidad"]);
         }else{
-            $obj_detalle_registro_venta->cantidad=1;
+            $obj_detalle_registro_venta->cantidad=1;            
+            switch (strClean($_REQUEST["slt_paquete"])) {
+                case '1':
+                    $obj_representante->tipo_compra="PAQUETE";
+                    $obj_representante->descuento_x_registro="5";
+                    break;
+                case '2':
+                    $obj_representante->tipo_compra="PAQUETE";
+                    $obj_representante->descuento_x_registro="15";
+                    break;
+                case '3':
+                    $obj_representante->tipo_compra="PAQUETE";
+                    $obj_representante->descuento_x_registro="25";
+                    break;
+                case '4':
+                    $obj_representante->tipo_compra="PAQUETE";
+                    $obj_representante->descuento_x_registro="35";
+                    break;
+                case '5':
+                    $obj_representante->tipo_compra="PAQUETE";
+                    $obj_representante->descuento_x_registro="40";
+                    break;            
+                default:
+                    $obj_representante->tipo_compra="PAQUETE";
+                    $obj_representante->descuento_x_registro="0";
+                    break;
+            }
+            $obj_representante->nro_documento=strClean($_REQUEST["txt_numero_documento"]);
+            $obj_representante->update_descuento_x_paquete();
+           
         }
         
         $obj_detalle_registro_venta->precio_unitario=strClean($_REQUEST["txt_precio_unitario"]);
@@ -71,6 +99,11 @@ $obj_detalle_registro_venta= new detalle_registro_venta();
         $obj_cabecera_registro_venta->costo_envio=strClean($_REQUEST["txt_costo_envio"]);
         $obj_cabecera_registro_venta->total=$obj_detalle_registro_venta->sub_total-($obj_detalle_registro_venta->sub_total*($obj_cabecera_registro_venta->total_descuento/100))+strClean($_REQUEST["txt_costo_envio"]);
         $obj_cabecera_registro_venta->observacion=strClean($_REQUEST["txt_observacion"]);
+
+        if(strClean($_REQUEST["slt_estado_registro_venta"])==8){
+            $obj_representante->nro_documento=strClean($_REQUEST["txt_numero_documento"]);
+            $obj_representante->activate_x_nro_documento();
+        }
         
         $obj_cabecera_registro_venta->update();
         echo "true_update";
@@ -86,6 +119,35 @@ $obj_detalle_registro_venta= new detalle_registro_venta();
             $obj_detalle_registro_venta->cantidad=strClean($_REQUEST["txt_cantidad"]);
         }else{
             $obj_detalle_registro_venta->cantidad=1;
+            switch (strClean($_REQUEST["slt_paquete"])) {
+                case '1':
+                    $obj_representante->tipo_compra="PAQUETE";
+                    $obj_representante->descuento_x_registro="5";
+                    break;
+                case '2':
+                    $obj_representante->tipo_compra="PAQUETE";
+                    $obj_representante->descuento_x_registro="15";
+                    break;
+                case '3':
+                    $obj_representante->tipo_compra="PAQUETE";
+                    $obj_representante->descuento_x_registro="25";
+                    break;
+                case '4':
+                    $obj_representante->tipo_compra="PAQUETE";
+                    $obj_representante->descuento_x_registro="35";
+                    break;
+                case '5':
+                    $obj_representante->tipo_compra="PAQUETE";
+                    $obj_representante->descuento_x_registro="40";
+                    break;            
+                default:
+                    $obj_representante->tipo_compra="PAQUETE";
+                    $obj_representante->descuento_x_registro="0";
+                    break;
+            }
+
+            $obj_representante->nro_documento=strClean($_REQUEST["txt_numero_documento"]);
+            $obj_representante->update_descuento_x_paquete();
         }
         
         $obj_detalle_registro_venta->precio_unitario=strClean($_REQUEST["txt_precio_unitario"]);
@@ -121,7 +183,10 @@ $obj_detalle_registro_venta= new detalle_registro_venta();
         $obj_cabecera_registro_venta->costo_envio=strClean($_REQUEST["txt_costo_envio"]);
         $obj_cabecera_registro_venta->total=$obj_detalle_registro_venta->sub_total-($obj_detalle_registro_venta->sub_total*($obj_cabecera_registro_venta->total_descuento/100))+strClean($_REQUEST["txt_costo_envio"]);
         $obj_cabecera_registro_venta->observacion=strClean($_REQUEST["txt_observacion"]);
-       
+        if(strClean($_REQUEST["slt_estado_registro_venta"])==8){
+            $obj_representante->nro_documento=strClean($_REQUEST["txt_numero_documento"]);
+            $obj_representante->activate_x_nro_documento();
+        }
         $obj_cabecera_registro_venta->create(); 
         echo "true_create";
         die();  

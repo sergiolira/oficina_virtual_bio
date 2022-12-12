@@ -229,3 +229,37 @@ $(document).on('click', '.show-modal-detalles-comisiones-x-nivel', function() {
           
       });
   });
+
+
+  $(document).on('click', '.exportar_excel_comisiones', function() {
+    var slt_anio=$("#slt_anio_c").val();
+    var slt_mes=$("#slt_mes_c").val();
+    var slt_semana=$("#slt_semana_c").val();
+
+  
+    var dataString = {      
+      "slt_anio":slt_anio,
+      "slt_mes":slt_mes,
+      "slt_semana":slt_semana
+    }
+  
+      $.ajax({
+        type:'POST',
+        url:"controller_func/cabecera_comisiones_venta/exportar_excel_comisiones.php",
+        data: dataString,      
+        dataType:'json',
+        beforeSend:function(){
+          cargar_data();
+          },
+        complete:function(){
+          Swal.close();
+          },
+        }).done(function(data){
+            var $a = $("<a>");
+            $a.attr("href",data.file);
+            $("body").append($a);
+            $a.attr("download",data.namearchivo+".xlsx");
+            $a[0].click();
+            $a.remove();
+        });
+    });
