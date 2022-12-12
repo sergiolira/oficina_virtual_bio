@@ -310,18 +310,18 @@ $obj=new representante();;
             try {
                 //Server settings
                 $mail->SMTPDebug = SMTP::DEBUG_OFF;                         //Habilitar salida de depuración detallada
-                $mail->isSMTP();                                            //Enviar usando SMTP
-                $mail->Host       = 'smtp.wisbac.com';             //Configurar el servidor SMTP para enviar a través
-                $mail->SMTPAuth   = false;     
-                $mail->SMTPAutoTLS = false;                               //Habilitar autenticación SMTP
-                $mail->Username   = 'correo@wisbac.com';            //nombre de usuario SMTP
-                $mail->Password   = 'Correo_2022';                            //Contraseña SMTP
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Habilitar el cifrado TLS implícito
-                $mail->Port       = 25;                                     //Puerto TCP para conectarse; use 587 ENCRYPTION_STARTTLS / 465 ENCRYPTION_SMTPS si configuró 
+                $mail->isSMTP();                                           //Enviar usando SMTP
+                $mail->Host       = 'smtp.gmail.com';             //Configurar el servidor SMTP para enviar a través
+                $mail->SMTPAuth   = true;                                   //Habilitar autenticación SMTP
+                $mail->Username   = 'soporte@prolife.pe';            //nombre de usuario SMTP
+                $mail->Password   = 'Prolife_2022_soporte';   
+                $mail->SMTPAutoTLS = false;                         //Contraseña SMTP
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Habilitar el cifrado TLS implícito
+                $mail->Port       = 587;                                 //Puerto TCP para conectarse; use 587 ENCRYPTION_STARTTLS / 465 ENCRYPTION_SMTPS si configuró 
                                                                             //`SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
                 //Recipients
-                $mail->setFrom('correo@wisbac.com', 'Brio Tree Life');
+                $mail->setFrom('soporte@prolife.pe', 'Brio Tree Life');
                 $mail->addAddress($correo, $datos);     //Agregar una destinataria
                 //$mail->addAddress('serghio.lira@outlook.com','Sergio Lira');               //El nombre es opcional
                 /*$mail->addReplyTo('info@example.com', 'Information');
