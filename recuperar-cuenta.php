@@ -45,7 +45,7 @@ if (isset($_SESSION['login'])) {
       <p class="login-box-msg"><strong>Recupera tu cuenta</strong></p>
       <p class="login-box-msg">Ingresa tu correo electrónico asociado para buscar tu cuenta.</p>
         <div class="input-group mb-3">
-          <input type="email" id="user" name="user" class="form-control" placeholder="Correo o RUC">
+          <input type="email" id="user" name="user" class="form-control" placeholder="Correo electronico">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
