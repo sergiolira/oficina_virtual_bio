@@ -37,7 +37,7 @@ $obj_representante= new representante();
             switch (strClean($_REQUEST["slt_paquete"])) {
                 case '1':
                     $obj_representante->tipo_compra="PAQUETE";
-                    $obj_representante->descuento_x_registro="5";
+                    $obj_representante->descuento_x_registro="10";
                     break;
                 case '2':
                     $obj_representante->tipo_compra="PAQUETE";
@@ -45,15 +45,15 @@ $obj_representante= new representante();
                     break;
                 case '3':
                     $obj_representante->tipo_compra="PAQUETE";
-                    $obj_representante->descuento_x_registro="25";
+                    $obj_representante->descuento_x_registro="30";
                     break;
                 case '4':
                     $obj_representante->tipo_compra="PAQUETE";
-                    $obj_representante->descuento_x_registro="35";
+                    $obj_representante->descuento_x_registro="40";
                     break;
                 case '5':
                     $obj_representante->tipo_compra="PAQUETE";
-                    $obj_representante->descuento_x_registro="40";
+                    $obj_representante->descuento_x_registro="45";
                     break;            
                 default:
                     $obj_representante->tipo_compra="PAQUETE";
@@ -122,7 +122,7 @@ $obj_representante= new representante();
             switch (strClean($_REQUEST["slt_paquete"])) {
                 case '1':
                     $obj_representante->tipo_compra="PAQUETE";
-                    $obj_representante->descuento_x_registro="5";
+                    $obj_representante->descuento_x_registro="10";
                     break;
                 case '2':
                     $obj_representante->tipo_compra="PAQUETE";
@@ -130,15 +130,15 @@ $obj_representante= new representante();
                     break;
                 case '3':
                     $obj_representante->tipo_compra="PAQUETE";
-                    $obj_representante->descuento_x_registro="25";
+                    $obj_representante->descuento_x_registro="30";
                     break;
                 case '4':
                     $obj_representante->tipo_compra="PAQUETE";
-                    $obj_representante->descuento_x_registro="35";
+                    $obj_representante->descuento_x_registro="40";
                     break;
                 case '5':
                     $obj_representante->tipo_compra="PAQUETE";
-                    $obj_representante->descuento_x_registro="40";
+                    $obj_representante->descuento_x_registro="45";
                     break;            
                 default:
                     $obj_representante->tipo_compra="PAQUETE";
