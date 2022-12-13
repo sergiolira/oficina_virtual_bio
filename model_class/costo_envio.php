@@ -28,7 +28,7 @@ class costo_envio extends cn{
         LEFT JOIN pais pa ON pa.id_pais=cos.id_pais
         LEFT JOIN ubigeo_peru_departments dep on dep.id = cos.id_departamento 
         LEFT JOIN ubigeo_peru_provinces pro on pro.id = cos.id_provincia 
-        LEFT join ubigeo_peru_districts dis on dis.id = cos.id_distrito";
+        LEFT join ubigeo_peru_districts dis on dis.id = cos.id_distrito ORDER BY cos.id_costo_envio DESC";
         $res=mysqli_query($this->f_cn(),$query);
         mysqli_close($this->f_cn());
         return $res;
