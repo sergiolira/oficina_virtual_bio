@@ -236,7 +236,7 @@ $obj=new representante();;
                                 <td class="center-text" data-text-style="Headlines" align="center" style="font-family:Barlow,Arial,Helvetica,sans-serif;font-size:38px;line-height:54px;font-weight:900;font-style:normal;color:#222222;text-decoration:none;letter-spacing:0px;">
                                     <singleline>
                                       <div mc:edit data-text-edit>
-                                      CREAMOS UNA NUEVA CONTRASEÑA
+                                      TE CREAMOS UNA NUEVA CONTRASEÑA
                                       </div>
                                     </singleline>
                                 </td>
@@ -313,15 +313,15 @@ $obj=new representante();;
                 $mail->isSMTP();                                           //Enviar usando SMTP
                 $mail->Host       = 'smtp.gmail.com';             //Configurar el servidor SMTP para enviar a través
                 $mail->SMTPAuth   = true;                                   //Habilitar autenticación SMTP
-                $mail->Username   = 'soporte@prolife.pe';            //nombre de usuario SMTP
-                $mail->Password   = 'Prolife_2022_soporte';   
+                $mail->Username   = 'soporte@biotreelife.com';            //nombre de usuario SMTP
+                $mail->Password   = 'Soporte_2022_Biotreelife';   
                 $mail->SMTPAutoTLS = false;                         //Contraseña SMTP
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Habilitar el cifrado TLS implícito
                 $mail->Port       = 587;                                 //Puerto TCP para conectarse; use 587 ENCRYPTION_STARTTLS / 465 ENCRYPTION_SMTPS si configuró 
                                                                             //`SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
                 //Recipients
-                $mail->setFrom('soporte@prolife.pe', 'Brio Tree Life');
+                $mail->setFrom('soporte@biotreelife.com', 'Brio Tree Life');
                 $mail->addAddress($correo, $datos);     //Agregar una destinataria
                 //$mail->addAddress('serghio.lira@outlook.com','Sergio Lira');               //El nombre es opcional
                 /*$mail->addReplyTo('info@example.com', 'Information');
