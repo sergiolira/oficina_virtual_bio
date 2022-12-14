@@ -47,9 +47,9 @@ class representante extends cn{
 public function list() {
     $query = "select rc.*,
     CASE  WHEN rc.patrocinador_directo='Cabeza de Red' THEN 'Cabeza de Red' WHEN rc.patrocinador_directo='unilevel' THEN 'Unilevel' 
-    ELSE concat(rc_pat_dir.nombre,' ',rc_pat_dir.apellidopaterno,' ',rc_pat_dir.apellidomaterno) END as patrocinador_directo_datos,
+    ELSE rc_pat_dir.razon_social END as patrocinador_directo_datos,
     CASE  WHEN rc.patrocinador='Cabeza de Red' THEN 'Cabeza de Red' WHEN rc.patrocinador='unilevel' THEN 'Unilevel' 
-    ELSE concat(rc_pat.nombre,' ',rc_pat.apellidopaterno,' ',rc_pat.apellidomaterno) END as patrocinador_datos,
+    ELSE rc_pat.razon_social END as patrocinador_datos,
     DATE_FORMAT(rc.fecharegistro, '%Y-%m-%d') as fechaingreso,DATE_FORMAT(rc.fecharegistro, '%Y-%m') as fechaingreso_mes from representante rc
     left join representante rc_pat_dir on rc.patrocinador_directo=rc_pat_dir.nro_documento 
     left join representante rc_pat on rc.patrocinador=rc_pat.nro_documento order by
