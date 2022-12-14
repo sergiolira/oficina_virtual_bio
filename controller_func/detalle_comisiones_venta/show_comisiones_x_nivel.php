@@ -63,19 +63,19 @@ if($rs_v_n_d>0)
         /*Opciones de nivel  de la red para sus estilos*/
         switch ($filadcov["nivel"]) {
             case '1':
-                $style_nivel="style='color:#E20612;font-weight: bold;'";
+                $style_nivel="style='color:#ffbf00;font-weight: bold;'";
                 break;
             case '2':
-                $style_nivel="style='color:#FFA200;font-weight: bold;'";
+                $style_nivel="style='color:#fc2200;font-weight: bold;'";
                 break;
             case '3':
-                $style_nivel="style='color:#D5C414;font-weight: bold;'";
+                $style_nivel="style='color:#010101;font-weight: bold;'";
                 break;
             case '4':
-                $style_nivel="style='color:#3CA805;font-weight: bold;'";
+                $style_nivel="style='color:#0000ff;font-weight: bold;'";
                 break;
             default:
-                $style_nivel="style='color:#0092D7;font-weight: bold;'";
+                $style_nivel="style='color:#87ceeb;font-weight: bold;'";
                 break;
         }
 

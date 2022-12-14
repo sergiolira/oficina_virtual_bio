@@ -25,7 +25,7 @@ $obj_trama->semana_detalle=$_REQUEST["slt_semana"];
 $rs_v_c=$obj_cabecera_comisiones->validate_comisiones();
 
 if($rs_v_c>0){
-    $comision_nivel_1=0.25;$comision_nivel_2=0.1;$comision_nivel_3=0.03;$comision_nivel_4=0.02;$comision_nivel_5=0.01;
+    $comision_nivel_1=0.20;$comision_nivel_2=0.08;$comision_nivel_3=0.04;$comision_nivel_4=0.02;$comision_nivel_5=0.02;
     $rs_cab_com=$obj_cabecera_comisiones->read_x_anio_mes_semana();
     while($fila_cab_com=mysqli_fetch_assoc($rs_cab_com))
     {

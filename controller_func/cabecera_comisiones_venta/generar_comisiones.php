@@ -169,7 +169,7 @@ echo $html;
 die();
 }
 //TODO: Iniciamos la generacion de comisiones cabecera
-$comision_nivel_1=0.25;$comision_nivel_2=0.1;$comision_nivel_3=0.03;$comision_nivel_4=0.02;$comision_nivel_5=0.01;
+$comision_nivel_1=0.20;$comision_nivel_2=0.08;$comision_nivel_3=0.04;$comision_nivel_4=0.02;$comision_nivel_5=0.02;
 //TODO: lista de representantes
 $rs_representantes=$obj_rep->list_representantes_general();
 while($fila=mysqli_fetch_assoc($rs_representantes))
