@@ -104,11 +104,11 @@ while($fila=mysqli_fetch_assoc($rs)){
   $html.='<tr class="item'.$fila["id_representante"].'">
   <td class="itemrow_a'.$fila["id_representante"].'">'.$c.'</td>  
   <td class="itemrow_c'.$fila["id_representante"].'">'.$fila["nro_documento"].'</td>  
-  <td class="itemrow_c'.$fila["id_representante"].'">'.$fila["razon_social"].'</td>
+  <td class="itemrow_c'.$fila["id_representante"].'">'.ucwords(strtolower($fila["razon_social"])).'</td>
   <td class="itemrow_c'.$fila["id_representante"].'">'.$fila["patrocinador_directo"].'</td>
-  <td class="itemrow_d'.$fila["id_representante"].'">'.$fila["patrocinador_directo_datos"].'</td>
+  <td class="itemrow_d'.$fila["id_representante"].'">'.ucwords(strtolower($fila["patrocinador_directo_datos"])).'</td>
   <td class="itemrow_g'.$fila["id_representante"].'">'.$rs_nro_afiliados.'</td>
-  <td class="itemrow_g'.$fila["id_representante"].'">'.$fila["patrocinador_datos"].'</td>
+  <td class="itemrow_g'.$fila["id_representante"].'">'.ucwords(strtolower($fila["patrocinador_datos"])).'</td>
   <td '.$style_lo.' class="itemrow_h'.$fila["id_representante"].'">'.$estado.'</td>
   <td class="itemrow_c'.$fila["id_representante"].'">'.$fila["fecharegistro"].'</td>
   <td class="itemrow_d'.$fila["id_representante"].'">

@@ -84,7 +84,7 @@ $btn_ver = '';
             <tr>
                 <td><?php echo $count; ?></td>
                 <td><?php echo $fila['id_cabacera_comisiones_venta']; ?></td>
-                <td><?php echo $fila['representante']; ?></td>
+                <td><?php echo ucwords(strtolower($fila['representante'])); ?></td>
                 <td><?php echo $fila['correo']; ?></td>
                 <td><?php echo $fila['nro_documento']; ?></td>
                 <td><?php echo $fila['comision_total']; ?></td>

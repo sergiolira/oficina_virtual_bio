@@ -81,7 +81,7 @@ if($rs_v_n_d>0)
 
         $html.='<tr class="item'.$filadcov["id_detalle_comisiones_venta"].'">
             <td class="itemrow_a'.$filadcov["id_detalle_comisiones_venta"].'">'.$nro.'</td>
-            <td class="itemrow_a'.$filadcov["id_detalle_comisiones_venta"].'">'.$filadcov["razon_social"].'</td>
+            <td class="itemrow_a'.$filadcov["id_detalle_comisiones_venta"].'">'.ucwords(strtolower($filadcov["razon_social"])).'</td>
             <td class="itemrow_b'.$filadcov["id_detalle_comisiones_venta"].'">'.$filadcov["nro_documento"].'</td>
             <td '.$style_nivel.' class="itemrow_f'.$filadcov["id_detalle_comisiones_venta"].'">Nivel '.$filadcov["nivel"].'</td>
             <td class="itemrow_e'.$filadcov["id_detalle_comisiones_venta"].'">'.$filadcov["tipo_venta"].'</td>

@@ -148,7 +148,7 @@ if($fila["fecha_entrega"]!="1900-01-01"){
 $html.='<tr class="item'.$fila["id_trama_registro_ventas_temporal"].'">
 <td class="itemrow_a'.$fila["id_trama_registro_ventas_temporal"].'">'.$c.'</td>
 <td>'.$fila["nro_solicitud"].'</td>
-<td>'.$fila["nombre_cliente"].'</td>
+<td>'.ucwords(strtolower($fila["nombre_cliente"])).'</td>
 <td>'.$fila["nro_documento"].'</td>
 <td>'.$fila["fecha_pedido"].'</td>
 <td>'.$fecha_entrega.'</td>

@@ -57,7 +57,7 @@ $html.='<table id="example2"  class="table table-bordered table-striped table-sm
         $html.='<tr class="item'.$filacco["id_cabacera_comisiones_venta"].'">
                         <td class="itemrow_b'.$filacco["id_cabacera_comisiones_venta"].'">'.$nro.'</td>
                         <td class="itemrow_b'.$filacco["id_cabacera_comisiones_venta"].'">'.$filacco["id_cabacera_comisiones_venta"].'</td>
-                        <td class="itemrow_b'.$filacco["id_cabacera_comisiones_venta"].'">'.$filacco["representante"].'</td>
+                        <td class="itemrow_b'.$filacco["id_cabacera_comisiones_venta"].'">'.ucwords(strtolower($filacco["representante"])).'</td>
                         <td class="itemrow_c'.$filacco["id_cabacera_comisiones_venta"].'">'.$filacco["nro_documento"].'</td>
                         <td class="itemrow_c'.$filacco["id_cabacera_comisiones_venta"].'">'.$filacco["correo"].'</td>
                         <td class="itemrow_d'.$filacco["id_cabacera_comisiones_venta"].'">'.$filacco["patrocinador_directo"].'</td>
@@ -128,7 +128,7 @@ $html='<table id="example2"  class="table table-bordered table-striped table-sm"
         $html.='<tr class="item'.$filacco["id_cabacera_comisiones_venta"].'">
                         <td class="itemrow_b'.$filacco["id_cabacera_comisiones_venta"].'">'.$nro.'</td>
                         <td class="itemrow_b'.$filacco["id_cabacera_comisiones_venta"].'">'.$filacco["id_cabacera_comisiones_venta"].'</td>
-                        <td class="itemrow_b'.$filacco["id_cabacera_comisiones_venta"].'">'.$filacco["representante"].'</td>
+                        <td class="itemrow_b'.$filacco["id_cabacera_comisiones_venta"].'">'.ucwords(strtolower($filacco["representante"])).'</td>
                         <td class="itemrow_c'.$filacco["id_cabacera_comisiones_venta"].'">'.$filacco["nro_documento"].'</td>
                         <td class="itemrow_c'.$filacco["id_cabacera_comisiones_venta"].'">'.$filacco["correo"].'</td>
                         <td class="itemrow_d'.$filacco["id_cabacera_comisiones_venta"].'">'.$filacco["patrocinador_directo"].'</td>
@@ -317,7 +317,7 @@ $html.='<table id="example2"  class="table table-bordered table-striped table-sm
         $html.='<tr class="item'.$filacco["id_cabacera_comisiones_venta"].'">
                         <td class="itemrow_b'.$filacco["id_cabacera_comisiones_venta"].'">'.$nro.'</td>
                         <td class="itemrow_b'.$filacco["id_cabacera_comisiones_venta"].'">'.$filacco["id_cabacera_comisiones_venta"].'</td>
-                        <td class="itemrow_b'.$filacco["id_cabacera_comisiones_venta"].'">'.$filacco["representante"].'</td>
+                        <td class="itemrow_b'.$filacco["id_cabacera_comisiones_venta"].'">'.ucwords(strtolower($filacco["representante"])).'</td>
                         <td class="itemrow_c'.$filacco["id_cabacera_comisiones_venta"].'">'.$filacco["nro_documento"].'</td>
                         <td class="itemrow_c'.$filacco["id_cabacera_comisiones_venta"].'">'.$filacco["correo"].'</td>
                         <td class="itemrow_d'.$filacco["id_cabacera_comisiones_venta"].'">'.$filacco["patrocinador_directo"].'</td>

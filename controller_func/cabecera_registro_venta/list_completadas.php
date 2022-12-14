@@ -101,7 +101,7 @@ if($fila["estado_enviado_comision"]=="1"){
 
 $html.='<tr><td>'.$c.'</td>
             <td>'.$fila["nro_solicitud"].'</td>
-            <td>'.$fila["nombre_cliente"].'</td>
+            <td>'.ucwords(strtolower($fila["nombre_cliente"])).'</td>
             <td>'.$fila["nro_documento"].'</td>
             <td>'.$fila["tipo_venta"].'</td>
             <td>'.$fila["fecha_pedido"].'</td>
