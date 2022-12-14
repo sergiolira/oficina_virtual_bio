@@ -129,7 +129,7 @@ class cabecera_registro_venta extends cn{
 
     public function read(){
         $query="SELECT crv.*,CASE  WHEN crv.tipo_cliente='ASESOR' THEN r.razon_social
-         ELSE concat(c.nombre,' ',c.apellidopaterno,' ',c.apellidomaterno) END as nombre_cliente,erv.estado_registro_venta      
+        ELSE concat(c.nombre,' ',c.apellidopaterno,' ',c.apellidomaterno) END as nombre_cliente,erv.estado_registro_venta      
         FROM cabecera_registro_venta crv INNER JOIN detalle_registro_venta drv ON crv.nro_solicitud=drv.nro_solicitud
         LEFT JOIN representante r ON r.nro_documento=crv.nro_documento
         LEFT JOIN candidato c ON c.nro_documento=crv.nro_documento
@@ -142,8 +142,8 @@ class cabecera_registro_venta extends cn{
     }
 
     public function consult_filtro($filtro){
-         echo $query="SELECT crv.*,CASE  WHEN crv.tipo_cliente='ASESOR' THEN r.razon_social
-         ELSE concat(c.nombre,' ',c.apellidopaterno,' ',c.apellidomaterno) END as nombre_cliente,erv.estado_registro_venta,tv.tipo_venta   
+        $query="SELECT crv.*,CASE  WHEN crv.tipo_cliente='ASESOR' THEN r.razon_social
+        ELSE concat(c.nombre,' ',c.apellidopaterno,' ',c.apellidomaterno) END as nombre_cliente,erv.estado_registro_venta,tv.tipo_venta   
         FROM cabecera_registro_venta crv INNER JOIN detalle_registro_venta drv ON crv.nro_solicitud=drv.nro_solicitud
         LEFT JOIN representante r ON r.nro_documento=crv.nro_documento
         LEFT JOIN candidato c ON c.nro_documento=crv.nro_documento
