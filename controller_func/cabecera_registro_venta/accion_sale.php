@@ -1,4 +1,8 @@
 <?php
+session_start();
+setlocale(LC_ALL,"es_ES@euro","es_PE","esp");
+date_default_timezone_set('America/Lima');
+setlocale(LC_TIME, 'es_PE.utf8');
 require_once("../../helpers/helpers.php");
 include_once("../../model_class/cabecera_registro_venta.php");
 include_once("../../model_class/detalle_registro_venta.php");
