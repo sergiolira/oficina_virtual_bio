@@ -31,6 +31,7 @@ class cabecera_registro_venta extends cn{
     var $id_usuarioregistro;
     var $id_usuarioactualiza;
 
+    var $nombre_cliente;
 
     public  function update(){
         $query="update cabecera_registro_venta set 
@@ -62,7 +63,13 @@ class cabecera_registro_venta extends cn{
         return $res;
     }
     public function consult(){
-        $query="select * from cabecera_registro_venta where nro_solicitud='$this->nro_solicitud' ";
+        $query="crv.*,CASE  WHEN crv.tipo_cliente='ASESOR' THEN r.razon_social
+        ELSE concat(c.nombre,' ',c.apellidopaterno,' ',c.apellidomaterno) END as nombre_cliente,erv.estado_registro_venta      
+        FROM cabecera_registro_venta crv INNER JOIN detalle_registro_venta drv ON crv.nro_solicitud=drv.nro_solicitud
+        LEFT JOIN representante r ON r.nro_documento=crv.nro_documento
+        LEFT JOIN candidato c ON c.nro_documento=crv.nro_documento
+        INNER JOIN tipo_venta tv ON drv.id_tipo_venta=tv.id_tipo_venta
+        INNER JOIN estado_registro_venta erv ON crv.id_estado_registro_venta=erv.id_estado_registro_venta WHERE crv.nro_solicitud='$this->nro_solicitud' ";
         $res=mysqli_query($this->f_cn(),$query);
         if($fila=mysqli_fetch_array($res)){            
             $this->id_cabecera_registro_venta=$fila["id_cabecera_registro_venta"];
@@ -94,6 +101,7 @@ class cabecera_registro_venta extends cn{
             $this->fecharegistro=$fila["fecharegistro"];
             $this->id_usuarioregistro=$fila["id_usuarioregistro"];
             $this->id_usuarioactualiza=$fila["id_usuarioactualiza"];
+            $this->nombre_cliente=$fila["nombre_cliente"];
         }
         mysqli_close($this->f_cn());   
     }

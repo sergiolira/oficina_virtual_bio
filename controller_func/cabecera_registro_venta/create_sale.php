@@ -265,7 +265,7 @@ $obj_detalle_registro_venta->consult();
             <span class="input-group-text"><i class="far fa-eye"></i></span>
             </div>
             <input type="email" readonly class="form-control valid validEmail" id="txt_correo_cli" name="txt_correo_cli" 
-            value=""/>
+            value="<?php echo $obj_cabecera_registro_venta->correo;?>"/>
         </div>
     </div>
 
@@ -277,7 +277,7 @@ $obj_detalle_registro_venta->consult();
             <span class="input-group-text"><i class="far fa-eye"></i></span>
             </div>
             <input type="text" readonly class="form-control valid fntValidTextSpecial" id="txt_datos_cli" name="txt_datos_cli" 
-            value=""/>
+            value="<?php echo $obj_cabecera_registro_venta->nombre_cliente;?>"/>
         </div>
     </div>
 
@@ -289,7 +289,7 @@ $obj_detalle_registro_venta->consult();
             <span class="input-group-text"><i class="far fa-eye"></i></span>
             </div>
             <input type="text" readonly class="form-control valid fntValidTextSpecial" id="txt_celular_cli" name="txt_celular_cli" 
-            value=""/>
+            value="<?php echo $obj_cabecera_registro_venta->celular;?>"/>
         </div>
     </div>
 
