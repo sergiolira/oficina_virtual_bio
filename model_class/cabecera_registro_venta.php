@@ -63,7 +63,7 @@ class cabecera_registro_venta extends cn{
         return $res;
     }
     public function consult(){
-        $query="crv.*,CASE  WHEN crv.tipo_cliente='ASESOR' THEN r.razon_social
+        $query="SELECT crv.*,CASE  WHEN crv.tipo_cliente='ASESOR' THEN r.razon_social
         ELSE concat(c.nombre,' ',c.apellidopaterno,' ',c.apellidomaterno) END as nombre_cliente,erv.estado_registro_venta      
         FROM cabecera_registro_venta crv INNER JOIN detalle_registro_venta drv ON crv.nro_solicitud=drv.nro_solicitud
         LEFT JOIN representante r ON r.nro_documento=crv.nro_documento
