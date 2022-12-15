@@ -59,7 +59,7 @@ $obj_detalle_registro_venta->consult();
     </div>
 
     <?php if($obj_detalle_registro_venta->id_tipo_venta=="1" || $_REQUEST["id"]=="" || $_REQUEST["id"]=="0"){?>
-    <div class="col-8 div_producto">
+    <div class="col-4 div_producto">
         <label for="slt_producto">Producto<i class="text-danger" title="Seleccione">*</i> </label>
         <label class="text-danger msj-slt_producto"></label>
         <div class="input-group mb-2">
