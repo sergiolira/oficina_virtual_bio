@@ -91,7 +91,7 @@ if($_SESSION['eliminar']!=1){
 $btn_eliminar="";
 }
 
-if($fila["estado_registro_venta"]!=1 && $_SESSION["id_rol"]=="3"){
+if($fila["id_estado_registro_venta"]!=1 && $_SESSION["id_rol"]=="3"){
     $btn_editar='<button data-id="'.$fila["nro_solicitud"].'"
     title="Modificar" class="btn btn-xs btn-warning" disabled><i class="far fa-edit"></i></button>';
 }
