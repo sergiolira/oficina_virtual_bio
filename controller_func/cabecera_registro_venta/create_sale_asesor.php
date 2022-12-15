@@ -677,9 +677,11 @@ $obj_detalle_registro_venta->consult();
     $('#slt_distrito_seleccionado').select2({
     theme: 'bootstrap4'
     });
+    <?php if($_REQUEST["id"]=="" || $_REQUEST["id"]=="0"){?>
     $('#slt_estado_registro_venta').select2({
     theme: 'bootstrap4'
     });
+    <?php }?>
     $('#txt_fecha_pedido').daterangepicker({
         singleDatePicker: true,
         showDropdowns: true,
