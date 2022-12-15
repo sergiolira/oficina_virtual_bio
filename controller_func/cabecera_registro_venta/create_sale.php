@@ -155,7 +155,10 @@ $obj_detalle_registro_venta->consult();
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-align-left"></i></span>
             </div>
-            <?php if($obj_detalle_registro_venta->id_tipo_venta=="1" || $_REQUEST["id"]=="0"){?>
+            <?php if($obj_detalle_registro_venta->id_tipo_venta=="1"){?>
+            <input type="number" class="form-control valid validNumber"  id="txt_cantidad" name="txt_cantidad" min="1" max='1000'
+            value="1"/>
+            <?php }elseif($_REQUEST["id"]=="0"){?>
             <input type="number" class="form-control valid validNumber"  id="txt_cantidad" name="txt_cantidad" min="1" max='1000'
             value="1"/>
             <?php }else{?>
