@@ -96,6 +96,11 @@ if($fila["id_estado_registro_venta"]!=1 && $_SESSION["id_rol"]=="3"){
     title="Modificar" class="btn btn-xs btn-warning" disabled><i class="far fa-edit"></i></button>';
 }
 
+if($_SESSION["id_rol"]=="3" && $fila["id_estado_registro_venta"]==1){
+    $btn_editar='<button data-id="'.$fila["nro_solicitud"].'"
+    title="Modificar" class="btn btn-xs btn-warning nuevo_detalle_venta_modal_asesor"><i class="far fa-edit"></i></button>';
+}
+
 if($fila["fecha_entrega"]!="1900-01-01"){
     $fecha_entrega=$fila["fecha_entrega"];
 }else{
