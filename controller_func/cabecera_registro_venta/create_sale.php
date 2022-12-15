@@ -706,6 +706,11 @@ $obj_detalle_registro_venta->consult();
     $('#slt_tipo_venta').change();
     <?php }?>
 
+    <?php if($_REQUEST["id"]!=0 && $obj_detalle_registro_venta->id_tipo_venta==1){?>
+    $('#slt_producto').change();
+    $('#slt_tipo_venta').change();
+    <?php }?>
+
     
     $('#check_fec_entrega').change(function(){
     if($(this).is(':checked')) {
