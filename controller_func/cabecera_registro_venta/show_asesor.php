@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once("../../model_class/tipo_venta.php");
 include_once("../../model_class/cabecera_registro_venta.php");
 include_once("../../model_class/detalle_registro_venta.php");
@@ -31,7 +32,7 @@ $obj_detalle_registro_venta->consult();
 ?>
 <div class="row"> 
     <div class="col-12">
-        <br><center><strong>Registro de producto o paquetes</strong><div class="card card-outline card-success"></div></center>
+        <br><center><strong>Registro de producto</strong><div class="card card-outline card-success"></div></center>
     </div> 
     <?php if($obj_detalle_registro_venta->nro_solicitud==""){?>
     <input type="hidden" name="id" value="0">
@@ -58,7 +59,7 @@ $obj_detalle_registro_venta->consult();
     </div>
 
     <?php if($obj_detalle_registro_venta->id_tipo_venta=="1" || $_REQUEST["id"]=="" || $_REQUEST["id"]=="0"){?>
-    <div class="col-4 div_producto">
+    <div class="col-8 div_producto">
         <label for="slt_producto">Producto<i class="text-danger" title="Seleccione">*</i> </label>
         <label class="text-danger msj-slt_producto"></label>
         <div class="input-group mb-2">
@@ -167,7 +168,7 @@ $obj_detalle_registro_venta->consult();
             <?php }elseif($obj_detalle_registro_venta->id_tipo_venta=="2" && $_REQUEST["id"]!="0"){?>
             <input type="number" readonly class="form-control valid validNumber"  id="txt_cantidad" name="txt_cantidad" min="1" max='1000' 
             value="<?php echo $obj_detalle_registro_venta->cantidad; ?>"/>
-            <?php } ?> 
+            <?php } ?>            
         </div>
     </div>
 
@@ -222,22 +223,19 @@ $obj_detalle_registro_venta->consult();
     
    
     <div class="col-12">
-        <br><center><strong>Datos de cliente</strong><div class="card card-outline card-success"></div></center>
+        <br><center><strong>Datos de receptor</strong><div class="card card-outline card-success"></div></center>
     </div>   
 
 
-    <div class="col-4">
+    <div class="col-4" style="display: none;">
     <label for="slt_tipo_cliente">Tipo de cliente<i class="text-danger" title="Seleccione">*</i> </label>
         <label class="text-danger msj_slt_tipo_cliente"></label>
         <div class="input-group mb-2">
         <div class="input-group-prepend">
             <span class="input-group-text"><i class="fab fa-product-hunt"></i></span>
         </div>
-        <select class="form-control" name="slt_tipo_cliente" id="slt_tipo_cliente">
-            <option value="0" <?php if($obj_cabecera_registro_venta->tipo_cliente==""){ echo "selected";}?>>
-            SELECCIONAR TIPO DE CLIENTE</option>            
+        <select class="form-control" name="slt_tipo_cliente" id="slt_tipo_cliente">        
             <option value="ASESOR" <?php if($obj_cabecera_registro_venta->tipo_cliente=="ASESOR"){ echo "selected";}?>>Asesor de venta</option>
-            <option value="CLIENTE" <?php if($obj_cabecera_registro_venta->tipo_cliente=="CLIENTE"){ echo "selected";}?>>Cliente</option>
         </select>
         </div>
     </div>
@@ -250,10 +248,22 @@ $obj_detalle_registro_venta->consult();
                 <span class="input-group-text"><i class="fas fa-align-left"></i></span>
             </div>
             <input type="number" class="form-control" id="txt_numero_documento" name="txt_numero_documento" 
-            value="<?php echo $obj_cabecera_registro_venta->nro_documento;?>"/>
-            <input type="hidden" name="txt_patrocinador" id="txt_patrocinador" value="<?php echo $obj_cabecera_registro_venta->patrocinador;?>">
+            value="<?php echo $_SESSION["nro_documento"];?>"/>
+            <input type="hidden" name="txt_patrocinador" id="txt_patrocinador" value="<?php echo $_SESSION["patrocinador"];?>">
             <input type="hidden" name="txt_patrocinador_directo" id="txt_patrocinador_directo" 
-            value="<?php echo $obj_cabecera_registro_venta->patrocinador_directo;?>">
+            value="<?php echo $_SESSION["patrocinador_directo"];?>">
+        </div>
+    </div>
+
+    <div class="col-8">
+        <label for="txt_datos_cli">Datos<i class="text-danger" >*</i> </label>
+        <label class="text-danger"></label>  
+        <div class="input-group mb-2">
+            <div class="input-group-prepend ">
+            <span class="input-group-text"><i class="far fa-eye"></i></span>
+            </div>
+            <input type="text" readonly class="form-control valid fntValidTextSpecial" id="txt_datos_cli" name="txt_datos_cli" 
+            value="<?php echo $_SESSION["razon_social"];?>"/>
         </div>
     </div>
 
@@ -264,20 +274,8 @@ $obj_detalle_registro_venta->consult();
             <div class="input-group-prepend ">
             <span class="input-group-text"><i class="far fa-eye"></i></span>
             </div>
-            <input type="email" readonly class="form-control valid validEmail" id="txt_correo_cli" name="txt_correo_cli" 
-            value=""/>
-        </div>
-    </div>
-
-    <div class="col-4">
-        <label for="txt_datos_cli">Datos<i class="text-danger" >*</i> </label>
-        <label class="text-danger"></label>  
-        <div class="input-group mb-2">
-            <div class="input-group-prepend ">
-            <span class="input-group-text"><i class="far fa-eye"></i></span>
-            </div>
-            <input type="text" readonly class="form-control valid fntValidTextSpecial" id="txt_datos_cli" name="txt_datos_cli" 
-            value=""/>
+            <input type="email"  class="form-control valid validEmail" id="txt_correo_cli" name="txt_correo_cli" 
+            value="<?php echo $_SESSION["correo"];?>"/>
         </div>
     </div>
 
@@ -288,8 +286,8 @@ $obj_detalle_registro_venta->consult();
             <div class="input-group-prepend ">
             <span class="input-group-text"><i class="far fa-eye"></i></span>
             </div>
-            <input type="text" readonly class="form-control valid fntValidTextSpecial" id="txt_celular_cli" name="txt_celular_cli" 
-            value=""/>
+            <input type="text"  class="form-control valid fntValidTextSpecial" id="txt_celular_cli" name="txt_celular_cli" 
+            value="<?php echo $_SESSION["telefono"];?>"/>
         </div>
     </div>
 
@@ -300,9 +298,9 @@ $obj_detalle_registro_venta->consult();
             <div class="input-group-prepend ">
             <span class="input-group-text"><i class="far fa-eye"></i></span>
             </div>
-            <?php if($obj_detalle_registro_venta->nro_solicitud==""){?>
+            <?php if($obj_detalle_registro_venta->nro_solicitud=="0"){?>
             <input type="text" readonly class="form-control valid ValidTextSpecial" id="txt_des_x_cli" name="txt_des_x_cli" 
-            value="0.00" style="border-color:aquamarine"/>
+            value="<?php echo $_SESSION["descuento_x_registro"];?>" style="border-color:aquamarine"/>
             <?php }else{?>
             <input type="text" readonly class="form-control valid ValidTextSpecial" id="txt_des_x_cli" name="txt_des_x_cli"
             value="<?php echo $obj_detalle_registro_venta->descuento_por_nro_documento;?>" style="border-color:aquamarine"/>
@@ -525,7 +523,7 @@ $obj_detalle_registro_venta->consult();
     </div>
 
     
-    <div class="col-4">
+    <div class="col-8">
         <label for="txt_fecha_pedido">Fecha registro<i class="text-danger" title="Ingrese Fecha Pedido">*</i></label>
         <label class="text-danger msj_txt_fecha_pedido"></label>  
         <div class="input-group mb-2">
@@ -533,16 +531,20 @@ $obj_detalle_registro_venta->consult();
                 <span class="input-group-text"><i class="fas fa-align-left"></i></span>
             </div>
             <?php if($_REQUEST["id"]>0){?>                       
-                <input type="text" class="form-control valid ValidTextSpecial"  id="txt_fecha_pedido" name="txt_fecha_pedido" 
+                <input type="hidden" class="form-control valid ValidTextSpecial"  id="txt_fecha_pedido" name="txt_fecha_pedido" 
+                value="<?php echo  date('Y-m-d',strtotime($obj_cabecera_registro_venta->fecha_pedido));?>"/>  
+                <input type="text" readonly class="form-control valid ValidTextSpecial"  id="" name="" 
                 value="<?php echo  date('Y-m-d',strtotime($obj_cabecera_registro_venta->fecha_pedido));?>"/>                          
             <?php }else{?>
-                <input type="text" class="form-control valid ValidTextSpecial"  id="txt_fecha_pedido" name="txt_fecha_pedido" 
+                <input type="hidden" class="form-control valid ValidTextSpecial"  id="txt_fecha_pedido" name="txt_fecha_pedido" 
+                value="<?php echo date('Y-m-d');?>"/>
+                <input type="text" class="form-control valid ValidTextSpecial"  id="" name="" 
                 value="<?php echo date('Y-m-d');?>"/>
             <?php }?>
         </div>
     </div>
 
-    <div class="col-4">
+    <div class="col-4" style="display:none">
         <label for="txt_fecha_entrega">Fecha entrega<i class="text-danger" title="Ingrese Fecha Vencimiento">*</i></label>
         <label class="text-danger msj_txt_fecha_entrega"></label>  
         <div class="input-group mb-2">

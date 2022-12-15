@@ -241,9 +241,9 @@ $(document).on('click', '.show_detalle_venta_modal', function() {
     var id=$(this).data("id");
     var url="controller_func/cabecera_registro_venta/show.php?id="+id;
     $.get(url, function(data){
-        $("#form_show_detalle_venta").empty();
-        $("#form_show_detalle_venta").append(data);
-        $("#form_show_detalle_venta :input").prop('disabled',true);
+        $("#form_detalle_venta").empty();
+        $("#form_detalle_venta").append(data);
+        $("#form_detalle_venta :input").prop('disabled',true);
         $("#modal-show-detalle-venta").modal("show");
     })
 });
