@@ -584,7 +584,7 @@ $obj_detalle_registro_venta->consult();
         <div class="input-group-prepend">
             <span class="input-group-text"><i class="fab fa-product-hunt"></i></span>
         </div>
-        <select class="form-control select_dep" name="slt_estado_registro_venta" id="slt_estado_registro_venta">
+        <select class="form-control" readonly>
             <option value="0">SELECCIONAR ESTADO VENTA</option>
             <?php $rs_estado_Venta=$obj_estado_registro_venta->combo();
                 while($fila_p=mysqli_fetch_assoc($rs_estado_Venta)){
@@ -593,6 +593,7 @@ $obj_detalle_registro_venta->consult();
             value="<?php echo $fila_p["id_estado_registro_venta"]?>"><?php echo $fila_p["estado_registro_venta"]?></option>
                 <?php }?>
         </select>
+        <input type="hidden" name="slt_estado_registro_venta" id="slt_estado_registro_venta" value="<?php echo $fila_p["id_estado_registro_venta"]?>">
         </div>
     </div> 
     <?php }?>
